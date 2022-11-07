@@ -1,0 +1,49 @@
+.application-item {
+  display: grid;
+  grid-template-columns: 110px 162px 270px 100px 140px 150px 200px 120px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.application-item:hover {
+  box-shadow: 0 0 5px black;
+  cursor: pointer;
+}
+
+.application-item__text {
+  text-align: left;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #141414;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 0 12px;
+  margin: 0;
+  height: 100%;
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.application-item__span {
+  margin: 0 0 4px 0;
+}
+
+.application-item__btn {
+  min-height: 44px;
+  background: #389e0d;
+  color: white;
+  margin: 0;
+  padding: 12px;
+  max-width: 240px;
+  align-self: end;
+}
+
+.application-item__btn:hover,
+.application-item__btn:focus {
+  background: #135200;
+}

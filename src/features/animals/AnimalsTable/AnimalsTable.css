@@ -1,0 +1,34 @@
+.animals-table__title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 140%;
+  text-align: center;
+  color: #141414;
+  text-transform: uppercase;
+}
+
+.animals-table__ul {
+  max-height: 70vh;
+}
+
+.animals-table__text {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+}
+
+.animals-table__btn {
+  min-height: 44px;
+  background: #389e0d;
+  color: white;
+  margin-top: 1vh;
+  padding: 12px 49px;
+  max-width: 240px;
+  align-self: end;
+}
+
+.animals-table__btn:hover,
+.animals-table__btn:focus {
+  background: #135200;
+}

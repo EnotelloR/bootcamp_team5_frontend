@@ -1,0 +1,18 @@
+.profile {
+  max-width: 1212px;
+  width: 95vw;
+  margin: 5vh auto 0;
+  display: grid;
+  gap: 0 4%;
+  grid-template-columns: repeat(2, 48%);
+}
+
+.profile__text {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 140%;
+  color: #141414;
+  text-align: center;
+  margin: 10vh auto 0;
+}

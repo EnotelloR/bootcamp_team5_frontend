@@ -1,0 +1,58 @@
+.animal-profile {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.animal-profile__box-btn {
+  align-self: end;
+}
+
+.animal-profile__btn {
+  min-height: 44px;
+  background: #389e0d;
+  color: white;
+  margin-top: 1vh;
+  padding: 12px 49px;
+  max-width: 240px;
+}
+
+.animal-profile__btn_delete {
+  background: inherit;
+  color: red;
+  margin-right: 50px;
+  border: none;
+}
+
+.animal-profile__btn_cancel {
+  background: inherit;
+  color: #389e0d;
+  border: none;
+}
+
+.animal-profile__btn:hover,
+.animal-profile__btn:focus {
+  background: #135200;
+}
+
+.animal-profile__info-box {
+  display: flex;
+}
+
+.animal-profile__text {
+  font-style: normal;
+  font-size: 16px;
+  line-height: 140%;
+  color: #212121;
+}
+
+.animal-profile__text_big {
+  max-height: 20vh;
+  overflow-y: hidden;
+}
+
+.animal-profile__span {
+  color: #595959;
+  font-weight: 600;
+}

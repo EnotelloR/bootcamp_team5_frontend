@@ -1,0 +1,28 @@
+.success-email {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.success-email__logo {
+  width: 120px;
+  height: 120px;
+  background-color: #389e0d;
+  background-image: url('../../../image/check.png');
+  background-repeat: no-repeat;
+  background-size: 80px;
+  background-position: center;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #389e0d;
+}
+
+.success-email__container {
+  display: flex;
+  max-width: 600px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}

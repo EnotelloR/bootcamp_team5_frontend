@@ -1,0 +1,124 @@
+.appointment-page {
+  padding-left: 20px;
+  padding-right: 20px;
+  min-height: calc(100vh - 110px);
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.appointment-page__title {
+  font-size: 46px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 700;
+  line-height: 64px;
+}
+
+.appointment-page__content {
+  display: grid;
+  grid-template-columns: 1fr 30px 1fr;
+  grid-template-areas:
+    'f . s'
+    'f . s';
+  gap: 10px;
+  padding-bottom: 25px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.appointment-page__container_type_first {
+  grid-area: f;
+}
+
+.appointment-page__container_type_second {
+  grid-area: s;
+}
+
+.appointment-page__panel {
+  background: rgba(56, 158, 13, 0.08);
+  max-width: 600px;
+}
+
+.appointment-page__panel .ant-collapse-header-text {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 17px;
+}
+
+.appointment-page .ant-collapse-content-box p {
+  font-size: 16px;
+  font-family: 'Inter', Arial, sans-serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  margin: 0;
+}
+
+.appointment-page__panel .ant-form-item-control-input-content {
+  width: auto;
+}
+
+.appointment-page__panel .ant-picker:hover,
+.ant-picker-focused {
+  border-color: #135200;
+  border-right-width: 1px;
+  box-shadow: 0 0 0 3px rgb(19 82 0 / 20%);
+}
+
+.ant-picker-panel-container
+  .ant-picker-cell-in-view.ant-picker-cell-today
+  .ant-picker-cell-inner::before {
+  border: 1px solid #389e0d;
+}
+
+.ant-picker-panel-container .ant-picker-header-view button:hover {
+  color: #389e0d;
+}
+
+.ant-picker-panel-container
+  .ant-picker-cell-in-view.ant-picker-cell-selected
+  .ant-picker-cell-inner {
+  background: #389e0d;
+}
+
+.ant-picker-time-panel-column
+  > li.ant-picker-time-panel-cell-selected
+  .ant-picker-time-panel-cell-inner {
+  background: rgba(56, 158, 13, 0.08);
+}
+
+.ant-picker-panel-container .ant-picker-footer .ant-picker-now-btn {
+  color: #389e0d;
+}
+
+.ant-picker-panel-container .ant-picker-ok .ant-btn-primary:not([disabled]) {
+  background: #389e0d;
+  color: white;
+  border-color: #389e0d;
+}
+
+.ant-picker-panel-container .ant-picker-ok .ant-btn-primary:not([disabled]):hover,
+.ant-picker-panel-container .ant-picker-ok .ant-btn-primary:not([disabled]):focus {
+  background: transparent;
+  color: #389e0d;
+  border-color: #389e0d;
+}
+
+@media screen and (max-width: 875px) {
+  .appointment-page__content {
+    grid-template-columns: 600px;
+    grid-template-areas:
+      'f'
+      's';
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .appointment-page__content {
+    grid-template-columns: 1fr;
+  }
+  .appointment-page .ant-collapse-content-box p {
+    max-width: calc(100vw - 90px);
+  }
+}

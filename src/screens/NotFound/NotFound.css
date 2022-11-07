@@ -1,0 +1,28 @@
+.content {
+  max-width: 1024px;
+  width: 80vw;
+  max-height: 768px;
+  height: 81vh;
+  margin: 2vw auto 0;
+  background-image: url('../../image/pngegg.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  text-align: center;
+  background-position-y: -250%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 120px;
+  line-height: 96%;
+  margin: 0;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 96%;
+}

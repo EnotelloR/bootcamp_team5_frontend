@@ -1,0 +1,247 @@
+.carrier-profile {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+.carrier-profile__avatar-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.ant-form-item-control-input-content {
+  width: calc(100vw - 56px);
+}
+
+.carrier-profile__formats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.carrier-profile__format {
+  font-size: 16px;
+  font-family: 'Inter', Arial, sans-serif;
+  color: #757575;
+  line-height: 20px;
+  margin: 0 0 4px;
+}
+
+.carrier-profile__format:last-child {
+  margin: 0;
+}
+
+.carrier-profile__form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+.carrier-profile__form_type_main-info {
+  grid-template-areas:
+    'a a a a a'
+    'i i i i i'
+    'f f . s s'
+    'f f . s s';
+}
+
+.carrier-profile__form_type_vet-clinic {
+  grid-template-rows: 32px 32px 205px 44px;
+  grid-template-areas:
+    'at at . . .'
+    'st st . . .'
+    '. . . . .'
+    'sb sb . . .';
+  gap: 20px;
+}
+
+.carrier-profile__avatar-container {
+  grid-area: a;
+}
+
+.carrier-profile__avatar-input {
+  grid-area: i;
+}
+
+.carrier-profile__form-item_type_animal-types {
+  grid-area: at;
+}
+
+.carrier-profile__form-item_type_clinic_services {
+  grid-area: st;
+}
+
+.carrier-profile__form-item_type_vet-clinic-submit-btn {
+  grid-area: sb;
+}
+
+.carrier-profile__form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.carrier-profile__form-container_type_first {
+  grid-area: f;
+}
+
+.carrier-profile__form-container_type_second {
+  grid-area: s;
+}
+
+.carrier-profile__text-accent {
+  color: rgba(33, 33, 33, 0.95);
+}
+
+.carrier-profile__avatar-icon {
+  width: 128px;
+  height: 128px;
+  object-fit: cover;
+  object-position: center;
+  margin-right: 16px;
+  border-radius: 50%;
+  box-shadow: 0 0 7px #389e0d;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.carrier-profile__submit-item {
+  margin-top: auto;
+}
+
+.carrier-profile__submit-btn,
+.carrier-profile__btn-submit {
+  margin-top: auto;
+  background: #389e0d;
+  width: 50%;
+  border-color: #389e0d;
+  color: white;
+  height: 44px;
+}
+
+.carrier-profile__btn-submit_type_services {
+  width: 74%;
+}
+
+.carrier-profile__submit-btn:hover,
+.carrier-profile__submit-btn:focus,
+.carrier-profile__btn-submit:hover,
+.carrier-profile__btn-submit:focus {
+  color: #389e0d;
+  background-color: transparent;
+  border-color: #389e0d;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #389e0d;
+}
+
+.carrier-profile__tabs > .ant-tabs-nav,
+.ant-tabs > div > .ant-tabs-nav {
+  transition: all 0.5s ease;
+}
+
+.carrier-profile__tabs_visible > .ant-tabs-nav,
+.ant-tabs > div > .ant-tabs-nav {
+  visibility: visible;
+  opacity: 1;
+}
+
+.carrier-profile__tabs_hidden > .ant-tabs-nav,
+.ant-tabs > div > .ant-tabs-nav {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.carrier-profile__form .ant-input[disabled],
+.carrier-profile__form .ant-select-selection-item,
+.carrier-profile__form .ant-select-multiple .ant-select-selection-item-content {
+  color: rgba(33, 33, 33, 0.65);
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled)
+  .ant-select-item-option-state {
+  color: #389e0d;
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background: rgba(56, 158, 13, 0.1);
+}
+
+@media screen and (max-width: 1100px) {
+  .carrier-profile__form_type_main-info {
+    grid-template-columns: 1fr 1fr 0.5fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .carrier-profile__form_type_main-info {
+    grid-template-columns: 1fr 1fr 50px 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .carrier-profile__form_type_main-info {
+    grid-template-columns: 1fr 1fr 20px 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .carrier-profile__avatar-icon {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+  }
+  .carrier-profile__format {
+    font-size: 14px;
+  }
+  .carrier-profile__form_type_main-info {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'a'
+      'i'
+      'f'
+      's';
+  }
+  .carrier-profile__form_type_vet-clinic {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'at'
+      'st'
+      '.'
+      'sb';
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .carrier-profile__avatar-icon {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+  }
+  .carrier-profile__format {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .carrier-profile__avatar-icon {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+  }
+  .carrier-profile__format {
+    font-size: 10px;
+    line-height: 14px;
+  }
+}

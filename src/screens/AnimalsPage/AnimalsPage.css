@@ -1,0 +1,26 @@
+.animal-page {
+  width: 1200px;
+  margin: 2vh auto 0;
+}
+
+.animal-page__title-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.animal-page__avatar {
+  width: 100px;
+  aspect-ratio: 1 / 1;
+  border-radius: 100%;
+  margin-right: 50px;
+}
+
+.animal-page__title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 140%;
+  color: #141414;
+  margin: 0;
+}

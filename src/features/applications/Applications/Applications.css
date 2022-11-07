@@ -1,0 +1,48 @@
+.applications {
+  margin: 1vh auto 0;
+  width: 1400px;
+}
+
+.applications__title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 140%;
+  color: #141414;
+  text-align: center;
+}
+
+.applications__caption {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 140%;
+  color: #141414;
+  text-align: center;
+}
+
+.applications__table {
+  display: grid;
+  grid-template-columns: 110px 162px 270px 100px 140px 150px 200px 120px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.applications__list {
+  list-style: none;
+  padding: 0;
+}
+
+.applications__table-text {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #9e9e9e;
+  padding: 0 12px;
+  margin: 0;
+  min-width: 100px;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,72 @@
+.carrier-card {
+  padding: 40px;
+  box-sizing: border-box;
+  box-shadow: 0 0 2px #dadada;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.carrier-card__title {
+  font-size: 24px;
+  font-family: 'Inter', Arial, sans-serif;
+  line-height: 32px;
+  font-weight: 500;
+  color: #141414;
+  width: 100%;
+  overflow-x: hidden;
+  margin-bottom: 32px;
+}
+
+.carrier-card__picture {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: 32px;
+  display: block;
+}
+
+.carrier-card__info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 19px;
+}
+
+.carrier-card__info-item:last-of-type {
+  margin-bottom: 60px;
+}
+
+.carrier-card__info-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  object-position: center;
+  margin-right: 16px;
+}
+
+.carrier-card__info-text {
+  margin: 0;
+  font-size: 17px;
+  font-family: 'Inter', Arial, sans-serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.carrier-card__request-btn {
+  margin-top: auto;
+  background: #389e0d;
+  width: 100%;
+  border-color: #389e0d;
+  color: white;
+  height: 44px;
+  transition: all 0.5s ease;
+}
+
+.carrier-card__request-btn:focus,
+.carrier-card__request-btn:hover {
+  color: #389e0d;
+  background-color: transparent;
+  border-color: #389e0d;
+}

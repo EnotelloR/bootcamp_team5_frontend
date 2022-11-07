@@ -1,0 +1,108 @@
+.carrier-page {
+  min-height: calc(100vh - 110px);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 128px auto;
+  grid-template-areas:
+    'a . . . .'
+    'f f . s s';
+  align-items: flex-start;
+  padding: 0 20px 20px;
+  box-sizing: border-box;
+  gap: 30px;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.carrier-page .ant-typography pre {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.carrier-page .ant-typography pre,
+.carrier-page .ant-typography,
+.carrier-page__request-btn {
+  font-family: 'Inter', Arial, sans-serif;
+  word-break: break-word;
+}
+
+.carrier-page__avatar {
+  grid-area: a;
+  width: 128px;
+  height: 128px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 50%;
+  box-shadow: 0 0 7px #389e0d;
+}
+
+.carrier-page__container_type_first {
+  grid-area: f;
+}
+
+.carrier-page__container_type_second {
+  grid-area: s;
+}
+
+.carrier-page__request-btn {
+  background: #389e0d;
+  width: 65%;
+  border-color: #389e0d;
+  color: white;
+  height: 44px;
+  transition: all 0.5s ease;
+}
+
+.carrier-page__request-btn:hover,
+.carrier-page__request-btn:focus {
+  color: #389e0d;
+  background-color: transparent;
+  border-color: #389e0d;
+}
+
+@media screen and (max-width: 1100px) {
+  .carrier-page {
+    grid-template-columns: 1fr 1fr 0.5fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .carrier-page {
+    grid-template-columns: 1fr 1fr 50px 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .carrier-page {
+    grid-template-columns: 1fr 1fr 20px 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .carrier-page {
+    grid-template-areas:
+      'a'
+      'f'
+      's';
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px auto;
+    gap: 15px;
+  }
+  .carrier-page__avatar {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .carrier-page {
+    grid-template-rows: 80px auto;
+  }
+  .carrier-page__avatar {
+    height: 80px;
+    width: 80px;
+  }
+}

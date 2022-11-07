@@ -1,0 +1,11 @@
+.search-container {
+  border: 1px solid #212121;
+  border-radius: 5px;
+  margin-bottom: 5rem;
+  padding: 30px;
+}
+.select-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}

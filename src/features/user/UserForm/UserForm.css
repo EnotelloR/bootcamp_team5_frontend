@@ -1,0 +1,69 @@
+.user-form__avatar-box {
+  display: flex;
+}
+
+.user-form__avatar-conteiner {
+  width: 128px;
+  aspect-ratio: 1 / 1;
+  border-radius: 100%;
+  background-color: #e0e0e0;
+  position: relative;
+  z-index: 3;
+  transition: background-color 0.25s ease-in-out;
+  padding: 5px;
+}
+
+.user-form__avatar-conteiner:hover {
+  opacity: 0.5;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-image: url('../../../image/pencel.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.user-form__avatar {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 100%;
+}
+.user-form__text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #212121;
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-form__span {
+  color: #757575;
+}
+
+.user-form__psevdo-input {
+  color: rgba(0, 0, 0, 0.25);
+  background-color: #f5f5f5;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 1;
+  padding: 4px 11px;
+  background-image: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  margin: 0;
+}
+
+.user-form__btn {
+  min-height: 44px;
+  background: #389e0d;
+  color: white;
+  margin-top: 5vh;
+  padding: 12px 49px;
+}
+
+.user-form__btn:hover,
+.user-form__btn:focus {
+  background: #135200;
+}

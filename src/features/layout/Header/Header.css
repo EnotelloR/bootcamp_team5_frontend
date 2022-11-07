@@ -1,0 +1,129 @@
+.header {
+  height: 110px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.header__container {
+  display: grid;
+  grid-template-columns: 50px 2fr 0.5fr;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.header__logo {
+  cursor: pointer;
+  width: 48px;
+}
+
+.header__item {
+  display: flex;
+  align-items: center;
+}
+
+.header__item_type_nav {
+  justify-content: center;
+}
+
+.header__nav-links {
+  display: flex;
+  justify-content: space-around;
+  min-width: 500px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.header__nav-link {
+  transition: all ease 0.5s;
+}
+
+.header__nav-link:hover,
+.header__nav-link:focus {
+  color: #389e0d;
+}
+
+.header__item_type_auth {
+  justify-content: flex-end;
+}
+
+.header__auth-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header__auth-container_type_mobile {
+  display: none;
+}
+
+.header__mobile-menu-item {
+  width: 100%;
+  display: inline-block;
+}
+
+.header__primary-button {
+  background: #389e0d;
+  border-color: #389e0d;
+  font-size: 14px;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+.header__secondary-button {
+  color: #389e0d;
+  text-align: center;
+  cursor: pointer;
+  padding: 0 21px;
+}
+
+.header__primary-button:hover,
+.header__primary-button:focus {
+  color: #389e0d;
+  background-color: transparent;
+  border-color: #389e0d;
+}
+
+.header__secondary-button:hover,
+.header__secondary-button:focus {
+  color: #54ff00;
+}
+
+.header__profile-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.header__mobile-menu-button {
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+@media screen and (max-width: 870px) {
+  .header__nav-links {
+    min-width: fit-content;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .header {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .header__nav-links {
+    display: none;
+  }
+  .header__auth-container_type_desktop {
+    display: none;
+  }
+  .header__auth-container_type_mobile {
+    display: flex;
+  }
+}

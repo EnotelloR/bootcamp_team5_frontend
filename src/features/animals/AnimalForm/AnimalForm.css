@@ -1,0 +1,86 @@
+.animal__section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.animal__form {
+  width: 1200px;
+  margin: 50px auto 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(45%, max-content));
+  gap: 10%;
+}
+
+.animal__form_else {
+  display: flex;
+  flex-direction: column;
+}
+.animal__avatar-box {
+  display: flex;
+}
+
+.animal__avatar-conteiner {
+  width: 128px;
+  aspect-ratio: 1 / 1;
+  border-radius: 100%;
+  background-color: #e0e0e0;
+  position: relative;
+  z-index: 3;
+  transition: background-color 0.25s ease-in-out;
+  padding: 5px;
+}
+
+.animal__avatar {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 100%;
+}
+
+.animal__text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #212121;
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.animal__text_caption {
+  margin: 0;
+}
+
+.animal__span {
+  color: #757575;
+}
+
+.animal__psevdo-input {
+  box-shadow: none;
+  opacity: 1;
+  padding: 4px 11px;
+  background-image: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  margin: 0 0 24px;
+  border-radius: 2px;
+}
+
+.animal__checkbox {
+  color: rgba(0, 0, 0, 0.4);
+}
+.animal__btn {
+  min-height: 44px;
+  background: #389e0d;
+  color: white;
+  margin-top: 1vh;
+  padding: 12px 49px;
+  max-width: 240px;
+  align-self: end;
+}
+
+.animal__btn:hover,
+.animal__btn:focus {
+  background: #135200;
+}

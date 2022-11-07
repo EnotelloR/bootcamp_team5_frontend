@@ -1,0 +1,126 @@
+.create-appointment {
+  padding-left: 20px;
+  padding-right: 20px;
+  min-height: calc(100vh - 110px);
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.create-appointment__title {
+  font-size: 46px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 700;
+  line-height: 64px;
+}
+
+.create-appointment__form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'ps ig'
+    'at at'
+    'bg .';
+  gap: 10px;
+  padding-bottom: 25px;
+}
+
+.create-appointment__pets-list {
+  grid-area: ps;
+  padding: 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 100px);
+  gap: 10px;
+  margin: 0 5px;
+}
+
+.create-appointment__list-item {
+}
+
+.create-appointment__inputs-group {
+  grid-area: ig;
+  overflow: hidden;
+  padding: 0 5px;
+}
+
+.create-appointment__appointment-text {
+  grid-area: at;
+}
+
+.create-appointment__buttons-group {
+  grid-area: bg;
+  display: grid;
+  grid-template-columns: 1fr 20px 1fr;
+  grid-template-areas: 'sb . bb';
+}
+
+.create-appointment__submit-btn {
+  margin-top: auto;
+  background: #389e0d;
+  border-color: #389e0d;
+  color: white;
+  height: 44px;
+  width: 100%;
+  grid-area: sb;
+}
+
+.create-appointment__btn-item .ant-form-item-control-input-content {
+  width: auto;
+}
+
+.create-appointment__back-btn {
+  background: #b7c0b3;
+  border-color: #b7c0b3;
+  color: white;
+  height: 44px;
+  transition: all 0.5s ease;
+  grid-area: bb;
+}
+
+.create-appointment__submit-btn:hover,
+.create-appointment__submit-btn:focus,
+.create-appointment__back-btn:hover,
+.create-appointment__back-btn:focus {
+  color: #389e0d;
+  background-color: transparent;
+  border-color: #389e0d;
+}
+
+@media screen and (max-width: 800px) {
+  .create-appointment__form {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'ps'
+      'ig'
+      'at'
+      'bg';
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .create-appointment {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .create-appointment__title {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .create-appointment__title {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .create-appointment__title {
+    font-size: 22px;
+  }
+}

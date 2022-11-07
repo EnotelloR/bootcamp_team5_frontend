@@ -1,0 +1,17 @@
+.itemList__ul {
+  margin: 0;
+  padding: 0 3px;
+  list-style-type: none;
+  display: grid;
+  gap: 1% 5%;
+  grid-template-columns: repeat(3, 30%);
+  overflow-x: hidden;
+  max-height: 70vh;
+}
+
+.itemList__text {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+}
