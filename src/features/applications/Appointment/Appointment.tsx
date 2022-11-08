@@ -146,7 +146,7 @@ export const Appointment: FC<{ id: string }> = ({ id }) => {
                     <Select
                       placeholder={data?.result.status_name}
                       disabled={
-                        data.result.status_id !== 1 && data.result.status_id !== 2
+                        !(data.result.status_id == 1 || data.result.status_id == 2)
                       }
                     >
                       {user.role_name === 'OWNER' && (
