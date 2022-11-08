@@ -1,12 +1,12 @@
 export type TAnimalSend = {
   birthday: any;
-  breed_id: number;
+  breed_id?: number;
   castration?: boolean;
   characteristic?: string;
   chip_number?: number;
-  gender_id: number;
+  gender_id: number | undefined;
   health_features?: string;
-  kind_id: number;
+  kind_id: number | undefined;
   nickname: string;
   pet_picture?: string;
   stigma?: string;
