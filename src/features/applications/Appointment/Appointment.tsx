@@ -46,7 +46,7 @@ export const Appointment: FC<{ id: string }> = ({ id }) => {
       result_description: fieldsValue.recommendation,
     };
 
-    if (status.status_id === status_ids['2']) {
+    if (status.status_id === 2) {
       status.datetime = fieldsValue['datetime'].format('DD/MM/YYYY HH:mm');
     }
 
@@ -75,7 +75,7 @@ export const Appointment: FC<{ id: string }> = ({ id }) => {
         {isSuccess && (
           <>
             <div className="appointment-page__container appointment-page__container_type_first">
-              <Collapse defaultActiveKey={['1', '2', '3', '4', '5']}>
+              <Collapse defaultActiveKey={['1', '2', '3', '4', '5', '6']}>
                 <Panel
                   header="Дата и время заявки"
                   key="1"
@@ -115,7 +115,7 @@ export const Appointment: FC<{ id: string }> = ({ id }) => {
               </Collapse>
             </div>
             <div className="appointment-page__container appointment-page__container_type_second">
-              <Collapse defaultActiveKey={['1', '2', '3', '4']}>
+              <Collapse defaultActiveKey={['1', '2', '3', '4', '5']}>
                 {isOwner ? (
                   <Panel
                     header="Поставщик услуг"
@@ -146,7 +146,7 @@ export const Appointment: FC<{ id: string }> = ({ id }) => {
                     <Select
                       placeholder={data?.result.status_name}
                       disabled={
-                        data.result.status_id !== 1 && data.result.status_id !== 2
+                        !(data.result.status_id == 1 || data.result.status_id == 2)
                       }
                     >
                       {user.role_name === 'OWNER' && (
