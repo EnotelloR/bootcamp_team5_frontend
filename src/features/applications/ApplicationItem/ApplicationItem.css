@@ -31,8 +31,7 @@
   white-space: break-spaces;
   text-align: center;
   height: 4rem;
-  overflow: hidden;
-  text-overflow: clip;
+  padding: 1rem;
 }
 
 .application-item__span {
