@@ -41,6 +41,8 @@ export interface Iappointment {
   status_name: string;
   created_at: string;
   updated_at: string;
+  result_description: string;
+  result_file: string;
   clinic_services: [
     {
       id: number;
