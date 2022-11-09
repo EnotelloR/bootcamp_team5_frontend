@@ -97,7 +97,7 @@
   border-color: #389e0d;
 }
 
-.ant-picker-panel-container .ant-picker-ok .ant-btn-primary:not([disabled]):hover,
+.ant-picker-panel-container .ant-picker-ok .ant-btn-primary:not([disabled]):hover
 .ant-picker-panel-container .ant-picker-ok .ant-btn-primary:not([disabled]):focus {
   background: transparent;
   color: #389e0d;

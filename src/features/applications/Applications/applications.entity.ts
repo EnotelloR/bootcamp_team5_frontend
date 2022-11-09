@@ -19,6 +19,7 @@ export type TApplication = {
   carrier_name: string;
   owner_id: number;
   owner_name: string;
+  is_new: boolean;
 };
 
 export interface IApplicationStatusUpdater {
@@ -41,6 +42,8 @@ export interface Iappointment {
   status_name: string;
   created_at: string;
   updated_at: string;
+  result_description: string;
+  result_file: string;
   clinic_services: [
     {
       id: number;

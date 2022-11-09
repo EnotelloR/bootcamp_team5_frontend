@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import './Header.css';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../routes/routes';
@@ -11,6 +11,7 @@ import profileIcon from '../../../image/profile-icon.png';
 import burgerMenuIcon from '../../../image/burger-menu-icon.png';
 import { Button, Dropdown, Menu } from 'antd';
 import { HeaderNavLink } from '../HeaderNavLink';
+import { useGetApplicationsQuery } from '../../applications';
 
 const loggedInNavLinks = [
   {
@@ -55,6 +56,15 @@ export function Header() {
   const user = useSelector(userSelector);
   const dispatch = useDispatch();
 
+  const { data } = useGetApplicationsQuery();
+
+  const newNotifications = useMemo(() => {
+    return data?.result.reduce<number>(
+      (result, current) => result + (current.is_new ? 1 : 0),
+      0,
+    );
+  }, [data]);
+
   function logoutUser() {
     dispatch(logout());
     Api.clearToken();
@@ -90,9 +100,26 @@ export function Header() {
         <nav className="header__item header__item_type_nav">
           {user.email ? (
             <ul className="header__nav-links">
-              {loggedInNavLinks.map(({ route, text }, index) => (
-                <HeaderNavLink route={route} text={text} key={index} />
-              ))}
+              {loggedInNavLinks.map(
+                ({ route, text }, index) =>
+                  text === loggedInNavLinks[1].text ? (
+                    <HeaderNavLink
+                      route={route}
+                      text={text}
+                      key={index}
+                      additional={newNotifications}
+                    />
+                  ) : (
+                    <HeaderNavLink route={route} text={text} key={index} />
+                  ),
+
+                // <HeaderNavLink
+                //   route={link.route}
+                //   text={link.text}
+                //   key={index}
+                //   additional={newNotifications}
+                // />
+              )}
             </ul>
           ) : (
             <ul className="header__nav-links">
