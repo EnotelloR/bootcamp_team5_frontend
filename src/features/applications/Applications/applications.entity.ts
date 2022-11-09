@@ -19,6 +19,7 @@ export type TApplication = {
   carrier_name: string;
   owner_id: number;
   owner_name: string;
+  is_new: boolean;
 };
 
 export interface IApplicationStatusUpdater {

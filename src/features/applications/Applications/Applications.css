@@ -36,13 +36,13 @@
 
 .applications__table {
   display: grid;
-  grid-template-columns: 7rem 10rem 12rem 10rem 10rem 9rem 12rem 7rem;
+  grid-template-columns: 7rem 10rem 12rem 10rem 10rem 10rem 12rem 7rem;
   justify-content: space-between;
   gap: 2rem;
 }
 
 .applications__table_carrier {
-  grid-template-columns: 7rem 10rem 12rem 10rem 10rem 9rem 12rem;
+  grid-template-columns: 7rem 10rem 12rem 10rem 10rem 10rem 12rem;
 }
 
 

@@ -1,12 +1,14 @@
 .application-item {
   display: grid;
-  grid-template-columns: 7rem 10rem 12rem 10rem 10rem 9rem 12rem 7rem;
+  grid-template-columns: 7rem 10rem 12rem 10rem 10rem 10rem 12rem 7rem;
   justify-content: space-between;
   gap: 2rem;
+  padding: 0.5rem;
+  border-radius: 8px;
 }
 
 .application-item_carrier {
-  grid-template-columns: 7rem 10rem 12rem 10rem 10rem 9rem 12rem;
+  grid-template-columns: 7rem 10rem 12rem 10rem 10rem 10rem 12rem;
 }
 
 .application-item:hover {
@@ -32,6 +34,16 @@
   text-align: center;
   height: 4rem;
   padding: 1rem;
+}
+
+@keyframes glowing {
+  0% { background-color: white; color: black;}
+  50% { background-color: #389e0d; color: white; }
+  100% { background-color: white; color: black; }
+}
+
+.application-item__text_new{
+  animation: glowing 3000ms infinite;
 }
 
 .application-item__span {
