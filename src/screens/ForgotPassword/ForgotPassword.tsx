@@ -6,7 +6,7 @@ import { Form, Input } from 'antd';
 import {
   PasswordRequest,
   useForgotPasswordMutation,
-} from '../../features/user/users.service';
+} from '../../features/authorization/authorization.service';
 import openNotificationWithIcon from '../../UI/notifications/notifications';
 import { useNavigate } from 'react-router-dom';
 

@@ -1,6 +1,6 @@
-import { routes } from '../../../routes/routes';
-import { user } from '../../../services/types/authTypes';
-import { petCabinetApi } from '../petCabinetApi';
+import { routes } from '../../routes/routes';
+import { user } from '../../services/types/authTypes';
+import { petCabinetApi } from '../../store/petStore/petCabinetApi';
 
 interface UserRequest {
   status: string;

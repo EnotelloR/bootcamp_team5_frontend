@@ -1,31 +1,6 @@
 .user-form__avatar-box {
   display: flex;
 }
-
-.user-form__avatar-conteiner {
-  width: 128px;
-  aspect-ratio: 1 / 1;
-  border-radius: 100%;
-  background-color: #e0e0e0;
-  position: relative;
-  z-index: 3;
-  transition: background-color 0.25s ease-in-out;
-  padding: 5px;
-}
-
-.user-form__avatar-conteiner:hover {
-  opacity: 0.5;
-  background-color: rgba(0, 0, 0, 0.5);
-  background-image: url('../../../image/pencel.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.user-form__avatar {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 100%;
-}
 .user-form__text {
   font-style: normal;
   font-weight: 400;

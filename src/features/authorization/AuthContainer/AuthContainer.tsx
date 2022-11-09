@@ -5,7 +5,7 @@ import { routes } from '../../../routes/routes';
 import { Button, Form } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
-import { PasswordRequest } from '../../user/users.service';
+import { PasswordRequest } from '../authorization.service';
 
 const validateMessages = {
   required: 'Поле обязательное. ',

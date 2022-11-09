@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
-import { Button, Form, Input, Select } from 'antd';
+import { Avatar, Button, Col, Form, Input, Row, Select, Typography } from 'antd';
+import { AntDesignOutlined } from '@ant-design/icons';
 import cap from '../../../image/cap.png';
 import { IDataUser, user } from '../../../services/types/authTypes';
 import './UserForm.css';
@@ -72,8 +73,34 @@ export const UserForm: FC<TUser> = ({ user }) => {
 
   return (
     <>
-      <h2 className="user-form__title">Привет!</h2>
-      <div className="user-form__avatar-box">
+      <Row>
+        <Col span={12}>
+          <Typography.Title level={2}>Привет!</Typography.Title>
+          <Row>
+            <Col>
+              <div className="user-form__avatar-box">
+                <div onClick={openInputAvatar} onKeyDown={openInputAvatar}>
+                  <Avatar
+                    size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
+                    icon={<AntDesignOutlined />}
+                  />
+                </div>
+                <div className="user-form__text">
+                  <Typography.Text>
+                    <span className="user-form__span">Рекомендуемое разрешение:</span>{' '}
+                    640х640 пикселей
+                  </Typography.Text>
+                  <Typography.Text>
+                    <span className="user-form__span">Максимальный размер:</span> 5 МБ
+                  </Typography.Text>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+      {/* <h2 className="user-form__title">Привет!</h2> */}
+      {/* <div className="user-form__avatar-box">
         <div
           className="user-form__avatar-conteiner"
           onClick={openInputAvatar}
@@ -89,11 +116,11 @@ export const UserForm: FC<TUser> = ({ user }) => {
           <p>
             <span className="user-form__span">Максимальный размер:</span> 5 МБ
           </p>
-        </div>
-        {/* <Button type="primary" htmlType="button" className="user-form__btn" onClick={onChange}>
+        </div> */}
+      {/* <Button type="primary" htmlType="button" className="user-form__btn" onClick={onChange}>
           Изменить
         </Button> */}
-      </div>
+      {/* </div> */}
       <Form
         className="user-form__form"
         name="basic"
