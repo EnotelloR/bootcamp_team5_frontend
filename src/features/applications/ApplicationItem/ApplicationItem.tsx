@@ -35,7 +35,7 @@ export const ApplicationItem: FC<{
       onKeyDown={applicationClick}
     >
       <p className={`application-item__text`}>{application.id}</p>
-      <p className={`application-item__text`}>
+      <p className={`application-item__text application-item__text_carrier`}>
         {isOwner ? application.carrier_name : application.owner_name}
       </p>
       <p className={`application-item__text`}>{application.created_at}</p>
