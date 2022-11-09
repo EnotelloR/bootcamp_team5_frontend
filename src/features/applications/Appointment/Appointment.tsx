@@ -1,5 +1,5 @@
 import './Appointment.css';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Alert, Button, Collapse, DatePicker, Form, Input, Select } from 'antd';
@@ -7,8 +7,9 @@ import { useSelector } from 'react-redux';
 import { userSelector } from '../../../store/slices/auth/authSelectors';
 import { routes } from '../../../routes/routes';
 import {
-  useDeleteApplicationsMutation,
+  useChangeApplicationsMutation,
   useGetApplicationQuery,
+  useGetApplicationsQuery,
 } from '../applications.service';
 import { Loader } from '../../layout';
 
@@ -25,16 +26,25 @@ const status_ids = {
 const { TextArea } = Input;
 
 const config = {
-  rules: [
-    { type: 'object' as const, required: true, message: 'Выберите дату и время приема!' },
-  ],
+  rules: [{ type: 'object' as const, message: 'Выберите дату и время приема!' }],
 };
 
 export const Appointment: FC<{ id: string }> = ({ id }) => {
   const user = useSelector(userSelector);
   const navigate = useNavigate();
   const { data, isSuccess, isLoading, isError } = useGetApplicationQuery(Number(id));
-  const [changeStatus] = useDeleteApplicationsMutation();
+  const { refetch } = useGetApplicationsQuery();
+  const [changeStatus] = useChangeApplicationsMutation();
+
+  const [form] = Form.useForm();
+
+  useEffect(() => {
+    return () => {
+      refetch();
+    };
+  }, [data]);
+
+  const selectedStatus = Form.useWatch('status_id', form);
 
   const isOwner = user && user.role_name === 'OWNER';
 
@@ -60,6 +70,7 @@ export const Appointment: FC<{ id: string }> = ({ id }) => {
       className="appointment-page"
       onFinish={onFinish}
       onFinishFailed={(err) => console.log(err)}
+      form={form}
     >
       <h4 className="appointment-page__title">{`Заявка №${id}`} </h4>
       <div className="appointment-page__content">
@@ -175,7 +186,7 @@ export const Appointment: FC<{ id: string }> = ({ id }) => {
                     <Form.Item name="recommendation">
                       <TextArea
                         defaultValue={data.result.result_description}
-                        placeholder={'Описание рекоммендаций'}
+                        placeholder={'Описание рекомендаций'}
                       />
                     </Form.Item>
                   ) : (
@@ -189,7 +200,15 @@ export const Appointment: FC<{ id: string }> = ({ id }) => {
                 >
                   {user.role_name === 'CARRIER' &&
                     (data.result.status_id === 1 ? (
-                      <Form.Item name="datetime" {...config}>
+                      <Form.Item
+                        name="datetime"
+                        {...config}
+                        rules={[
+                          {
+                            required: selectedStatus === 2,
+                          },
+                        ]}
+                      >
                         <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
                       </Form.Item>
                     ) : (
