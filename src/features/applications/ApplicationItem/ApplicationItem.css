@@ -34,6 +34,7 @@
   text-align: center;
   height: 4rem;
   padding: 1rem;
+}
 
 @keyframes glowing {
   0% { background-color: white; color: black;}
