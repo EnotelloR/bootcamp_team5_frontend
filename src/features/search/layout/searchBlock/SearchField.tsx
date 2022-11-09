@@ -2,7 +2,6 @@ import React, { ChangeEvent, FC, SetStateAction, useState } from 'react';
 import './SearchField.css';
 import { Input } from 'antd';
 import {
-  useGetAnimalsTypeQuery,
   useGetCityQuery,
   useGetDistrictsByCityQuery,
   useGetServicesQuery,
@@ -11,6 +10,7 @@ import { SearchParams } from '../../../../store/petStore/interfaces';
 import { CityId } from '../../../../screens/CarriersList';
 import Button from 'antd/es/button';
 import SearchSelection from '../searchSelect';
+import { useGetAnimalsTypeQuery } from '../../../animals/animals.service';
 
 interface SearchFieldProps {
   setInitialState: React.Dispatch<React.SetStateAction<SearchParams>>;

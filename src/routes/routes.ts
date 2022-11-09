@@ -36,6 +36,7 @@ export const routes = {
     getAllGenders: () => '/genders',
     getAllManipulationTypes: () => '/manipulation_types',
     pets: () => '/pets',
+    createPet: () => '/pet',
     petById: (id: number) => `/pets/${id}`,
     manipulationsByPet: (id: number) => `/pets/${id}//manipulations`,
     request: () => '/requests',

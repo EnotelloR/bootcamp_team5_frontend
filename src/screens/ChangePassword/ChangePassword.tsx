@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {
   PasswordRequest,
   useChangePasswordMutation,
-} from '../../features/user/users.service';
+} from '../../features/authorization/authorization.service';
 import openNotificationWithIcon from '../../UI/notifications/notifications';
 
 export const ChangePassword: FC = () => {

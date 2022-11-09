@@ -1,6 +1,6 @@
 import { petCabinetApi } from '../petCabinetApi';
 import { routes } from '../../../routes/routes';
-import { City, ServiceType, AnimalsType } from '../interfaces';
+import { City, ServiceType } from '../interfaces';
 import { IDistrict } from '../../../features/carriers';
 
 export interface getCityResponce {
@@ -18,11 +18,6 @@ interface getServicesResponce {
   code: number;
   result: ServiceType[];
 }
-interface getAnimalsTypeResponce {
-  status: string;
-  code: number;
-  result: AnimalsType[];
-}
 
 const selectsApiSlice = petCabinetApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -37,15 +32,8 @@ const selectsApiSlice = petCabinetApi.injectEndpoints({
     getServices: builder.query<getServicesResponce, void>({
       query: () => routes.api.getServices(),
     }),
-    getAnimalsType: builder.query<getAnimalsTypeResponce, void>({
-      query: () => routes.api.getAnimalsType(),
-    }),
   }),
 });
 
-export const {
-  useGetCityQuery,
-  useGetDistrictsByCityQuery,
-  useGetServicesQuery,
-  useGetAnimalsTypeQuery,
-} = selectsApiSlice;
+export const { useGetCityQuery, useGetDistrictsByCityQuery, useGetServicesQuery } =
+  selectsApiSlice;

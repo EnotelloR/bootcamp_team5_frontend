@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Button, Checkbox, DatePicker, Form, Input, Select } from 'antd';
 import cap from '../../../image/cap.png';
 import './AnimalForm.css';
@@ -12,11 +12,11 @@ import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../routes/routes';
 import moment from 'moment';
 import type { RangePickerProps } from 'antd/es/date-picker';
-
-type TOther = {
-  id: number;
-  name: string;
-};
+import {
+  useGetAnimalsGenderQuery,
+  useGetAnimalsTypeQuery,
+  useGetBeersByAnimalsTypeIdQuery,
+} from '../animals.service';
 
 export const AnimalForm: FC<{ isNew: boolean; animal?: Readonly<TAnimalSend> }> = ({
   isNew,
@@ -27,9 +27,12 @@ export const AnimalForm: FC<{ isNew: boolean; animal?: Readonly<TAnimalSend> }> 
   const { TextArea } = Input;
   const { RangePicker } = DatePicker;
 
-  const [kinds, setKinds] = useState<Array<TOther>>([]);
-  const [breeds, setBreeds] = useState<Array<TOther>>([]);
-  const [genders, setGenders] = useState<Array<TOther>>([]);
+  const [actualKinds, setActialKinds] = useState<null | number>(null);
+  const { data: kinds } = useGetAnimalsTypeQuery();
+  const { data: actualBreeds } = useGetBeersByAnimalsTypeIdQuery(actualKinds as number, {
+    skip: !actualKinds,
+  });
+  const { data: genders } = useGetAnimalsGenderQuery();
 
   const disabledDate: RangePickerProps['disabledDate'] | undefined = (current) => {
     return (
@@ -61,42 +64,7 @@ export const AnimalForm: FC<{ isNew: boolean; animal?: Readonly<TAnimalSend> }> 
         chip_number: String(animal?.['chip_number']),
         chip_date: getDates(),
       };
-
-  useEffect(() => {
-    getKinds();
-    getBreeds();
-  }, []);
-
-  const getKinds = () => {
-    dispatch(startLoading());
-    Api.getKinds()
-      .then((res) => {
-        setKinds(res.result);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => dispatch(endLoading()));
-  };
-  // реализованно именно так, по той причине что изначально был уговор с бэком что они у себя сделают фильтр на отдание породы и название полов
-  const getBreeds = () => {
-    dispatch(startLoading());
-    Api.getBreeds()
-      .then((res) => {
-        setBreeds(res.result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    Api.getGender()
-      .then((res) => {
-        setGenders(res.result);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => dispatch(endLoading()));
-  };
+  const getAnimalBreedsByType = (event: number) => setActialKinds(event);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onFinish = (event: TAnimalSend & { chip_date: any }) => {
@@ -184,10 +152,9 @@ export const AnimalForm: FC<{ isNew: boolean; animal?: Readonly<TAnimalSend> }> 
           >
             <Select
               placeholder="Выберите вид животного *"
-              onClick={getKinds}
-              onSelect={getBreeds}
+              onSelect={(event: number) => getAnimalBreedsByType(event)}
             >
-              {kinds.map((kind) => {
+              {kinds?.result.map((kind) => {
                 return (
                   <Select.Option value={kind.id} key={kind.id}>
                     {kind.name}
@@ -198,10 +165,10 @@ export const AnimalForm: FC<{ isNew: boolean; animal?: Readonly<TAnimalSend> }> 
           </Form.Item>
           <Form.Item
             name="breed_id"
-            rules={[{ required: true, message: 'Выберите породу животного из списка' }]}
+            rules={[{ message: 'Выберите породу животного из списка' }]}
           >
-            <Select placeholder="Выберите породу животного *">
-              {breeds.map((breed) => {
+            <Select placeholder="Выберите породу животного">
+              {actualBreeds?.result.map((breed) => {
                 return (
                   <Select.Option value={breed.id} key={breed.id}>
                     {breed.name}
@@ -215,7 +182,7 @@ export const AnimalForm: FC<{ isNew: boolean; animal?: Readonly<TAnimalSend> }> 
             rules={[{ required: true, message: 'Выберите пол животного из списка' }]}
           >
             <Select placeholder="Выберите пол животного *">
-              {genders.map((gender) => {
+              {genders?.result.map((gender) => {
                 return (
                   <Select.Option value={gender.id} key={gender.id}>
                     {gender.name}
