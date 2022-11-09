@@ -21,14 +21,15 @@ const applicationsApi = petCabinetApi.injectEndpoints({
     }),
     getApplication: build.query<TServerAnswer<Iappointment>, number>({
       query: (id = -1) => routes.api.request() + (id !== -1 && `/${id}`),
+      providesTags: ['Appointment'],
     }),
-    deleteApplications: build.mutation({
+    changeApplications: build.mutation({
       query: (updater: IApplicationStatusUpdater) => ({
         url: `${routes.api.request()}/${updater.id}/status`,
         method: 'PUT',
         body: updater.status,
       }),
-      invalidatesTags: [{ type: 'Applications', id: 'LIST' }],
+      invalidatesTags: [{ type: 'Applications', id: 'LIST' }, 'Appointment'],
     }),
   }),
 });
@@ -36,5 +37,5 @@ const applicationsApi = petCabinetApi.injectEndpoints({
 export const {
   useGetApplicationsQuery,
   useGetApplicationQuery,
-  useDeleteApplicationsMutation,
+  useChangeApplicationsMutation,
 } = applicationsApi;

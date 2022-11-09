@@ -3,3 +3,14 @@
   font-size: 16px;
   font-family: 'Inter', Arial, sans-serif;
 }
+
+@keyframes glowingNotification {
+  0% { color: black;}
+  50% {  color: red; }
+  100% {  color: black; }
+}
+
+.header__nav-link-text_notification{
+  animation: glowingNotification 2000ms infinite;
+
+}
