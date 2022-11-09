@@ -38,11 +38,12 @@
   display: grid;
   grid-template-columns: 7rem 10rem 12rem 10rem 10rem 10rem 12rem 7rem;
   justify-content: space-between;
+  padding: 0.5rem;
   gap: 2rem;
 }
 
 .applications__table_carrier {
-  grid-template-columns: 7rem 10rem 12rem 10rem 10rem 10rem 12rem;
+  grid-template-columns: 7rem 10rem 12rem 10rem 10rem 10rem 12rem;;
 }
 
 
