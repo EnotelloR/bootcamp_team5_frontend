@@ -6,6 +6,7 @@ import { routes } from '../../../routes/routes';
 import { TAnimalsDetails } from '../../../services/types/animalsTypes';
 import { endLoading, startLoading } from '../../../store/slices/load/loadSlice';
 import Api from '../../../utils/Api';
+import AboutAnimalSection from '../aboutAnimalSection';
 import { AnimalForm } from '../AnimalForm';
 import './AnimalProfile.css';
 
@@ -39,79 +40,9 @@ export const AnimalProfile: FC<{ animal: TAnimalsDetails }> = ({ animal }) => {
   return (
     <section className="animal-profile">
       {isChange ? (
-        <section className="animal-profile__info-box">
-          <div>
-            <p className="animal-profile__text">
-              <span className="animal-profile__span">Меня зовут: </span>
-              {animal.nickname}
-            </p>
-            <p className="animal-profile__text">
-              <span className="animal-profile__span">Я представитель вида: </span>
-              {animal.kind_name}
-            </p>
-            <p className="animal-profile__text">
-              <span className="animal-profile__span">Породы: </span>
-              {animal.breed_name}
-            </p>
-            <p className="animal-profile__text">
-              <span className="animal-profile__span">Пол: </span>
-              {animal.gender_name}
-            </p>
-            <p className="animal-profile__text">
-              <span className="animal-profile__span">Появился на свет: </span>
-              {animal.birthday}
-            </p>
-            <p className="animal-profile__text">
-              <span className="animal-profile__span">Моя шерсть: </span>
-              {animal.wool_cover}
-            </p>
-            <p className="animal-profile__text">
-              <span className="animal-profile__span">Ты меня откормил до: </span>
-              {animal.weight} килограмм
-            </p>
-            <p className="animal-profile__text">
-              <span className="animal-profile__span">
-                В меня вставили чип с номером:{' '}
-              </span>
-              {animal.chip_number}
-            </p>
-            <p className="animal-profile__text">
-              <span className="animal-profile__span">Чип вставили: </span>
-              {animal.chip_start_date}
-              <span className="animal-profile__span">
-                {' '}
-                и сказали, что он будет работать до:{' '}
-              </span>
-              {animal.chip_end_date}
-            </p>
-            <p className="animal-profile__text">
-              <span className="animal-profile__span">А так же сделали клеймо: </span>
-              {animal.stigma}
-            </p>
-            {animal.castration ? (
-              <p className="animal-profile__text">и сделали бесплодным...</p>
-            ) : null}
-          </div>
-          <div>
-            <p className="animal-profile__text animal-profile__text_big">
-              <span className="animal-profile__span">
-                За время жизни со мной ты узнал, что у меня есть особенности:{' '}
-              </span>
-              <br />
-              {animal.health_features}
-            </p>
-            <p className="animal-profile__text animal-profile__text_big">
-              <span className="animal-profile__span">
-                {' '}
-                А еще то, что ты всегда узнаешь меня в толпе, так как я:{' '}
-              </span>
-              <br />
-              {animal.characteristic}
-            </p>
-          </div>
-        </section>
+        <AboutAnimalSection animal={animal} />
       ) : (
-        <AnimalForm isNew={false} animal={animal} />
+        <AnimalForm isNew={false} animal={animal as TAnimalsDetails} />
       )}
       <div className="animal-profile__box-btn">
         {!isChange && (

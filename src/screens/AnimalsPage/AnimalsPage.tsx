@@ -8,7 +8,7 @@ import cap from '../../image/cap.png';
 
 export const AnimalsPage: FC = () => {
   const animal = useSelector(animalDetailsSelector)!;
-  const image = animal.pet_picture !== undefined ? animal.pet_picture : cap;
+  const image = cap;
 
   const defaultPanes = [
     { label: 'Общая информация', children: <AnimalProfile animal={animal} />, key: '1' },
