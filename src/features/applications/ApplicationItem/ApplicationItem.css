@@ -30,10 +30,18 @@
   flex-direction: column;
   justify-content: center;
   overflow-wrap: anywhere;
+  overflow: hidden;
   white-space: break-spaces;
   text-align: center;
   height: 4rem;
   padding: 1rem;
+}
+
+.application-item__text_carrier{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 @keyframes glowing {

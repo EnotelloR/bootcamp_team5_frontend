@@ -39,9 +39,7 @@ export const Appointment: FC<{ id: string }> = ({ id }) => {
   const [form] = Form.useForm();
 
   useEffect(() => {
-    return () => {
-      refetch();
-    };
+    refetch();
   }, [data]);
 
   const selectedStatus = Form.useWatch('status_id', form);
