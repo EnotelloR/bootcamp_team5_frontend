@@ -6,7 +6,7 @@
 
 @keyframes glowingNotification {
   0% { color: black;}
-  50% {  color: red; }
+  50% {  color: #389e0d; }
   100% {  color: black; }
 }
 
