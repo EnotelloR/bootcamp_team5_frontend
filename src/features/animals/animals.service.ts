@@ -1,8 +1,9 @@
-import { TAnimalSend, TAnimalsDetails } from './../../services/types/animalsTypes';
-import { Breed, Gender } from './animals.type';
+import { TAnimalSend } from '../../services/types/animalsTypes';
+import { Breed, Gender, PetUUIDInfo } from './animals.type';
 import { AnimalsType } from '../../store/petStore/interfaces';
 import { petCabinetApi } from '../../store/petStore/petCabinetApi';
 import { routes } from '../../routes/routes';
+import { TServerAnswer } from '../../services/types/serverTypes';
 
 interface getAnimalsTypeResponce {
   status: string;
@@ -47,6 +48,15 @@ const animalsApiSlice = petCabinetApi.injectEndpoints({
         body: animal,
       }),
     }),
+    createUUID: builder.mutation<TServerAnswer<TAnimalSend>, number>({
+      query: (id: number) => ({
+        url: routes.api.createPetUUID(id),
+        method: 'PATCH',
+      }),
+    }),
+    getAnimalByUUID: builder.query<TServerAnswer<PetUUIDInfo>, string>({
+      query: (uuid: string) => routes.api.getPetByUUID(uuid),
+    }),
   }),
 });
 
@@ -55,5 +65,7 @@ export const {
   useGetBeersByAnimalsTypeIdQuery,
   useGetAnimalsGenderQuery,
   useAddNewAnimalMutation,
+  useCreateUUIDMutation,
   useChangePetMutation,
+  useGetAnimalByUUIDQuery,
 } = animalsApiSlice;

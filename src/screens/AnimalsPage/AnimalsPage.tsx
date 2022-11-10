@@ -28,7 +28,7 @@ export const AnimalsPage: FC = () => {
     <div className="animal-page">
       <div className="animal-page__title-box">
         <img
-          src={image}
+          src={animal.pet_picture ? animal.pet_picture : image}
           alt={`Фотография ${animal.nickname}`}
           className="animal-page__avatar"
         />
