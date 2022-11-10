@@ -3,10 +3,7 @@ import { TAnimalsDetails } from '../../../../services/types/animalsTypes';
 import cap from '../../../../image/cap.png';
 import './Item.css';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import Api from '../../../../utils/Api';
-import { endLoading, startLoading } from '../../../../store/slices/load/loadSlice';
-import { animalDetails } from '../../../../store/slices/animals/animalsSlice';
+import { routes } from '../../../../routes/routes';
 
 type TItem = {
   animal: TAnimalsDetails;
@@ -14,26 +11,11 @@ type TItem = {
 
 export const Item: FC<TItem> = ({ animal }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const image =
     animal.pet_picture && animal.pet_picture.length !== 0 ? animal.pet_picture : cap;
 
   const onClick = async () => {
-    dispatch(startLoading());
-    await Api.getAnimal(animal.pet_id!)
-      .then((res) => {
-        dispatch(animalDetails(res.result));
-      })
-      .then(() => {
-        navigate(`/profile/animals/${animal.pet_id}`);
-      })
-      .catch((err) => {
-        alert(`Ой, что то пошло не так: ${err.message}. Подробности в консоле.`);
-        console.log(err);
-      })
-      .finally(() => {
-        dispatch(endLoading());
-      });
+    navigate(routes.navAnimal(animal.pet_id as number));
   };
 
   return (

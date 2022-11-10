@@ -3,7 +3,6 @@ import { TAnimalsDetails } from '../../../services/types/animalsTypes';
 import { Button, Checkbox, Modal } from 'antd';
 import { useCreateUUIDMutation } from '../animals.service';
 import QRCode from 'qrcode.react';
-import { routes } from '../../../routes/routes';
 
 interface AboutAnimalSectionProps {
   animal: TAnimalsDetails;
@@ -19,7 +18,7 @@ const AboutAnimalSection: FC<AboutAnimalSectionProps> = ({ animal }) => {
     animal.pet_id &&
       createUUID(animal.pet_id)
         .unwrap()
-        .then((response) => (animal = { ...animal, ...response.result }));
+        .then((response) => (animal.uuid = response.result.uuid));
   };
 
   const downloadQRCode = () => {
@@ -115,7 +114,7 @@ const AboutAnimalSection: FC<AboutAnimalSectionProps> = ({ animal }) => {
             <span className="animal-profile__span">Мой QR-код: </span>
             <br />
             <QRCode
-              value={`https://elk-kotopes.web.app${routes.pages.aboutAnimal}/${animal.uuid}`}
+              value={`https://elk-kotopes.web.app/about-animal/${animal.uuid}`}
               size={150}
               level={'H'}
               includeMargin={true}
@@ -140,7 +139,7 @@ const AboutAnimalSection: FC<AboutAnimalSectionProps> = ({ animal }) => {
             >
               <QRCode
                 id="qr-gen"
-                value={`https://elk-kotopes.web.app${routes.pages.aboutAnimal}/${animal.uuid}`}
+                value={`https://elk-kotopes.web.app/about-animal/${animal.uuid}`}
                 size={400}
                 level={'H'}
                 includeMargin={true}
@@ -164,9 +163,16 @@ const AboutAnimalSection: FC<AboutAnimalSectionProps> = ({ animal }) => {
               Я согласен, что мои контактные данные будут доступны при сканировании
               QR-кода
             </Checkbox>
-            <Button disabled={!agree} onClick={confirmCreateUUID}>
-              Сформировать QR-код
-            </Button>
+            <p>
+              <Button
+                type="primary"
+                className="auth__submit-btn auth__submit-btn_type_agreed"
+                disabled={!agree}
+                onClick={confirmCreateUUID}
+              >
+                Сформировать QR-код
+              </Button>
+            </p>
           </p>
         )}
       </div>
