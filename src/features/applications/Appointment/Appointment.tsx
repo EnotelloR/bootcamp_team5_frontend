@@ -210,9 +210,9 @@ export const Appointment: FC<{ id: string }> = ({ id }) => {
                         <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
                       </Form.Item>
                     ) : (
-                      <p>{data?.result.updated_at}</p>
+                      <p>{data?.result.datetime}</p>
                     ))}
-                  {user.role_name === 'OWNER' && <p>{data?.result.updated_at}</p>}
+                  {user.role_name === 'OWNER' && <p>{data?.result.datetime}</p>}
                 </Panel>
               </Collapse>
               {data.result.status_id !== 4 && data.result.status_id !== 5 && (
