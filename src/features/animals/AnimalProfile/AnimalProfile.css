@@ -38,6 +38,7 @@
 
 .animal-profile__info-box {
   display: flex;
+  gap: 1rem
 }
 
 .animal-profile__text {
@@ -52,7 +53,16 @@
   overflow-y: hidden;
 }
 
+.animal-profile__text_unlimited{
+  max-width: max-content;
+}
+
 .animal-profile__span {
   color: #595959;
   font-weight: 600;
+}
+
+.animal-profile__modalHandler{
+  display: flex;
+  justify-content: center;
 }

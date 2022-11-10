@@ -1,0 +1,29 @@
+.animalWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  margin: 0 auto;
+  gap: 0.5rem
+}
+
+.animal__block{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  width: 30rem;
+  overflow-wrap: break-word;
+}
+
+.animal__text{
+  font-style: normal;
+  font-size: 20px;
+  line-height: 140%;
+}
+
+.animal__text_bold{
+  font-weight: bold;
+}
+

@@ -15,6 +15,7 @@ export type TAnimalSend = {
   pet_id: number | null;
   chip_end_date?: string;
   chip_start_date?: string;
+  uuid?: string;
 };
 
 export interface ISimpleAnimal {
