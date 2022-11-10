@@ -2,7 +2,7 @@ import { Button, Checkbox, Col, DatePicker, Form, Input, Row, Select } from 'ant
 import TextArea from 'antd/lib/input/TextArea';
 import moment from 'moment';
 import { FC, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { routes } from '../../../routes/routes';
 import { TAnimalsDetails, TAnimalSend } from '../../../services/types/animalsTypes';
 import openNotificationWithIcon from '../../../UI/notifications/notifications';
@@ -41,6 +41,7 @@ interface AnimalFormProps {
 }
 
 export const AnimalForm: FC<AnimalFormProps> = ({ isNew, animal }) => {
+  const params = useParams();
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const [actualKinds, setActialKinds] = useState<null | number>(animal?.kind_id ?? null);
@@ -80,18 +81,18 @@ export const AnimalForm: FC<AnimalFormProps> = ({ isNew, animal }) => {
     } else {
       try {
         setDisable(true);
-        changeAnimal(currentAnimal as TAnimalsDetails);
+        changeAnimal({ ...currentAnimal, pet_id: animal?.pet_id as number });
         openNotificationWithIcon(
           'success',
-          'Добавление питомца',
-          'Поздравляем вы добавили нового питомца',
+          'Изменение питомца',
+          'Поздравляем вы изменили данные питомца',
         );
         navigate(routes.profile);
       } catch (error) {
         if (isFetchBaseQueryError(error)) console.log(error);
         openNotificationWithIcon(
           'error',
-          'Добавление питомца',
+          'Изменение питомца',
           'Упс, что-то пошло не так',
         );
       } finally {

@@ -91,7 +91,7 @@ export interface ICarrier {
   schedule: string;
   service_types: [{ id: number; name: string }];
   animal_types: [{ id: number; name: string }];
-  clinic_services: [{ id: number; name: string }];
+  clinic_services: [{ id: number; name: string; defaultPrice?: string }];
   url: string;
 }
 

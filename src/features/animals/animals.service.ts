@@ -40,11 +40,11 @@ const animalsApiSlice = petCabinetApi.injectEndpoints({
         body: animalBody,
       }),
     }),
-    changePet: builder.mutation<TAnimalsDetails, TAnimalsDetails>({
-      query: (animalBody) => ({
-        url: routes.api.petById(animalBody.pet_id as number),
+    changePet: builder.mutation<TAnimalSend, TAnimalSend>({
+      query: (animal) => ({
+        url: routes.api.petById(animal.pet_id as number),
         method: 'PUT',
-        body: animalBody,
+        body: animal,
       }),
     }),
   }),
