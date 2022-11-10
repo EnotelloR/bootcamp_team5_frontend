@@ -1,20 +1,21 @@
 export type TAnimalSend = {
   birthday: any;
-  breed_id?: number;
-  castration?: boolean;
-  characteristic?: string;
-  chip_number?: number;
-  gender_id: number | undefined;
-  health_features?: string;
-  kind_id: number | undefined;
-  nickname: string;
-  pet_picture?: string;
-  stigma?: string;
-  weight?: string;
-  wool_cover?: string;
-  pet_id: number;
+  breed_id?: number | null;
+  castration?: boolean | null;
+  characteristic?: string | null;
+  chip_number?: number | null;
+  gender_id: number | null;
+  health_features?: string | null;
+  kind_id: number | null;
+  nickname: string | null;
+  pet_picture?: string | null;
+  stigma?: string | null;
+  weight?: number | null;
+  wool_cover?: string | null;
+  pet_id: number | null;
   chip_end_date?: string;
   chip_start_date?: string;
+  uuid?: string;
 };
 
 export interface ISimpleAnimal {

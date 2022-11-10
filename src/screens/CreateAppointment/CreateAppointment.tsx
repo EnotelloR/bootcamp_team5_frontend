@@ -79,7 +79,7 @@ export const CreateAppointment = () => {
     if (selectedPet && carrier) {
       Api.createAppointment({
         ...result,
-        pet_id: selectedPet.pet_id,
+        pet_id: selectedPet.pet_id as number,
         carrier_id: carrier.id,
       })
         .then(({ result }) => {

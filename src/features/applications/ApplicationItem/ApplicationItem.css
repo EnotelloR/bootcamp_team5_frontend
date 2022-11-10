@@ -44,14 +44,8 @@
   overflow: hidden;
 }
 
-@keyframes glowing {
-  0% { background-color: white; color: black;}
-  50% { background-color: #389e0d; color: white; }
-  100% { background-color: white; color: black; }
-}
-
 .application-item__text_new{
-  animation: glowing 3000ms infinite;
+  background-color: #389e0d; color: white;
 }
 
 .application-item__span {

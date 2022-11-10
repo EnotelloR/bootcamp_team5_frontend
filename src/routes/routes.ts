@@ -4,6 +4,7 @@ export const routes = {
   pages: {
     changePasswordPage: () => '/changePassword/:token',
     confirmEmail: '/confirm/:token',
+    aboutAnimal: '/about-animal/:uuid',
   },
   main: '/',
   notFound: '/*',
@@ -17,6 +18,7 @@ export const routes = {
   carrier: `/carrier/:id`,
   navCarrierPage: (id: number) => `/carrier/${id}`,
   animal: `/profile/animals/:id`,
+  navAnimal: (pet_id: number) => `/profile/animals/${pet_id}`,
   carrierCreateAppointment: `/carrier/:id/create-appointment`,
   navCarrierCreateReq: (id: number) => `/carrier/${id}/create-appointment`,
   appointment: `/appointment/:id`,
@@ -58,6 +60,8 @@ export const routes = {
     ownerCommunication: () => '/users/owner/communication_methods',
     changePassword: () => '/users/password',
     verifyUser: () => '/users/verify',
+    createPetUUID: (id: number) => `/pets/${id}/qr`,
+    getPetByUUID: (uuid: string) => `/pets/qr/${uuid}`,
     basePath: () => $HOST,
   },
 };
