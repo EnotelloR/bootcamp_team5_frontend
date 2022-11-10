@@ -1,4 +1,4 @@
-import { TAnimalSend } from './../../services/types/animalsTypes';
+import { TAnimalSend, TAnimalsDetails } from './../../services/types/animalsTypes';
 import { Breed, Gender } from './animals.type';
 import { AnimalsType } from '../../store/petStore/interfaces';
 import { petCabinetApi } from '../../store/petStore/petCabinetApi';
@@ -35,9 +35,16 @@ const animalsApiSlice = petCabinetApi.injectEndpoints({
     }),
     addNewAnimal: builder.mutation<TAnimalSend, TAnimalSend>({
       query: (animalBody) => ({
-        url: routes.api.createPet(),
+        url: routes.api.pets(),
         method: 'POST',
         body: animalBody,
+      }),
+    }),
+    changePet: builder.mutation<TAnimalSend, TAnimalSend>({
+      query: (animal) => ({
+        url: routes.api.petById(animal.pet_id as number),
+        method: 'PUT',
+        body: animal,
       }),
     }),
   }),
@@ -48,4 +55,5 @@ export const {
   useGetBeersByAnimalsTypeIdQuery,
   useGetAnimalsGenderQuery,
   useAddNewAnimalMutation,
+  useChangePetMutation,
 } = animalsApiSlice;

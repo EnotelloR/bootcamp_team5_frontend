@@ -5,16 +5,17 @@ import { AnimalProfile } from '../../features/animals';
 import { animalDetailsSelector } from '../../store/slices/animals/animalsSelectors';
 import './AnimalsPage.css';
 import cap from '../../image/cap.png';
+import Manipulations from '../../features/manipulations/manipulations';
 
 export const AnimalsPage: FC = () => {
   const animal = useSelector(animalDetailsSelector)!;
-  const image = animal.pet_picture !== undefined ? animal.pet_picture : cap;
+  const image = cap;
 
   const defaultPanes = [
     { label: 'Общая информация', children: <AnimalProfile animal={animal} />, key: '1' },
-    { label: 'Процедуры', children: <div>2</div>, key: '2' },
-    { label: 'Прививки', children: <div>3</div>, key: '3' },
-    { label: 'Другое', children: <div>4</div>, key: '4' },
+    { label: 'Процедуры', children: <Manipulations />, key: '2' },
+    { label: 'Прививки', children: <Manipulations />, key: '3' },
+    { label: 'Другое', children: <Manipulations />, key: '4' },
   ];
 
   const [activeKey, setActiveKey] = useState(defaultPanes[0].key);
