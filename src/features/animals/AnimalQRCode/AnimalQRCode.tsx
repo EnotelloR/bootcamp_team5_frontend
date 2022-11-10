@@ -65,9 +65,13 @@ export const AnimalQRCode: FC<{ uuid: string }> = ({ uuid }) => {
           </div>
           <div className={styles.animal__block}>
             <p className={[styles.animal__text, styles.animal__text_bold].join(' ')}>
-              Особенности здоровья:
+              Здоровье:
             </p>
-            <p className={styles.animal__text}>{data.result.health_features}</p>
+            <p className={styles.animal__text}>
+              {data.result.health_features}
+              фффффффффффффффффффффффффффффффффффффффффффффф
+              ффффффффффффффффффффффффффффффффффф
+            </p>
           </div>
           <div className={styles.animal__block}>
             <p className={[styles.animal__text, styles.animal__text_bold].join(' ')}>

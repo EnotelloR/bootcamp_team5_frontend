@@ -1,4 +1,4 @@
-import { TAnimalSend } from '../../services/types/animalsTypes';
+import { TAnimalsDetails, TAnimalSend } from '../../services/types/animalsTypes';
 import { Breed, Gender, PetUUIDInfo } from './animals.type';
 import { AnimalsType } from '../../store/petStore/interfaces';
 import { petCabinetApi } from '../../store/petStore/petCabinetApi';
@@ -25,6 +25,23 @@ interface AnimalsGenderResponce {
 
 const animalsApiSlice = petCabinetApi.injectEndpoints({
   endpoints: (builder) => ({
+    getPets: builder.query<TServerAnswer<TAnimalsDetails[]>, void>({
+      query: () => routes.api.pets(),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.result.map(({ pet_id }) => ({
+                type: 'Applications' as const,
+                pet_id,
+              })),
+              { type: 'Pets', id: 'LIST' },
+            ]
+          : [{ type: 'Pets', id: 'LIST' }],
+    }),
+    getPet: builder.query<TServerAnswer<TAnimalsDetails>, number>({
+      query: (id: number) => routes.api.petById(id),
+      providesTags: ['Pet'],
+    }),
     getAnimalsType: builder.query<getAnimalsTypeResponce, void>({
       query: () => routes.api.getAnimalsType(),
     }),
@@ -53,6 +70,7 @@ const animalsApiSlice = petCabinetApi.injectEndpoints({
         url: routes.api.createPetUUID(id),
         method: 'PATCH',
       }),
+      invalidatesTags: [{ type: 'Pets', id: 'LIST' }, 'Pet'],
     }),
     getAnimalByUUID: builder.query<TServerAnswer<PetUUIDInfo>, string>({
       query: (uuid: string) => routes.api.getPetByUUID(uuid),
@@ -68,4 +86,6 @@ export const {
   useCreateUUIDMutation,
   useChangePetMutation,
   useGetAnimalByUUIDQuery,
+  useGetPetsQuery,
+  useGetPetQuery,
 } = animalsApiSlice;
