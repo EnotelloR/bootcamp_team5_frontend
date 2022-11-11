@@ -1,5 +1,12 @@
 import { Button, Col, DatePicker, Form, Input, Row } from 'antd';
-import React from 'react';
+import React, { FC } from 'react';
+import moment from 'moment';
+import { isFetchBaseQueryError } from '../../../utils/helpers';
+import {
+  CreateManipulationTypes,
+  useCreateManipulationByPetIdMutation,
+} from '../manipulations.service';
+import openNotificationWithIcon from '../../../UI/notifications/notifications';
 
 export interface Manipulations {
   date: string;
@@ -13,10 +20,39 @@ const initialValues: Manipulations = {
   next_date: '',
 };
 
-const manipulationHandler = (values: Manipulations) => console.log(values);
+interface ManipulatonsFormProps {
+  manipulation_type_id: number;
+  pet_id: number;
+}
 
-const ManipulatonsForm = () => {
+const ManipulatonsForm: FC<ManipulatonsFormProps> = ({
+  manipulation_type_id,
+  pet_id,
+}) => {
   const [form] = Form.useForm();
+  const [createManipulation] = useCreateManipulationByPetIdMutation();
+  const manipulationHandler = async (values: CreateManipulationTypes) => {
+    const { date, next_date, ...args } = values;
+    try {
+      await createManipulation({
+        ...args,
+        date: date.format('DD/MM/YYYY'),
+        next_date: next_date.format('DD/MM/YYYY'),
+        pet_id,
+        manipulation_type_id,
+      }).unwrap();
+      openNotificationWithIcon(
+        'success',
+        'Добавление процедуры',
+        'Процедура успешно добавлена',
+      );
+      form.resetFields(['description', 'date', 'next_date']);
+    } catch (error) {
+      if (isFetchBaseQueryError(error)) {
+        console.log(error);
+      }
+    }
+  };
   return (
     <Form
       initialValues={initialValues}
@@ -24,12 +60,12 @@ const ManipulatonsForm = () => {
       onFinish={(event) => manipulationHandler(event)}
     >
       <Row>
-        <Col span={6}>
+        <Col span={7}>
           <Form.Item name="description">
             <Input placeholder="Введите вид манипуляции" />
           </Form.Item>
         </Col>
-        <Col span={6}>
+        <Col span={7}>
           <Form.Item
             name="date"
             rules={[
@@ -44,7 +80,7 @@ const ManipulatonsForm = () => {
             />
           </Form.Item>
         </Col>
-        <Col span={6}>
+        <Col span={7}>
           <Form.Item
             name="next_date"
             rules={[
@@ -59,8 +95,8 @@ const ManipulatonsForm = () => {
             />
           </Form.Item>
         </Col>
-        <Col span={6}>
-          <Button>Сохранить</Button>
+        <Col span={3}>
+          <Button htmlType="submit">Сохранить</Button>
         </Col>
       </Row>
     </Form>

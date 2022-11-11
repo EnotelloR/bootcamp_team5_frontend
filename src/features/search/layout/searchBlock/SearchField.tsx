@@ -1,6 +1,6 @@
-import React, { ChangeEvent, FC, SetStateAction, useState } from 'react';
+import React, { ChangeEvent, FC, SetStateAction, useRef, useState } from 'react';
 import './SearchField.css';
-import { Input } from 'antd';
+import { Col, Input, Row, Form } from 'antd';
 import {
   useGetCityQuery,
   useGetDistrictsByCityQuery,
@@ -11,6 +11,7 @@ import { CityId } from '../../../../screens/CarriersList';
 import Button from 'antd/es/button';
 import SearchSelection from '../searchSelect';
 import { useGetAnimalsTypeQuery } from '../../../animals/animals.service';
+import FormItem from 'antd/es/form/FormItem';
 
 interface SearchFieldProps {
   setInitialState: React.Dispatch<React.SetStateAction<SearchParams>>;
@@ -26,7 +27,7 @@ const SearchField: FC<SearchFieldProps> = ({
   cityId,
 }) => {
   const [value, setValue] = useState<string>('');
-
+  const [form] = Form.useForm();
   const { data: cities } = useGetCityQuery();
   const { data: services } = useGetServicesQuery();
   const { data: animalsType } = useGetAnimalsTypeQuery();
@@ -44,26 +45,32 @@ const SearchField: FC<SearchFieldProps> = ({
       setInitialState({ ...params });
     }
   };
+  console.log('before', initialState);
   const clearHandler = () => {
     setValue('');
+    form.resetFields(['service', 'city', 'districts', 'animalType']);
     setInitialState({});
   };
 
   return (
-    <div className="search-container">
-      <div>
-        <Input
-          onChange={(event) => searchHandler(event)}
-          name="search"
-          id="search"
-          bordered={true}
-          placeholder="Введите название клиники"
-          value={value}
-          minLength={3}
-          maxLength={64}
-        />
-      </div>
-      <div className="select-container">
+    <Form initialValues={initialState} form={form} className="search-container">
+      <Row>
+        <Col>
+          <Form.Item>
+            <Input
+              onChange={(event) => searchHandler(event)}
+              name="search"
+              id="search"
+              bordered={true}
+              placeholder="Введите название клиники"
+              value={value}
+              minLength={3}
+              maxLength={64}
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row className="select-container">
         <SearchSelection
           cities={cities?.result}
           services={services?.result}
@@ -73,9 +80,13 @@ const SearchField: FC<SearchFieldProps> = ({
           setInitialState={setInitialState}
           setCityId={setCityId}
         />
-        <Button onClick={clearHandler}>Очистить фильтр</Button>
-      </div>
-    </div>
+        <Col span={4}>
+          <Form.Item>
+            <Button onClick={clearHandler}>Очистить фильтр</Button>
+          </Form.Item>
+        </Col>
+      </Row>
+    </Form>
   );
 };
 

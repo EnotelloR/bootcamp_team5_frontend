@@ -7,23 +7,45 @@ import Manipulations from '../../features/manipulations/manipulations';
 import { useGetPetQuery } from '../../features/animals/animals.service';
 import { useParams } from 'react-router-dom';
 import { Loader } from '../../features/layout';
+import {
+  ManipulationTypes,
+  useGetAllManipulationTypesQuery,
+} from '../../features/manipulations/manipulations.service';
+import { Tab } from 'rc-tabs/lib/interface';
 
 export const AnimalsPage: FC = () => {
   const { id } = useParams();
 
   const { data, isSuccess, isLoading } = useGetPetQuery(Number(id));
+  const { data: manipulations, isLoading: manipulationLoading } =
+    useGetAllManipulationTypesQuery();
 
   const image = cap;
 
+  const createPanelLabels = !manipulationLoading
+    ? manipulations?.result.map((manipulation: ManipulationTypes) => ({
+        label: manipulation.name,
+        children: (
+          <Manipulations
+            pet_id={data?.result.pet_id as number}
+            manipulation_type_id={manipulation.id}
+          />
+        ),
+        key: manipulation.name,
+      }))
+    : [];
   const defaultPanes = [
     {
       label: 'Общая информация',
       children: isSuccess && <AnimalProfile animal={data.result} />,
-      key: '1',
+      key: 'Общая информация',
     },
-    { label: 'Процедуры', children: <Manipulations />, key: '2' },
-    { label: 'Прививки', children: <Manipulations />, key: '3' },
-    { label: 'Другое', children: <Manipulations />, key: '4' },
+    ...(createPanelLabels as Tab[]),
+    {
+      label: 'Рекомендации',
+      children: <div>Рекомендации</div>,
+      key: 'Рекомендации',
+    },
   ];
 
   const [activeKey, setActiveKey] = useState(defaultPanes[0].key);
