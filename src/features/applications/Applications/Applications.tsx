@@ -29,7 +29,9 @@ export const Applications: FC = () => {
       {data && isSuccess && (
         <div className="applications__table-wrapper">
           <div
-            className={`applications__table ${!isOwner && 'applications__table_carrier'}`}
+            className={`applications__table ${
+              !isOwner ? 'applications__table_carrier' : ''
+            }`}
           >
             <p className="applications__table-text">№ заявки</p>
             <p className="applications__table-text">
