@@ -1,4 +1,4 @@
-import { Select } from 'antd';
+import { Form, Select, Col } from 'antd';
 import React, { FC, SetStateAction } from 'react';
 import { CityId } from '../../../../screens/CarriersList';
 import {
@@ -40,54 +40,75 @@ const SearchSelection: FC<SearchSelectorProps> = ({
   };
   return (
     <>
-      <Select
-        className="ant-select ant-select-single ant-select-show-arrow"
-        defaultValue="Вид услуг"
-        style={{ width: 250 }}
-        onSelect={(event: number | string) => selectHandler(event, 'service_type_id')}
-      >
-        {services?.map((service) => (
-          <Option key={service.id} value={service.id} id={service.id}>
-            {service.name}
-          </Option>
-        ))}
-      </Select>
-      <Select
-        defaultValue="Виды животных"
-        className="ant-select ant-select-single ant-select-show-arrow"
-        style={{ width: 250 }}
-        onSelect={(event: number | string) => selectHandler(event, 'animal_type_id')}
-      >
-        {animals?.map((animalType) => (
-          <Option key={animalType.id} value={animalType.id}>
-            {animalType.name}
-          </Option>
-        ))}
-      </Select>
-      <Select
-        defaultValue="Город"
-        className="ant-select ant-select-single ant-select-show-arrow"
-        style={{ width: 250 }}
-        onSelect={(event: number | string) => cityHandler(event)}
-      >
-        {cities?.map((city: City) => (
-          <Option key={city.id} value={city.id} id={city.id}>
-            {city.name}
-          </Option>
-        ))}
-      </Select>
-      <Select
-        defaultValue="Район"
-        className="ant-select ant-select-single ant-select-show-arrow"
-        style={{ width: 250 }}
-        onSelect={(event: number | string) => selectHandler(event, 'district_id')}
-      >
-        {districts?.map((district) => (
-          <Option key={district?.id} value={district?.id} id={district?.id}>
-            {district?.name}
-          </Option>
-        ))}
-      </Select>
+      <Col span={5}>
+        <Form.Item name={'service'}>
+          <Select
+            className="ant-select ant-select-single ant-select-show-arrow"
+            placeholder="Вид услуг"
+            style={{ width: 250 }}
+            onSelect={(event: number | string) => selectHandler(event, 'service_type_id')}
+            allowClear
+          >
+            {services?.map((service) => (
+              <Option key={service.id} value={service.id || undefined} id={service.id}>
+                {service.name}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
+      </Col>
+      <Col span={5}>
+        <Form.Item name={'animalType'}>
+          <Select
+            placeholder="Виды животных"
+            className="ant-select ant-select-single ant-select-show-arrow"
+            style={{ width: 250 }}
+            allowClear
+            onSelect={(event: number | string) => selectHandler(event, 'animal_type_id')}
+          >
+            {animals?.map((animalType) => (
+              <Option key={animalType.id} value={animalType.id}>
+                {animalType.name}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
+      </Col>
+      <Col span={5}>
+        <Form.Item name={'city'}>
+          <Select
+            allowClear
+            notFoundContent="Yes"
+            placeholder="Город"
+            className="ant-select ant-select-single ant-select-show-arrow"
+            style={{ width: 250 }}
+            onSelect={(event: number | string) => cityHandler(event)}
+          >
+            {cities?.map((city: City) => (
+              <Option key={city.id} value={city.id} id={city.id}>
+                {city.name}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
+      </Col>
+      <Col span={5}>
+        <Form.Item name={'districts'}>
+          <Select
+            allowClear
+            placeholder="Район"
+            className="ant-select ant-select-single ant-select-show-arrow"
+            style={{ width: 250 }}
+            onSelect={(event: number | string) => selectHandler(event, 'district_id')}
+          >
+            {districts?.map((district) => (
+              <Option key={district?.id} value={district?.id} id={district?.id}>
+                {district?.name}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
+      </Col>
     </>
   );
 };
