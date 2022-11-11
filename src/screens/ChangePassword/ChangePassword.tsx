@@ -44,7 +44,7 @@ export const ChangePassword: FC = () => {
       title="Забыли пароль?"
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
-      submitBtnText="Отправить письмо для смены"
+      submitBtnText="Сменить пароль"
       outLink={{ text: 'Назад ко входу', link: routes.signIn }}
     >
       <Form.Item
