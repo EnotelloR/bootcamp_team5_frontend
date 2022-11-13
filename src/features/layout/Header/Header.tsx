@@ -1,33 +1,32 @@
 import { Col, Row } from 'antd';
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { routes } from '../../../routes/routes';
 import logo from '../../../image/auth_logo.png';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../../store/slices/auth/authSelectors';
 import Entered from './components/entered';
 import NotEntered from './components/notEntered';
+import './Header.css';
 
 export const Header = () => {
-  const navigate = useNavigate();
   const user = useSelector(userSelector);
   return (
     <header>
       <Row
         style={{
-          display: 'flex',
-          justifyContent: 'space-between',
           alignItems: 'center',
           paddingTop: '27px',
           paddingBottom: '27px',
+          justifyContent: 'space-between',
         }}
       >
-        <Col lg={2}>
+        <Col lg={2} xs={4} offset={1}>
           <Link to={routes.main}>
             <img className="header__logo" src={logo} alt="лого котопес" />
           </Link>
         </Col>
-        <Col lg={16} offset={3}>
+        <Col lg={14} xs={17} offset={2}>
           {user.email ? <Entered /> : <NotEntered />}
         </Col>
       </Row>

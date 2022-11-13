@@ -32,7 +32,7 @@ export const SignIn = () => {
       return;
     }
     loggerUser(values)
-      .then(() => navigate(routes.profile))
+      .then(() => navigate(routes.main))
       .catch((err) => {
         err.json().then((error: Ierror) => {
           console.log(error);

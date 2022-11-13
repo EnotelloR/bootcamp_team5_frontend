@@ -7,7 +7,7 @@ import './NotEntered.css';
 const NotEntered: FC = () => {
   const navigate = useNavigate();
   return (
-    <div style={{ display: 'flex', gap: '20px' }}>
+    <div style={{ display: 'flex', gap: '20px', justifyContent: 'flex-end' }}>
       <Button
         type="link"
         className="header__secondary-button"

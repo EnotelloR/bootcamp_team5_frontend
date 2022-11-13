@@ -9,3 +9,12 @@
   justify-content: space-between;
   margin-top: 2rem;
 }
+.ant-btn.ant-btn-primary.ant-input-search-button {
+  display: none;
+}
+.search-icon {
+  position: 'absolute';
+  right: '10px';
+  top: '8px';
+  color: '#000';
+}
