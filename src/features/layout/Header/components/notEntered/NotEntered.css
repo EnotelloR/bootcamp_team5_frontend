@@ -1,0 +1,27 @@
+.header__primary-button {
+  background: #389e0d;
+  border-color: #389e0d;
+  font-size: 14px;
+  font-family: 'Inter', Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.header__secondary-button {
+  color: #389e0d;
+  text-align: center;
+  cursor: pointer;
+  padding: 0 21px;
+  text-transform: uppercase;
+}
+
+.header__primary-button:hover,
+.header__primary-button:focus {
+  color: #389e0d;
+  background-color: transparent;
+  border-color: #389e0d;
+}
+
+.header__secondary-button:hover,
+.header__secondary-button:focus {
+  color: #54ff00;
+}
