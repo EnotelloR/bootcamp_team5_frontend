@@ -1,6 +1,5 @@
 import { Button, Col, DatePicker, Form, Input, Row } from 'antd';
 import React, { FC } from 'react';
-import moment from 'moment';
 import { isFetchBaseQueryError } from '../../../utils/helpers';
 import {
   CreateManipulationTypes,

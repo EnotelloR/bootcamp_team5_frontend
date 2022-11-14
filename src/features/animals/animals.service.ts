@@ -65,6 +65,13 @@ const animalsApiSlice = petCabinetApi.injectEndpoints({
         body: animal,
       }),
     }),
+    deletePet: builder.mutation<TAnimalSend, number>({
+      query: (id) => ({
+        url: routes.api.petById(id),
+        method: 'DELETE',
+      }),
+      invalidatesTags: [{ type: 'Pets', id: 'LIST' }, 'Pet'],
+    }),
     createUUID: builder.mutation<TServerAnswer<TAnimalSend>, number>({
       query: (id: number) => ({
         url: routes.api.createPetUUID(id),
@@ -88,4 +95,5 @@ export const {
   useGetAnimalByUUIDQuery,
   useGetPetsQuery,
   useGetPetQuery,
+  useDeletePetMutation,
 } = animalsApiSlice;
