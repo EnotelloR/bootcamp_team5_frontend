@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { NewsSection } from '../../features/news';
-import { PromoSection, TitleSection } from '../../features/layout';
+import { TitleSection } from '../../features/layout';
+import { CarriersList } from '../CarriersList';
 
 import './Main.css';
 
@@ -8,8 +8,7 @@ export const Main: FC = () => {
   return (
     <div className="main">
       <TitleSection />
-      <PromoSection />
-      <NewsSection />
+      <CarriersList />
     </div>
   );
 };

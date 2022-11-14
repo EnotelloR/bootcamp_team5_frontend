@@ -1,4 +1,5 @@
-import { Form, Select, Col } from 'antd';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Form, Select, Col, Button } from 'antd';
 import React, { FC, SetStateAction } from 'react';
 import { CityId } from '../../../../screens/CarriersList';
 import {
@@ -30,6 +31,7 @@ const SearchSelection: FC<SearchSelectorProps> = ({
   setCityId,
   initialState,
 }) => {
+  const [form] = Form.useForm();
   const { Option } = Select;
   const selectHandler = (event: number | string, key: string) => {
     setInitialState({ ...initialState, [key]: event as number });
@@ -38,8 +40,13 @@ const SearchSelection: FC<SearchSelectorProps> = ({
     setCityId(event as number);
     setInitialState({ ...initialState, city_id: event as number });
   };
+  const clearHandler = () => {
+    form.resetFields(['service', 'city', 'districts', 'animalType']);
+    const { search, ...args } = initialState;
+    setInitialState({ search });
+  };
   return (
-    <>
+    <Form form={form} initialValues={initialState}>
       <Col span={5}>
         <Form.Item name={'service'}>
           <Select
@@ -109,7 +116,14 @@ const SearchSelection: FC<SearchSelectorProps> = ({
           </Select>
         </Form.Item>
       </Col>
-    </>
+      <Col span={4}>
+        <Form.Item>
+          <Button style={{ background: '#4E4E4E', color: '#fff' }} onClick={clearHandler}>
+            Очистить фильтр
+          </Button>
+        </Form.Item>
+      </Col>
+    </Form>
   );
 };
 
