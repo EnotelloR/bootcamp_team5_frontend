@@ -38,7 +38,9 @@ const SearchSelection: FC<SearchSelectorProps> = ({
   };
   const cityHandler = (event: number | string) => {
     setCityId(event as number);
-    setInitialState({ ...initialState, city_id: event as number });
+    const { district_id, ...args } = initialState;
+    setInitialState({ ...args, city_id: event as number });
+    form.resetFields(['districts']);
   };
   const clearHandler = () => {
     form.resetFields(['service', 'city', 'districts', 'animalType']);
@@ -54,7 +56,6 @@ const SearchSelection: FC<SearchSelectorProps> = ({
             placeholder="Вид услуг"
             style={{ width: 250 }}
             onSelect={(event: number | string) => selectHandler(event, 'service_type_id')}
-            allowClear
           >
             {services?.map((service) => (
               <Option key={service.id} value={service.id || undefined} id={service.id}>
@@ -70,7 +71,6 @@ const SearchSelection: FC<SearchSelectorProps> = ({
             placeholder="Виды животных"
             className="ant-select ant-select-single ant-select-show-arrow"
             style={{ width: 250 }}
-            allowClear
             onSelect={(event: number | string) => selectHandler(event, 'animal_type_id')}
           >
             {animals?.map((animalType) => (
@@ -84,7 +84,6 @@ const SearchSelection: FC<SearchSelectorProps> = ({
       <Col span={5}>
         <Form.Item name={'city'}>
           <Select
-            allowClear
             notFoundContent="Yes"
             placeholder="Город"
             className="ant-select ant-select-single ant-select-show-arrow"
@@ -102,7 +101,6 @@ const SearchSelection: FC<SearchSelectorProps> = ({
       <Col span={5}>
         <Form.Item name={'districts'}>
           <Select
-            allowClear
             placeholder="Район"
             className="ant-select ant-select-single ant-select-show-arrow"
             style={{ width: 250 }}
