@@ -13,6 +13,7 @@ export interface ManipulationTypesByPet {
   next_date: string;
   pet_id: number;
   manipulation_id: number;
+  request_id: number;
 }
 
 export interface CreateManipulationTypes {
@@ -21,6 +22,7 @@ export interface CreateManipulationTypes {
   manipulation_type_id: number;
   next_date: any;
   pet_id: number;
+  request_id: number;
 }
 
 export interface ManipulationTypesResponce {
@@ -65,7 +67,10 @@ const manipulationsApiSlice = petCabinetApi.injectEndpoints({
         method: 'POST',
         body: manipulation,
       }),
-      invalidatesTags: ['Manipulations'],
+      invalidatesTags: [
+        'Manipulations',
+        { type: 'ApplicationManipulations', id: 'LIST' },
+      ],
     }),
   }),
 });
