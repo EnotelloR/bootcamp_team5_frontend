@@ -6,6 +6,7 @@ import {
 import { TServerAnswer } from '../../services/types/serverTypes';
 import { petCabinetApi } from '../../store/petStore/petCabinetApi';
 import { routes } from '../../routes/routes';
+import { ManipulationTypesByPet } from '../manipulations/manipulations.service';
 
 const applicationsApi = petCabinetApi.injectEndpoints({
   endpoints: (build) => ({
@@ -23,6 +24,22 @@ const applicationsApi = petCabinetApi.injectEndpoints({
       query: (id = -1) => routes.api.request() + (id !== -1 && `/${id}`),
       providesTags: ['Appointment'],
     }),
+    getApplicationManipulations: build.query<
+      TServerAnswer<ManipulationTypesByPet[]>,
+      number
+    >({
+      query: (id) => routes.api.getRequestManipulationsById(id),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.result.map(({ manipulation_id }) => ({
+                type: 'ApplicationManipulations' as const,
+                manipulation_id,
+              })),
+              { type: 'ApplicationManipulations', id: 'LIST' },
+            ]
+          : [{ type: 'ApplicationManipulations', id: 'LIST' }],
+    }),
     changeApplications: build.mutation({
       query: (updater: IApplicationStatusUpdater) => ({
         url: `${routes.api.request()}/${updater.id}/status`,
@@ -37,5 +54,6 @@ const applicationsApi = petCabinetApi.injectEndpoints({
 export const {
   useGetApplicationsQuery,
   useGetApplicationQuery,
+  useGetApplicationManipulationsQuery,
   useChangeApplicationsMutation,
 } = applicationsApi;

@@ -44,6 +44,7 @@ export const routes = {
     manipulationsByPet: (id: number) => `/pets/${id}/manipulations`,
     request: () => '/requests',
     getRequestById: (id: number) => `/requests/${id}`,
+    getRequestManipulationsById: (id: number) => `/requests/${id}/manipulations`,
     updateStatusRequest: (id: number) => `/requests/${id}/status`,
     getCurrentUserNotifications: () => '/requests/notifications',
     getRequestStatuses: () => '/request_statuses',

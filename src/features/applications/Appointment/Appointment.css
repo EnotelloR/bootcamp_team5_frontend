@@ -104,6 +104,33 @@
   border-color: #389e0d;
 }
 
+.appointment-page__manipulationField{
+  width: 100%;
+}
+
+.appointment-page__button{
+  background: #389e0d;
+  border: none;
+}
+
+.appointment-page__button:hover{
+  background: #135200;
+}
+
+.appointment-page__manipulationsHolder{
+  display: flex;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.appointment-page__manipulationsHolder__item{
+  width: 10rem;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 @media screen and (max-width: 875px) {
   .appointment-page__content {
     grid-template-columns: 600px;

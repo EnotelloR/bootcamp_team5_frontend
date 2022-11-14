@@ -3,7 +3,14 @@ import { routes } from '../../routes/routes';
 
 export const petCabinetApi = createApi({
   reducerPath: 'petCabinetApi',
-  tagTypes: ['Applications', 'Appointment', 'Pets', 'Pet', 'Manipulations'],
+  tagTypes: [
+    'Applications',
+    'Appointment',
+    'Pets',
+    'Pet',
+    'Manipulations',
+    'ApplicationManipulations',
+  ],
   baseQuery: fetchBaseQuery({
     baseUrl: routes.api.basePath(),
     prepareHeaders: (headers) => {
