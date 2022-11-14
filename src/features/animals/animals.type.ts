@@ -22,3 +22,12 @@ export interface PetUUIDInfo {
   pet_picture: string;
   phone: string;
 }
+
+export interface AnimalRecommendation {
+  carrier_id: number;
+  carrier_name: string;
+  pet_id: number;
+  request_id: number;
+  result_description: string;
+  result_file: string;
+}

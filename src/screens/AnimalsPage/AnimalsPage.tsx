@@ -1,6 +1,6 @@
 import { Tabs } from 'antd';
 import React, { FC, useState } from 'react';
-import { AnimalProfile } from '../../features/animals';
+import { AnimalProfile, AnimalRecommendations } from '../../features/animals';
 import './AnimalsPage.css';
 import cap from '../../image/cap.png';
 import Manipulations from '../../features/manipulations/manipulations';
@@ -43,7 +43,7 @@ export const AnimalsPage: FC = () => {
     ...(createPanelLabels as Tab[]),
     {
       label: 'Рекомендации',
-      children: <div>Рекомендации</div>,
+      children: <AnimalRecommendations pet_id={data?.result.pet_id as number} />,
       key: 'Рекомендации',
     },
   ];
