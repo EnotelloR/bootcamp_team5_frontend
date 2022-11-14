@@ -1,4 +1,3 @@
-import { Table } from 'antd';
 import React, { FC } from 'react';
 import { ManipulationTypesByPet } from '../manipulations.service';
 

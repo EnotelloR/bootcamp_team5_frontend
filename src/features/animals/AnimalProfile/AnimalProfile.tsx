@@ -1,41 +1,34 @@
-import { Button } from 'antd';
+import { Button, message, Popconfirm } from 'antd';
 import React, { FC, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../routes/routes';
 import { TAnimalsDetails } from '../../../services/types/animalsTypes';
-import { endLoading, startLoading } from '../../../store/slices/load/loadSlice';
-import Api from '../../../utils/Api';
 import AboutAnimalSection from '../aboutAnimalSection';
 import { AnimalForm } from '../AnimalForm';
 import './AnimalProfile.css';
+import { useDeletePetMutation } from '../animals.service';
+import { userSelector } from '../../../store/slices/auth/authSelectors';
 
 export const AnimalProfile: FC<{ animal: TAnimalsDetails }> = ({ animal }) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [isChange, setIsChange] = useState<boolean>(true);
+  const [deletePet] = useDeletePetMutation();
 
-  const deleteAnimal = () => {
-    dispatch(startLoading());
-    const isDeleted = prompt(
-      'Если вы уверенны что хотите удалить животное напишите его имя.',
-    );
-    if (isDeleted === animal.nickname) {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      Api.deleteAnimal(animal.pet_id!)
-        .then(() => {
-          navigate(routes.profile);
-        })
-        .catch((err) => {
-          alert(`Ой, что то пошло не так. Подробности в консоле.`);
-          console.log(err);
-        })
-        .finally(() => dispatch(endLoading()));
-    } else {
-      dispatch(endLoading());
-    }
+  const deleteAnimal = async () => {
+    if (!animal.pet_id) return;
+    await deletePet(animal.pet_id)
+      .unwrap()
+      .then(() => navigate(routes.profile))
+      .catch((err) => {
+        message.error('Произошла ошибка.');
+        console.log(err);
+      });
   };
+
+  const user = useSelector(userSelector);
+  const isOwner = user && user.role_name === 'OWNER';
 
   return (
     <section className="animal-profile">
@@ -44,26 +37,36 @@ export const AnimalProfile: FC<{ animal: TAnimalsDetails }> = ({ animal }) => {
       ) : (
         <AnimalForm isNew={false} animal={animal as TAnimalsDetails} />
       )}
-      <div className="animal-profile__box-btn">
-        {!isChange && (
+      {isOwner && (
+        <div className="animal-profile__box-btn">
+          {!isChange && (
+            <Popconfirm
+              title="Вы уверены, что хотите удалить вашего питомца?"
+              onConfirm={deleteAnimal}
+              okText="Да"
+              cancelText="Нет"
+            >
+              <Button
+                type="default"
+                htmlType="button"
+                className="animal-profile__btn animal-profile__btn_delete"
+              >
+                Удалить животное
+              </Button>
+            </Popconfirm>
+          )}
           <Button
             type="default"
             htmlType="button"
-            className="animal-profile__btn animal-profile__btn_delete"
-            onClick={() => deleteAnimal()}
+            className={
+              'animal-profile__btn ' + (!isChange && 'animal-profile__btn_cancel')
+            }
+            onClick={() => setIsChange(!isChange)}
           >
-            Удалить животное
+            {isChange ? 'Изменить' : 'Отмена'}
           </Button>
-        )}
-        <Button
-          type="default"
-          htmlType="button"
-          className={'animal-profile__btn ' + (!isChange && 'animal-profile__btn_cancel')}
-          onClick={() => setIsChange(!isChange)}
-        >
-          {isChange ? 'Изменить' : 'Отмена'}
-        </Button>
-      </div>
+        </div>
+      )}
     </section>
   );
 };
