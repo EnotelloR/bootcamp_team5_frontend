@@ -27,6 +27,7 @@ export const routes = {
   api: {
     getAnimalsType: () => '/animal_types',
     getAnimalBreeds: (id: number) => `/animal_types/${id}/breeds`,
+    getAnimalRecommendations: (id: number) => `pets/${id}/recommendations`,
     getAllBreeds: () => '/breeds',
     getCarrier: () => '/carriers',
     getCarrierById: (id: number) => `/carriers/${id}`,

@@ -1,5 +1,5 @@
 import { TAnimalsDetails, TAnimalSend } from '../../services/types/animalsTypes';
-import { Breed, Gender, PetUUIDInfo } from './animals.type';
+import { AnimalRecommendation, Breed, Gender, PetUUIDInfo } from './animals.type';
 import { AnimalsType } from '../../store/petStore/interfaces';
 import { petCabinetApi } from '../../store/petStore/petCabinetApi';
 import { routes } from '../../routes/routes';
@@ -51,6 +51,12 @@ const animalsApiSlice = petCabinetApi.injectEndpoints({
     getAnimalsGender: builder.query<AnimalsGenderResponce, void>({
       query: () => routes.api.getAllGenders(),
     }),
+    getAnimalRecommendations: builder.query<
+      TServerAnswer<AnimalRecommendation[]>,
+      number
+    >({
+      query: (id) => routes.api.getAnimalRecommendations(id),
+    }),
     addNewAnimal: builder.mutation<TAnimalSend, TAnimalSend>({
       query: (animalBody) => ({
         url: routes.api.pets(),
@@ -89,6 +95,7 @@ export const {
   useGetAnimalsTypeQuery,
   useGetBeersByAnimalsTypeIdQuery,
   useGetAnimalsGenderQuery,
+  useGetAnimalRecommendationsQuery,
   useAddNewAnimalMutation,
   useCreateUUIDMutation,
   useChangePetMutation,
