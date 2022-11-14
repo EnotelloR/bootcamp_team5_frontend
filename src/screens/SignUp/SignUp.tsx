@@ -9,34 +9,36 @@ import { signUpRulesText } from '../../utils/signUpRulesText';
 import { useApiHooks } from '../../hooks/ApiHooks';
 import { Ierror } from '../../services/types/authTypes';
 import ErrorHandler from '../../utils/ErrorHandler';
-import {
-  AuthContainer,
-  AuthInfoModal,
-  noInternetErrText,
-} from '../../features/authorization';
+import { AuthContainer, noInternetErrText } from '../../features/authorization';
+import openNotificationWithIcon from '../../UI/notifications/notifications';
 
 export const SignUp = () => {
   const navigate = useNavigate();
   const [rulesIsOpen, setRulesIsOpen] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [infoModalIsOpen, setInfoModalIsOpen] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [errorText, setErrorText] = useState('');
   const { loggerUser } = useApiHooks();
 
   const onFinish = (values: Store) => {
     if (!navigator.onLine) {
-      showErrorModal(noInternetErrText);
+      openNotificationWithIcon('error', 'Ошибка соединения', noInternetErrText);
       return;
     }
     const { email, password, role_name } = values;
 
     Api.createUser({ email, password, role_name })
       .then(() => {
-        handleSuccessReg();
+        openNotificationWithIcon(
+          'success',
+          'Регистрация',
+          'Поздравляем вы успешно зарегистрированы',
+        );
+        navigate(routes.main);
         loggerUser({ username: email, password, remember: true }).catch((err) => {
           err.json().then((error: Ierror) => {
-            showErrorModal(ErrorHandler.handleError(error));
+            openNotificationWithIcon(
+              'error',
+              'Возникла ошибка',
+              ErrorHandler.handleError(error),
+            );
           });
         });
       })
@@ -44,7 +46,11 @@ export const SignUp = () => {
         err
           .json()
           .then((error: Ierror) => {
-            showErrorModal(ErrorHandler.handleError(error));
+            openNotificationWithIcon(
+              'error',
+              'Возникла ошибка',
+              ErrorHandler.handleError(error),
+            );
           })
           .catch((err: any) => {
             console.log(err);
@@ -54,25 +60,6 @@ export const SignUp = () => {
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
     console.log('Failed:', errorInfo);
-  };
-
-  const handleSuccessReg = () => {
-    setIsSuccess(true);
-    setInfoModalIsOpen(true);
-    setTimeout(() => {
-      navigate(routes.profile);
-    }, 5000);
-  };
-
-  const showErrorModal = (errorText: string) => {
-    setIsError(true);
-    setInfoModalIsOpen(true);
-    setErrorText(errorText);
-    setTimeout(() => {
-      setIsError(false);
-      setInfoModalIsOpen(false);
-      setErrorText('');
-    }, 3000);
   };
 
   return (
@@ -107,12 +94,6 @@ export const SignUp = () => {
           >
             {signUpRulesText}
           </Modal>
-          <AuthInfoModal
-            isOpen={infoModalIsOpen}
-            isSuccess={isSuccess}
-            isError={isError}
-            errorText={errorText}
-          />
         </>
       }
     >
