@@ -10,6 +10,7 @@ export const petCabinetApi = createApi({
     'Pet',
     'Manipulations',
     'ApplicationManipulations',
+    'User',
   ],
   baseQuery: fetchBaseQuery({
     baseUrl: routes.api.basePath(),
