@@ -2,7 +2,7 @@ import {
   TApplication,
   IApplicationStatusUpdater,
   Iappointment,
-} from './Applications/applications.entity';
+} from './applications.entity';
 import { TServerAnswer } from '../../services/types/serverTypes';
 import { petCabinetApi } from '../../store/petStore/petCabinetApi';
 import { routes } from '../../routes/routes';

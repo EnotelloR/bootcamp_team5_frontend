@@ -11,6 +11,8 @@ export const petCabinetApi = createApi({
     'Manipulations',
     'ApplicationManipulations',
     'User',
+    'Notifications',
+    'NotificationCounter',
   ],
   baseQuery: fetchBaseQuery({
     baseUrl: routes.api.basePath(),

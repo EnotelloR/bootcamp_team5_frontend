@@ -4,8 +4,9 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { routes } from '../../../../../routes/routes';
 import { logout } from '../../../../../store/slices/auth/authSlice';
-import { MenuOutlined } from '@ant-design/icons';
+import { BulbOutlined, MenuOutlined } from '@ant-design/icons';
 import Api from '../../../../../utils/Api';
+import { useGetNotificationsCountQuery } from '../../../../notifications';
 
 const Entered = () => {
   const navigate = useNavigate();
@@ -16,6 +17,8 @@ const Entered = () => {
     localStorage.removeItem('token');
     navigate(routes.main);
   }
+  const { data: unseenNotifications, isSuccess } = useGetNotificationsCountQuery();
+
   const menu = (
     <Menu style={{ padding: '20px 40px' }}>
       <Menu.Item>
@@ -27,12 +30,26 @@ const Entered = () => {
       <Menu.Item>
         <Link to={routes.applications} style={{ color: '#389E0D' }}>
           Приемы
+          {isSuccess && unseenNotifications.result.requests > 0 && (
+            <span className="header__nav-link-text_notification">
+              {' '}
+              <BulbOutlined />
+              {unseenNotifications.result.requests}
+            </span>
+          )}
         </Link>
       </Menu.Item>
       <Divider style={{ margin: '5px', color: '#389E0D' }} />
       <Menu.Item>
-        <Link to={'#'} style={{ color: '#389E0D' }}>
+        <Link to={routes.pages.notifications} style={{ color: '#389E0D' }}>
           Напоминания
+          {isSuccess && unseenNotifications.result.reminders > 0 && (
+            <span className="header__nav-link-text_notification">
+              {' '}
+              <BulbOutlined />
+              {unseenNotifications.result.reminders}
+            </span>
+          )}
         </Link>
       </Menu.Item>
       <Divider style={{ margin: '5px', color: '#389E0D' }} />
@@ -66,22 +83,36 @@ const Entered = () => {
                 Клиники
               </Link>
             </Col>
-            <Col lg={3} offset={2}>
+            <Col lg={4} offset={2}>
               <Link to={routes.applications} style={{ color: '#389E0D' }}>
                 Приемы
+                {isSuccess && unseenNotifications.result.requests > 0 && (
+                  <span className="header__nav-link-text_notification">
+                    {' '}
+                    <BulbOutlined />
+                    {unseenNotifications.result.requests}
+                  </span>
+                )}
               </Link>
             </Col>
-            <Col lg={3} offset={2}>
-              <Link to={'#'} style={{ color: '#389E0D' }}>
+            <Col lg={5} offset={1}>
+              <Link to={routes.pages.notifications} style={{ color: '#389E0D' }}>
                 Напоминания
+                {isSuccess && unseenNotifications.result.reminders > 0 && (
+                  <span className="header__nav-link-text_notification">
+                    {' '}
+                    <BulbOutlined />
+                    {unseenNotifications.result.reminders}
+                  </span>
+                )}
               </Link>
             </Col>
-            <Col lg={6} offset={2}>
+            <Col lg={5} offset={2}>
               <Link to={routes.profile} style={{ color: '#389E0D' }}>
                 Я и мои питомцы
               </Link>
             </Col>
-            <Col lg={3} offset={1}>
+            <Col lg={2} offset={1}>
               <Button
                 style={{
                   border: '1px solid #389E0D',

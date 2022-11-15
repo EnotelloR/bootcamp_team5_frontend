@@ -21,7 +21,7 @@ export const AnimalRecommendations: FC<{ pet_id: number }> = ({ pet_id }) => {
             <div key={recommendation.request_id} className={styles.recommendationCard}>
               <div>
                 <Title level={2}>{recommendation.carrier_name}</Title>
-                <Text>14/12/2022</Text>
+                <Text>{recommendation.datetime}</Text>
               </div>
               <div>
                 <Title level={3}>Рекомендация: </Title>

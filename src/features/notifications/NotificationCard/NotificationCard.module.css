@@ -1,0 +1,15 @@
+.notificationCard__card{
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 4px 4px 4px 5px rgba(0, 0, 0, .1);
+  border-radius: 1rem;
+  padding: 1rem 1rem 0.5rem 1rem;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.notificationCard__card__text{
+  word-wrap: anywhere;
+  max-width: 30%;
+}

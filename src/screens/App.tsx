@@ -24,6 +24,7 @@ import { AppointmentPage } from './AppointmentPage';
 import { ApplicationsScreen } from './Applications';
 import { ConfirmEmailScreen } from './ConfirmEmailScreen';
 import { AnimalQRCodeScreen } from './AnimalQRCodeScreen';
+import { NotificationsScreen } from './NotificationsScreen';
 
 export function App() {
   const { getterUser } = useApiHooks();
@@ -62,6 +63,7 @@ export function App() {
         <Route path={routes.applications} element={<ApplicationsScreen />} />
         <Route path={routes.notFound} element={<NotFound />} />
         <Route path={routes.pages.aboutAnimal} element={<AnimalQRCodeScreen />} />
+        <Route path={routes.pages.notifications} element={<NotificationsScreen />} />
       </Routes>
     </div>
   );

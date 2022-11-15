@@ -1,6 +1,6 @@
-import { TOther } from '../../../services/types/otherTypes';
-import { ICarrier, IOwner } from '../../../services/types/authTypes';
-import { TAnimalsDetails } from '../../../services/types/animalsTypes';
+import { TOther } from '../../services/types/otherTypes';
+import { ICarrier, IOwner } from '../../services/types/authTypes';
+import { TAnimalsDetails } from '../../services/types/animalsTypes';
 
 export type TApplication = {
   animal_type_id: number;

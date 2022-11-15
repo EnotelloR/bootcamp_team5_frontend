@@ -6,7 +6,7 @@ import './ApplicationItem.css';
 import { routes } from '../../../routes/routes';
 import { useNavigate } from 'react-router-dom';
 import { useChangeApplicationsMutation } from '../applications.service';
-import { TApplication } from '../Applications/applications.entity';
+import { TApplication } from '../applications.entity';
 
 export const ApplicationItem: FC<{
   application: TApplication;

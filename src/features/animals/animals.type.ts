@@ -26,6 +26,7 @@ export interface PetUUIDInfo {
 export interface AnimalRecommendation {
   carrier_id: number;
   carrier_name: string;
+  datetime: string;
   pet_id: number;
   request_id: number;
   result_description: string;
