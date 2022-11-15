@@ -124,7 +124,7 @@ export const CreateAppointment = () => {
             name="services_ids"
             rules={[{ required: true, message: 'Поле обязательное для заполнения.' }]}
           >
-            <Select mode="multiple" placeholder="Виды услуг">
+            <Select showSearch={false} mode="multiple" placeholder="Виды услуг*">
               {carrier?.clinic_services.map(({ id, name }, index) => (
                 <Select.Option key={`${index}_${name}`} value={id}>
                   {name}
@@ -138,7 +138,11 @@ export const CreateAppointment = () => {
               { required: true, message: 'Необходимо выбрать минимум 1 способ связи.' },
             ]}
           >
-            <Select mode="multiple" placeholder="Предпочтительный способ связи">
+            <Select
+              showSearch={false}
+              mode="multiple"
+              placeholder="Предпочтительный способ связи*"
+            >
               {ownerCommMethods?.map((method, index) => (
                 <Select.Option
                   key={index}
@@ -149,7 +153,7 @@ export const CreateAppointment = () => {
           </Form.Item>
         </div>
         <Form.Item name="description" className="create-appointment__appointment-text">
-          <Input.TextArea rows={4} placeholder="Текст заявки" />
+          <Input.TextArea maxLength={255} rows={4} placeholder="Текст заявки" />
         </Form.Item>
         <div className="create-appointment__buttons-group">
           <Form.Item className="create-appointment__btn-item">

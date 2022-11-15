@@ -8,7 +8,7 @@ import { Button, Typography } from 'antd';
 import { routes } from '../../routes/routes';
 import { userSelector } from '../../store/slices/auth/authSelectors';
 
-const { Text, Link } = Typography;
+const { Link } = Typography;
 
 export const CarrierPage = () => {
   const { id } = useParams();
@@ -38,7 +38,11 @@ export const CarrierPage = () => {
           <pre>{carrier?.about_us}</pre>
         </Typography>
         <Typography>
-          <pre>{carrier?.url}</pre>
+          <pre>
+            <Link href={carrier?.url} target={'_blank'}>
+              {carrier?.url}
+            </Link>
+          </pre>
         </Typography>
         <Typography>
           <pre>{carrier?.phone}</pre>
