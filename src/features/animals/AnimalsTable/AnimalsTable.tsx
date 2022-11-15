@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button, Col } from 'antd';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -41,7 +41,7 @@ export const AnimalsTable = () => {
   }, []);
 
   return (
-    <>
+    <Col sm={24} xs={24}>
       {isLoading && <Loader />}
       {isSuccess && (
         <>
@@ -69,6 +69,6 @@ export const AnimalsTable = () => {
           </div>
         </>
       )}
-    </>
+    </Col>
   );
 };

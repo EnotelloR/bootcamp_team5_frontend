@@ -34,3 +34,8 @@
 .animals-table__btn:focus {
   background: #135200;
 }
+@media (max-width: 758px) {
+  .animals-table__title {
+    margin-top: 30px;
+  }
+}

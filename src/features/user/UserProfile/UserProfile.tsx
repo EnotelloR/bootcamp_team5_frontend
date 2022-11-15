@@ -1,3 +1,4 @@
+import { Row } from 'antd';
 import React, { FC, useState } from 'react';
 import { AnimalsTable } from '../../animals';
 import AboutUser from '../aboutUser';
@@ -7,7 +8,7 @@ import './UserProfile.css';
 export const UserProfile: FC<TUser> = ({ user }) => {
   const [update, setUpdate] = useState<boolean>(false);
   return (
-    <>
+    <Row>
       <section className="profile__information">
         {update ? (
           <UserForm user={user} setUpdate={setUpdate} />
@@ -24,6 +25,6 @@ export const UserProfile: FC<TUser> = ({ user }) => {
           </h3>
         )}
       </section>
-    </>
+    </Row>
   );
 };

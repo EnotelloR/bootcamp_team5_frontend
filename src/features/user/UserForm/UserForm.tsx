@@ -98,7 +98,7 @@ export const UserForm: FC<UserFormProps> = ({ user, setUpdate }) => {
 
   return (
     <>
-      <Col>
+      <Col xs={24}>
         <Typography.Title level={3}>Изменение данных пользователя</Typography.Title>
       </Col>
       <Col>
