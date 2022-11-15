@@ -46,13 +46,6 @@ export const AnimalsTable = () => {
       {isSuccess && (
         <>
           <h3 className="animals-table__title">МОИ ПИТОМЦЫ</h3>
-          <div className="animals-table__ul">
-            {data.result ? (
-              <ItemList animals={data.result} />
-            ) : (
-              <p className="animals-table__text">Вы еще не добавили ни одного питомца</p>
-            )}
-          </div>
           {data.result && data.result.length === 20 ? (
             <p className="animals-table__btn">
               Извините, но вы добавили максимальное число животных
@@ -67,6 +60,13 @@ export const AnimalsTable = () => {
               + Добавить питомца
             </Button>
           )}
+          <div className="animals-table__ul">
+            {data.result ? (
+              <ItemList animals={data.result} />
+            ) : (
+              <p className="animals-table__text">Вы еще не добавили ни одного питомца</p>
+            )}
+          </div>
         </>
       )}
     </>

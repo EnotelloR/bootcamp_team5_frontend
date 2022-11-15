@@ -41,7 +41,6 @@ interface AnimalFormProps {
 }
 
 export const AnimalForm: FC<AnimalFormProps> = ({ isNew, animal }) => {
-  const params = useParams();
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const [actualKinds, setActialKinds] = useState<null | number>(animal?.kind_id ?? null);

@@ -70,6 +70,7 @@ const animalsApiSlice = petCabinetApi.injectEndpoints({
         method: 'PUT',
         body: animal,
       }),
+      invalidatesTags: ['Pets'],
     }),
     deletePet: builder.mutation<TAnimalSend, number>({
       query: (id) => ({
