@@ -43,9 +43,9 @@ export const AnimalsPage: FC = () => {
     },
     ...(createPanelLabels as Tab[]),
     {
-      label: 'Рекомендации',
+      label: 'Результаты приёма',
       children: <AnimalRecommendations pet_id={data?.result.pet_id as number} />,
-      key: 'Рекомендации',
+      key: 'Результаты приёма',
     },
   ];
 
@@ -69,7 +69,7 @@ export const AnimalsPage: FC = () => {
                 alt={`Фотография ${data.result.nickname}`}
                 className="animal-page__avatar"
               />
-              <h2 className="animal-page__title">{`Привет, я ${data.result.nickname}!!!`}</h2>
+              <h2 className="animal-page__title">{`Привет, я ${data.result.nickname}!`}</h2>
             </div>
             <Tabs
               hideAdd
