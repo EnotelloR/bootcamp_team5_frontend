@@ -173,15 +173,16 @@ export const Appointment: FC<{ id: string }> = ({ id }) => {
                         </div>
                       );
                     })}
-                    {!isOwner && (
-                      <Button
-                        type="primary"
-                        className="create-appointment__submit-btn"
-                        onClick={() => setIsModalOpen(true)}
-                      >
-                        Добавить манипуляцию
-                      </Button>
-                    )}
+                    {!isOwner &&
+                      (appointment.result.status_id === 2 || selectedStatus === 2) && (
+                        <Button
+                          type="primary"
+                          className="create-appointment__submit-btn"
+                          onClick={() => setIsModalOpen(true)}
+                        >
+                          Добавить манипуляцию
+                        </Button>
+                      )}
                   </Panel>
                 </Collapse>
               </div>
