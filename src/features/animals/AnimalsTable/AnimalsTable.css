@@ -8,7 +8,9 @@
 }
 
 .animals-table__ul {
-  max-height: 70vh;
+  max-height: auto;
+  overflow-y: hidden;
+  gap: none;
 }
 
 .animals-table__text {
@@ -22,7 +24,7 @@
   min-height: 44px;
   background: #389e0d;
   color: white;
-  margin-top: 1vh;
+  margin: 1vh 0 2vh 0;
   padding: 12px 49px;
   max-width: 240px;
   align-self: end;
@@ -31,4 +33,9 @@
 .animals-table__btn:hover,
 .animals-table__btn:focus {
   background: #135200;
+}
+@media (max-width: 758px) {
+  .animals-table__title {
+    margin-top: 30px;
+  }
 }

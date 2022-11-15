@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button, Col } from 'antd';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -41,18 +41,11 @@ export const AnimalsTable = () => {
   }, []);
 
   return (
-    <>
+    <Col sm={24} xs={24}>
       {isLoading && <Loader />}
       {isSuccess && (
         <>
           <h3 className="animals-table__title">МОИ ПИТОМЦЫ</h3>
-          <div className="animals-table__ul">
-            {data.result ? (
-              <ItemList animals={data.result} />
-            ) : (
-              <p className="animals-table__text">Вы еще не добавили ни одного питомца</p>
-            )}
-          </div>
           {data.result && data.result.length === 20 ? (
             <p className="animals-table__btn">
               Извините, но вы добавили максимальное число животных
@@ -67,8 +60,15 @@ export const AnimalsTable = () => {
               + Добавить питомца
             </Button>
           )}
+          <div className="animals-table__ul">
+            {data.result ? (
+              <ItemList animals={data.result} />
+            ) : (
+              <p className="animals-table__text">Вы еще не добавили ни одного питомца</p>
+            )}
+          </div>
         </>
       )}
-    </>
+    </Col>
   );
 };
