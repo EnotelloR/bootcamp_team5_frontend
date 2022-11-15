@@ -5,7 +5,7 @@ import {
   useCreateManipulationByPetIdMutation,
   useGetAllManipulationTypesQuery,
 } from '../../../manipulations/manipulations.service';
-import { Iappointment } from '../../Applications/applications.entity';
+import { Iappointment } from '../../applications.entity';
 import TextArea from 'antd/lib/input/TextArea';
 
 export const AppointmentManipulationsForm: FC<{

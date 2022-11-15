@@ -14,6 +14,7 @@ import {
 import { Loader } from '../../layout';
 import { AppointmentManipulationsForm } from './AppointmentManipulationsForm';
 import { useGetAllManipulationTypesQuery } from '../../manipulations/manipulations.service';
+import { useGetNotificationsCountQuery } from '../../notifications';
 
 const { Panel } = Collapse;
 
@@ -41,7 +42,8 @@ export const Appointment: FC<{ id: string }> = ({ id }) => {
     isError,
   } = useGetApplicationQuery(Number(id));
   const { data: manipulationTypes } = useGetAllManipulationTypesQuery();
-  const { refetch } = useGetApplicationsQuery();
+  const { refetch: refetchApplications } = useGetApplicationsQuery();
+  const { refetch: refetchNotificationsCounter } = useGetNotificationsCountQuery();
   const [changeStatus] = useChangeApplicationsMutation();
   const { data: applicationsManipulations } = useGetApplicationManipulationsQuery(
     Number(id),
@@ -50,7 +52,8 @@ export const Appointment: FC<{ id: string }> = ({ id }) => {
   const [applicationForm] = Form.useForm();
 
   useEffect(() => {
-    refetch();
+    refetchApplications();
+    refetchNotificationsCounter();
   }, [appointment]);
 
   const selectedStatus = Form.useWatch('status_id', applicationForm);

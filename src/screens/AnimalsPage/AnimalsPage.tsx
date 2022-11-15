@@ -5,7 +5,7 @@ import './AnimalsPage.css';
 import cap from '../../image/cap.png';
 import Manipulations from '../../features/manipulations/manipulations';
 import { useGetPetQuery } from '../../features/animals/animals.service';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { Loader } from '../../features/layout';
 import {
   ManipulationTypes,
@@ -15,6 +15,7 @@ import { Tab } from 'rc-tabs/lib/interface';
 
 export const AnimalsPage: FC = () => {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
 
   const { data, isSuccess, isLoading } = useGetPetQuery(Number(id));
   const { data: manipulations, isLoading: manipulationLoading } =
@@ -48,7 +49,9 @@ export const AnimalsPage: FC = () => {
     },
   ];
 
-  const [activeKey, setActiveKey] = useState(defaultPanes[0].key);
+  const [activeKey, setActiveKey] = useState<string>(
+    searchParams.get('defaultPane')?.toString() as string,
+  );
 
   const onChange = (key: string) => {
     setActiveKey(key);
