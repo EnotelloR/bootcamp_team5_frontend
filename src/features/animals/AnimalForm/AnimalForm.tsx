@@ -2,7 +2,7 @@ import { Button, Checkbox, Col, DatePicker, Form, Input, Row, Select } from 'ant
 import TextArea from 'antd/lib/input/TextArea';
 import moment from 'moment';
 import { FC, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../routes/routes';
 import { TAnimalsDetails, TAnimalSend } from '../../../services/types/animalsTypes';
 import openNotificationWithIcon from '../../../UI/notifications/notifications';
@@ -29,7 +29,7 @@ const initialValues: TAnimalSend = {
   health_features: '',
   pet_picture: '',
   stigma: '',
-  weight: 0,
+  weight: null,
   wool_cover: '',
   chip_end_date: '',
   chip_start_date: '',
@@ -54,9 +54,10 @@ export const AnimalForm: FC<AnimalFormProps> = ({ isNew, animal }) => {
   const { data: genders } = useGetAnimalsGenderQuery();
   const getAnimalBreedsByType = (event: number) => setActialKinds(event);
   const handleFinish = (values: TAnimalSend) => {
-    const { birthday: wrongFormatDate, ...args } = values;
+    const { birthday: wrongFormatDate, weight: nullableWeight, ...args } = values;
     const birthday = wrongFormatDate.format('DD/MM/YYYY');
-    const currentAnimal = { birthday, ...args };
+    const weight = Number(nullableWeight);
+    const currentAnimal = { birthday, weight, ...args };
     if (isNew) {
       try {
         setDisable(true);
@@ -202,8 +203,8 @@ export const AnimalForm: FC<AnimalFormProps> = ({ isNew, animal }) => {
             >
               <Input
                 type="number"
-                placeholder="Вес  животного в килограммах, в формате 000.000"
                 min={0}
+                placeholder="Вес животного в килограммах, в формате 000.000"
               />
             </Form.Item>
           </Col>

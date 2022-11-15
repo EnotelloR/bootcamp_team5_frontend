@@ -7,17 +7,24 @@ import { logout } from '../../../../../store/slices/auth/authSlice';
 import { BulbOutlined, MenuOutlined } from '@ant-design/icons';
 import Api from '../../../../../utils/Api';
 import { useGetNotificationsCountQuery } from '../../../../notifications';
+import { petCabinetApi } from '../../../../../store/petStore/petCabinetApi';
 
 const Entered = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   function logoutUser() {
     dispatch(logout());
+    dispatch(petCabinetApi.util.resetApiState());
     Api.clearToken();
     localStorage.removeItem('token');
     navigate(routes.main);
   }
-  const { data: unseenNotifications, isSuccess } = useGetNotificationsCountQuery();
+  const { data: unseenNotifications, isSuccess } = useGetNotificationsCountQuery(
+    undefined,
+    {
+      pollingInterval: 60000,
+    },
+  );
 
   const menu = (
     <Menu style={{ padding: '20px 40px' }}>
