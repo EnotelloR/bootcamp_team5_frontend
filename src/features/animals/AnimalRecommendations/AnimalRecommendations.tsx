@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useGetAnimalRecommendationsQuery } from '../animals.service';
-import { Typography } from 'antd';
+import { Alert, Typography } from 'antd';
 import styles from './AnimalRecommendations.module.css';
 
 const { Title, Text } = Typography;
@@ -21,17 +21,20 @@ export const AnimalRecommendations: FC<{ pet_id: number }> = ({ pet_id }) => {
             <div key={recommendation.request_id} className={styles.recommendationCard}>
               <div>
                 <Title level={2}>{recommendation.carrier_name}</Title>
-                <Text>{recommendation.datetime}</Text>
+                <Text>Дата: {recommendation.datetime || 'Не указана'}</Text>
               </div>
               <div>
                 <Title level={3}>Рекомендация: </Title>
                 <p className={styles.recommendationText}>
-                  {recommendation.result_description}
+                  {recommendation.result_description || 'Не указана'}
                 </p>
               </div>
             </div>
           );
         })}
+      {isSuccess && recommendations.result.length === 0 && (
+        <Alert message="Нет рекомендаций" type="info" showIcon />
+      )}
     </div>
   );
 };

@@ -32,6 +32,9 @@ export const Notifications = () => {
         notifications.result.map((notification) => (
           <NotificationCard key={notification.id} notification={notification} />
         ))}
+      {isSuccess && notifications.result.length === 0 && (
+        <Alert message="Нет напоминаний" type="info" showIcon />
+      )}
     </div>
   );
 };
