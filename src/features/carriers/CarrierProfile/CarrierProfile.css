@@ -87,6 +87,10 @@
   grid-area: f;
 }
 
+.carrier-profile__form-container_type_first > pre {
+  margin: 0;
+}
+
 .carrier-profile__form-container_type_second {
   grid-area: s;
 }

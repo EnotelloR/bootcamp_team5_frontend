@@ -1,5 +1,5 @@
 import { AntDesignOutlined } from '@ant-design/icons';
-import { Avatar, Button, Col, Row } from 'antd';
+import { Avatar, Button, Col, Row, Typography } from 'antd';
 import Paragraph from 'antd/lib/typography/Paragraph';
 import React, { FC } from 'react';
 import { user } from '../../../services/types/authTypes';
@@ -30,6 +30,9 @@ const AboutUser: FC<AboutUserProps> = ({ user, setUpdate }) => {
         <Row>
           <Col lg={24}>
             <Paragraph className="carrier-profile__form-container_type_first">
+              <Typography.Title level={5} style={{ margin: 0 }}>
+                Имя
+              </Typography.Title>
               <pre>{owner.firstname}</pre>
             </Paragraph>
           </Col>
@@ -38,12 +41,18 @@ const AboutUser: FC<AboutUserProps> = ({ user, setUpdate }) => {
       {owner?.lastname ? (
         <Col lg={24}>
           <Paragraph className="carrier-profile__form-container_type_first">
+            <Typography.Title level={5} style={{ margin: 0 }}>
+              Фамилия
+            </Typography.Title>
             <pre>{owner.lastname}</pre>
           </Paragraph>
         </Col>
       ) : null}
       {owner?.phone ? (
         <Col lg={24}>
+          <Typography.Title level={5} style={{ margin: 0 }}>
+            Номер телефона
+          </Typography.Title>
           <Paragraph className="carrier-profile__form-container_type_first">
             <pre>{owner.phone}</pre>
           </Paragraph>
@@ -53,6 +62,9 @@ const AboutUser: FC<AboutUserProps> = ({ user, setUpdate }) => {
         <Row>
           <Col lg={24}>
             <Paragraph className="carrier-profile__form-container_type_first">
+              <Typography.Title level={5} style={{ margin: 0 }}>
+                Электронная почта
+              </Typography.Title>
               <pre>{email}</pre>
             </Paragraph>
           </Col>
@@ -62,6 +74,9 @@ const AboutUser: FC<AboutUserProps> = ({ user, setUpdate }) => {
         <Row>
           <Col lg={24}>
             <Paragraph className="carrier-profile__form-container_type_first">
+              <Typography.Title level={5} style={{ margin: 0 }}>
+                Город
+              </Typography.Title>
               <pre>{owner.city_name}</pre>
             </Paragraph>
           </Col>
@@ -71,6 +86,9 @@ const AboutUser: FC<AboutUserProps> = ({ user, setUpdate }) => {
         <Row>
           <Col lg={24}>
             <Paragraph className="carrier-profile__form-container_type_first">
+              <Typography.Title level={5} style={{ margin: 0 }}>
+                Район
+              </Typography.Title>
               <pre>{owner.district_name}</pre>
             </Paragraph>
           </Col>

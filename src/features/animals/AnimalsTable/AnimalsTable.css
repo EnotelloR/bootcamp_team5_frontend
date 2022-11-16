@@ -4,13 +4,12 @@
   line-height: 140%;
   text-align: center;
   color: #141414;
-  text-transform: uppercase;
 }
 
 .animals-table__ul {
-  max-height: auto;
+  max-height: fit-content;
   overflow-y: hidden;
-  gap: none;
+  gap: 0;
 }
 
 .animals-table__text {

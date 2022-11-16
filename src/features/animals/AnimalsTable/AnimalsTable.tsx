@@ -45,7 +45,7 @@ export const AnimalsTable = () => {
       {isLoading && <Loader />}
       {isSuccess && (
         <>
-          <h3 className="animals-table__title">МОИ ПИТОМЦЫ</h3>
+          <h3 className="animals-table__title">Мои питомцы</h3>
           {data.result && data.result.length === 20 ? (
             <p className="animals-table__btn">
               Извините, но вы добавили максимальное число животных

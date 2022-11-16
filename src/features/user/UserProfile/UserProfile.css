@@ -1,3 +1,8 @@
+.profileWrapper{
+  width: 90vw;
+  gap: 5rem
+}
+
 .profile__cap {
   font-weight: 600;
   font-size: 24px;
@@ -29,5 +34,5 @@
 }
 .user-image {
   width: 200px;
-  aspect-ratio: '3:4';
+  aspect-ratio: 3 / 4;
 }
