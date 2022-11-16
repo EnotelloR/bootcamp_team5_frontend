@@ -211,14 +211,14 @@ export const AnimalForm: FC<AnimalFormProps> = ({ isNew, animal }) => {
             <Form.Item
               name="chip_number"
               rules={[
-                { type: 'string', message: 'Введите номер чипа в указанном формате' },
+                { type: 'number', message: 'Введите номер чипа в указанном формате' },
               ]}
             >
               <Input
-                type="text"
+                type="number"
                 placeholder="Номер чипа (15 цифр)"
-                maxLength={15}
-                minLength={15}
+                min={100000000000000}
+                max={999999999999999}
               />
             </Form.Item>
             <Form.Item

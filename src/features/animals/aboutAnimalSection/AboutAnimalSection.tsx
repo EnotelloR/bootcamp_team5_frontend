@@ -103,7 +103,12 @@ const AboutAnimalSection: FC<AboutAnimalSectionProps> = ({ animal }) => {
           </Typography>
         ) : null}
         {animal.castration ? (
-          <p className="animal-profile__text">и сделали бесплодным...</p>
+          <Typography className="animal-profile__block">
+            <Typography.Title level={5} style={{ margin: 0 }}>
+              Стерилизован/Кастрирован
+            </Typography.Title>
+            <pre>{animal.stigma ? 'Да' : 'Нет'}</pre>
+          </Typography>
         ) : null}
       </div>
       <div className="animal-profileWrapper">
