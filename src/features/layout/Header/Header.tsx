@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { userSelector } from '../../../store/slices/auth/authSelectors';
 import './Header.css';
 import RoleHeader from './components/roleHeader';
+import NotEntered from './components/notEntered';
 
 export const Header = () => {
   const user = useSelector(userSelector);
@@ -26,7 +27,11 @@ export const Header = () => {
           </Link>
         </Col>
         <Col lg={14} xs={17} offset={2}>
-          {user.role_name && <RoleHeader user={user} />}
+          {user.role_name && <RoleHeader user={user} /> ? (
+            <RoleHeader user={user} />
+          ) : (
+            <NotEntered />
+          )}
         </Col>
       </Row>
     </header>

@@ -56,7 +56,8 @@ export const AnimalForm: FC<AnimalFormProps> = ({ isNew, animal }) => {
   const handleFinish = (values: TAnimalSend) => {
     const { birthday: wrongFormatDate, weight: nullableWeight, ...args } = values;
     const birthday = wrongFormatDate.format('DD/MM/YYYY');
-    const weight = Number(nullableWeight);
+    console.log(nullableWeight);
+    const weight = nullableWeight ? Number(Number(nullableWeight).toFixed(3)) : null;
     const currentAnimal = { birthday, weight, ...args };
     if (isNew) {
       try {
@@ -81,7 +82,10 @@ export const AnimalForm: FC<AnimalFormProps> = ({ isNew, animal }) => {
     } else {
       try {
         setDisable(true);
-        changeAnimal({ ...currentAnimal, pet_id: animal?.pet_id as number });
+        changeAnimal({
+          ...currentAnimal,
+          pet_id: animal?.pet_id as number,
+        });
         openNotificationWithIcon(
           'success',
           'Изменение питомца',
@@ -195,17 +199,12 @@ export const AnimalForm: FC<AnimalFormProps> = ({ isNew, animal }) => {
                 style={{ width: '100%' }}
               />
             </Form.Item>
-            <Form.Item
-              name="weight"
-              rules={[
-                { type: 'number', message: 'введите вес животного в указанном формате' },
-              ]}
-            >
+            <Form.Item name="weight">
               <Input
-                type="number"
+                type="string"
+                placeholder="Вес  животного в килограммах, в формате 000.000"
                 min={0}
-                placeholder="Вес животного в килограммах, в формате 000.000"
-              />
+              ></Input>
             </Form.Item>
           </Col>
           <Col>
