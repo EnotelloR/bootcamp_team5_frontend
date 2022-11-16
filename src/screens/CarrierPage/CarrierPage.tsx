@@ -32,12 +32,17 @@ export const CarrierPage = () => {
       />
       <div className="carrier-page__container carrier-page__container_type_first">
         <Typography>
+          <p className="carrier-page__fieldTitle">Название</p>
           <pre>{carrier?.name}</pre>
         </Typography>
+        {carrier?.about_us && (
+          <Typography>
+            <p className="carrier-page__fieldTitle">О нас</p>
+            <pre>{carrier?.about_us}</pre>
+          </Typography>
+        )}
         <Typography>
-          <pre>{carrier?.about_us}</pre>
-        </Typography>
-        <Typography>
+          <p className="carrier-page__fieldTitle">Наш сайт</p>
           <pre>
             <Link href={carrier?.url} target={'_blank'}>
               {carrier?.url}
@@ -45,12 +50,17 @@ export const CarrierPage = () => {
           </pre>
         </Typography>
         <Typography>
+          <p className="carrier-page__fieldTitle">Номер телефона</p>
           <pre>{carrier?.phone}</pre>
         </Typography>
+        {carrier?.schedule && (
+          <Typography>
+            <p className="carrier-page__fieldTitle">График</p>
+            <pre>{carrier?.schedule}</pre>
+          </Typography>
+        )}
         <Typography>
-          <pre>{carrier?.schedule}</pre>
-        </Typography>
-        <Typography>
+          <p className="carrier-page__fieldTitle">Мы на карте</p>
           <img
             src="https://static-maps.yandex.ru/1.x/?api_key=01931952-3aef-4eba-951a-8afd26933ad6&theme=light&lang=ru_RU&size=520%2C440&l=map&spn=0.008211%2C0.004627&ll=37.696858%2C55.781849&lg=0&cr=0&pt=37.696858%2C55.781848%2Ccomma&signature=ZlICABT2CTzthGxtmeGRQig7JxDCeoIWlCu2iyPDbdM="
             alt="Мы на карте"
@@ -59,12 +69,17 @@ export const CarrierPage = () => {
       </div>
       <div className="carrier-page__container carrier-page__container_type_second">
         <Typography>
+          <p className="carrier-page__fieldTitle">Город</p>
           <pre>{carrier?.city_name}</pre>
         </Typography>
+        {carrier?.district_name && (
+          <Typography>
+            <p className="carrier-page__fieldTitle">Район</p>
+            <pre>{carrier?.district_name}</pre>
+          </Typography>
+        )}
         <Typography>
-          <pre>{carrier?.district_name}</pre>
-        </Typography>
-        <Typography>
+          <p className="carrier-page__fieldTitle">Адрес</p>
           <pre>{carrier?.address}</pre>
         </Typography>
         <Typography.Title level={5} style={{ margin: 0 }}>

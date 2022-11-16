@@ -38,7 +38,7 @@ const SearchField: FC<SearchFieldProps> = ({ setInitialState, initialState }) =>
               name="search"
               id="search"
               bordered={true}
-              placeholder="Введите название клиники"
+              placeholder="Введите название клиники или услуги"
               value={value}
               minLength={3}
               maxLength={64}

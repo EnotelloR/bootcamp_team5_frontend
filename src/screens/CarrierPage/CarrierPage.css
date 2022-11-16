@@ -19,6 +19,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+  margin-top: 0;
 }
 
 .carrier-page .ant-typography pre,
@@ -61,6 +62,14 @@
   color: #389e0d;
   background-color: transparent;
   border-color: #389e0d;
+}
+
+.carrier-page__fieldTitle{
+  margin: 0 !important;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+
 }
 
 @media screen and (max-width: 1100px) {
