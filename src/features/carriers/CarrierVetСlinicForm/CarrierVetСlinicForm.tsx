@@ -39,7 +39,7 @@ export const CarrierVetClinicForm = ({
       Api.setAnimalTypes({ ids: animal_types }),
       Api.setClinicServices({ ids: clinic_services }),
     ])
-      .then((result) => {
+      .then(() => {
         getterUser();
         setIsEditing(false);
       })
@@ -63,7 +63,7 @@ export const CarrierVetClinicForm = ({
 
   return (
     <Form
-      className="carrier-profile__form carrier-profile__form_type_vet-clinic"
+      className="carrierProfile__form carrierProfile__form_type_vet-clinic"
       name="basic"
       size="middle"
       onFinish={onFinish}
@@ -73,7 +73,7 @@ export const CarrierVetClinicForm = ({
     >
       <Form.Item
         name="animal_types"
-        className="carrier-profile__form-item carrier-profile__form-item_type_animal-types"
+        className="carrierProfile__form-item carrierProfile__form-item_type_animal-types"
         rules={[
           { required: true, message: 'Поле обязательное для заполнения.', type: 'array' },
         ]}
@@ -93,7 +93,7 @@ export const CarrierVetClinicForm = ({
       </Form.Item>
       <Form.Item
         name="clinic_services"
-        className="carrier-profile__form-item carrier-profile__form-item_type_clinic_services"
+        className="carrierProfile__form-item carrierProfile__form-item_type_clinic_services"
         rules={[
           { required: true, message: 'Поле обязательное для заполнения.', type: 'array' },
         ]}
@@ -112,11 +112,11 @@ export const CarrierVetClinicForm = ({
         </Select>
       </Form.Item>
       {isEditing ? (
-        <Form.Item className="carrier-profile__form-item carrier-profile__form-item_type_vet-clinic-submit-btn">
+        <Form.Item className="carrierProfile__form-item carrierProfile__form-item_type_vet-clinic-submit-btn">
           <Button
             type="primary"
             htmlType="submit"
-            className="carrier-profile__btn-submit carrier-profile__btn-submit_type_services"
+            className="carrierProfile__btn-submit carrierProfile__btn-submit_type_services"
           >
             Сохранить
           </Button>
@@ -124,7 +124,7 @@ export const CarrierVetClinicForm = ({
       ) : (
         <Button
           htmlType="button"
-          className="carrier-profile__form-item_type_vet-clinic-submit-btn ant-form-item carrier-profile__submit-btn"
+          className="carrierProfile__form-item_type_vet-clinic-submit-btn ant-form-item carrierProfile__submit-btn"
           onClick={() => setIsEditing(true)}
         >
           Изменить

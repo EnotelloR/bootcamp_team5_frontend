@@ -7,6 +7,8 @@ import { Typography } from 'antd';
 import time from '../../../image/time.svg';
 import location from '../../../image/location.svg';
 import price from '../../../image/price.svg';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../../store/slices/auth/authSelectors';
 
 interface Iprops {
   carrier: Carrier;
@@ -15,8 +17,9 @@ interface Iprops {
 export const CarrierListItem = ({ carrier }: Iprops) => {
   const navigate = useNavigate();
   const { name, picture_url, schedule, address, id } = carrier;
+  const user = useSelector(userSelector);
 
-  const cardClickHandler = useCallback((event: SyntheticEvent) => {
+  const cardClickHandler = useCallback(() => {
     navigate(routes.navCarrierPage(Number(id)));
   }, []);
 
@@ -34,6 +37,7 @@ export const CarrierListItem = ({ carrier }: Iprops) => {
           borderRadius: '4px',
           flexDirection: 'column',
           padding: '30px 20px',
+          cursor: 'pointer',
         }}
         onClick={cardClickHandler}
       >
@@ -87,25 +91,27 @@ export const CarrierListItem = ({ carrier }: Iprops) => {
             <Image src={picture_url} width={145} height={145} />
           </Col>
         </Row>
-        <Row>
-          <Col lg={24} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Button
-              htmlType="button"
-              style={{
-                background: '#389E0D',
-                borderRadius: '4px',
-                padding: '12px 16px',
-                color: '#fff',
-                fontSize: '18px',
-                textTransform: 'uppercase',
-                height: 'auto',
-              }}
-              onClick={buttonClickHandler}
-            >
-              Записаться на прием
-            </Button>
-          </Col>
-        </Row>
+        {user.is_active && (
+          <Row>
+            <Col lg={24} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button
+                htmlType="button"
+                style={{
+                  background: '#389E0D',
+                  borderRadius: '4px',
+                  padding: '12px 16px',
+                  color: '#fff',
+                  fontSize: '18px',
+                  textTransform: 'uppercase',
+                  height: 'auto',
+                }}
+                onClick={buttonClickHandler}
+              >
+                Записаться на прием
+              </Button>
+            </Col>
+          </Row>
+        )}
       </Row>
     </>
   );

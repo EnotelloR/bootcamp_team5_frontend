@@ -62,7 +62,7 @@ export const CarrierMainInfoForm = ({
 
   return (
     <Form
-      className="carrier-profile__form carrier-profile__form_type_main-info"
+      className="carrierProfile__form carrierProfile__form_type_main-info"
       name="basic"
       size="middle"
       initialValues={{ email: user.email }}
@@ -71,31 +71,31 @@ export const CarrierMainInfoForm = ({
       autoComplete="off"
       validateMessages={validateMessages}
     >
-      <div className="carrier-profile__avatar-container">
+      <div className="carrierProfile__avatar-container">
         <img
-          className="carrier-profile__avatar-icon"
+          className="carrierProfile__avatar-icon"
           src={user.carrier?.picture_url || AvatarIcon}
           alt="нажмите для изменения аватара"
         />
 
-        <div className="carrier-profile__formats">
-          <p className="carrier-profile__format">
+        <div className="carrierProfile__formats">
+          <p className="carrierProfile__format">
             Форматы:
-            <span className="carrier-profile__text-accent"> .jpg, .jpeg, .png</span>
+            <span className="carrierProfile__text-accent"> .jpg, .jpeg, .png</span>
           </p>
-          <p className="carrier-profile__format">
+          <p className="carrierProfile__format">
             Рекомендуемое разрешение:
-            <span className="carrier-profile__text-accent"> 640х640 пикселей</span>
+            <span className="carrierProfile__text-accent"> 640х640 пикселей</span>
           </p>
-          <p className="carrier-profile__format">
+          <p className="carrierProfile__format">
             Максимальный размер:
-            <span className="carrier-profile__text-accent"> 5 МБ</span>
+            <span className="carrierProfile__text-accent"> 5 МБ</span>
           </p>
         </div>
       </div>
 
       <Form.Item
-        className="carrier-profile__avatar-input"
+        className="carrierProfile__avatar-input"
         name="picture_url"
         initialValue={user.carrier?.picture_url}
         rules={[
@@ -112,7 +112,7 @@ export const CarrierMainInfoForm = ({
         <Input placeholder="Введите url картинки" disabled={!isEditing} />
       </Form.Item>
 
-      <div className="carrier-profile__form-container carrier-profile__form-container_type_first">
+      <div className="carrierProfile__form-container carrierProfile__form-container_type_first">
         <Form.Item
           name="name"
           rules={[{ required: true }, { max: 64 }]}
@@ -183,7 +183,7 @@ export const CarrierMainInfoForm = ({
           />
         </Form.Item>
       </div>
-      <div className="carrier-profile__form-container carrier-profile__form-container_type_second">
+      <div className="carrierProfile__form-container carrierProfile__form-container_type_second">
         <Form.Item name="city_id" rules={[]} initialValue={user.carrier?.city_id}>
           <Select
             placeholder="Выберите город"
@@ -238,11 +238,11 @@ export const CarrierMainInfoForm = ({
           </Select>
         </Form.Item>
         {isEditing ? (
-          <Form.Item className="carrier-profile__submit-item">
+          <Form.Item className="carrierProfile__submit-item">
             <Button
               type="primary"
               htmlType="submit"
-              className="carrier-profile__submit-btn"
+              className="carrierProfile__submit-btn"
             >
               Сохранить
             </Button>
@@ -250,7 +250,7 @@ export const CarrierMainInfoForm = ({
         ) : (
           <Button
             htmlType="button"
-            className="ant-form-item carrier-profile__submit-btn"
+            className="ant-form-item carrierProfile__submit-btn"
             onClick={() => setIsEditing(true)}
           >
             Изменить

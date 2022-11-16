@@ -133,12 +133,12 @@ export const CarrierProfile = () => {
   };
 
   return (
-    <section className="carrier-profile">
+    <section className="carrierProfile">
       <Tabs
         type="card"
         items={makeTabs()}
-        className={`carrier-profile__tabs ${
-          user.carrier ? 'carrier-profile__tabs_visible' : 'carrier-profile__tabs_hidden'
+        className={`carrierProfile__tabs ${
+          user.carrier ? 'carrierProfile__tabs_visible' : 'carrierProfile__tabs_hidden'
         }`}
       />
     </section>
