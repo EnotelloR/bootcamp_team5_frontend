@@ -22,7 +22,7 @@ export const ManipulationsList: FC<ManipulationsListProps> = ({ manipulations })
               Дата проведения: {manipulation.date}
             </Typography.Paragraph>
             <Typography.Paragraph>
-              Дата следующей: {manipulation.date}
+              Дата следующей: {manipulation.next_date}
             </Typography.Paragraph>
           </div>
         </div>
