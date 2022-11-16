@@ -69,10 +69,12 @@
 
 .carrierProfile__form-item_type_animal-types {
   grid-area: at;
+  width: 100%;
 }
 
 .carrierProfile__form-item_type_clinic_services {
   grid-area: st;
+  width: 100%;
 }
 
 .carrierProfile__form-item_type_vet-clinic-submit-btn {
