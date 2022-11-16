@@ -295,7 +295,8 @@ export const Appointment: FC<{ id: string }> = ({ id }) => {
                   </Panel>
                 </Collapse>
                 {appointment.result.status_id !== 4 &&
-                  appointment.result.status_id !== 5 && (
+                  appointment.result.status_id !== 5 &&
+                  !(appointment.result.status_id === 3 && isOwner) && (
                     <Form.Item className="create-appointment__btn-item">
                       <Button
                         type="primary"

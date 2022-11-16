@@ -12,15 +12,14 @@ export const TitleSection: FC = () => {
         </h2>
       </div>
       <ul className="title-section__ul">
-        <li className="title-section__li">электронный ветеринарный паспорт</li>
+        <li className="title-section__li">Электронный ветеринарный паспорт</li>
         <li className="title-section__li">
-          запись в ветеринарные клиники, салоны, отели
+          Запись в ветеринарные клиники, салоны, отели
         </li>
-        <li className="title-section__li">ведение истории посещения специалистов</li>
+        <li className="title-section__li">Ведение истории посещения специалистов</li>
         <li className="title-section__li">
-          своевременные напоминания о необходимых процедурах
+          Своевременные напоминания о необходимых процедурах
         </li>
-        <li className="title-section__li">интерактивная карта</li>
       </ul>
       <div className="title-section__logo-box">
         <img src={logo} alt="Логотип ЕЛК'Котопес'" className="title-section__logo" />

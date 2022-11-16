@@ -118,7 +118,7 @@ export const CarrierMainInfoForm = ({
           rules={[{ required: true }, { max: 64 }]}
           initialValue={user.carrier?.name}
         >
-          <Input placeholder="Название" disabled={!isEditing} />
+          <Input placeholder="Введите название" disabled={!isEditing} />
         </Form.Item>
         <Form.Item
           name="about_us"
@@ -127,7 +127,7 @@ export const CarrierMainInfoForm = ({
         >
           <Input.TextArea
             rows={6}
-            placeholder="Информация о компании"
+            placeholder="Введите информацию о компании"
             showCount
             maxLength={1024}
             disabled={!isEditing}
@@ -149,7 +149,7 @@ export const CarrierMainInfoForm = ({
           ]}
           initialValue={user.carrier?.url}
         >
-          <Input placeholder="Адрес сайта" disabled={!isEditing} />
+          <Input placeholder="Введите адрес сайта" disabled={!isEditing} />
         </Form.Item>
         <Form.Item
           name="email"
@@ -169,20 +169,24 @@ export const CarrierMainInfoForm = ({
             }),
           ]}
         >
-          <Input placeholder="Email" className="auth__input" disabled />
+          <Input placeholder="Введите email" className="auth__input" disabled />
         </Form.Item>
         <Form.Item
           name="phone"
           rules={[{ required: true, len: 11 }]}
           initialValue={user.carrier?.phone}
         >
-          <Input placeholder="Телефон" type="number" disabled={!isEditing} />
+          <Input
+            placeholder="Введите номер телефона"
+            type="number"
+            disabled={!isEditing}
+          />
         </Form.Item>
       </div>
       <div className="carrier-profile__form-container carrier-profile__form-container_type_second">
         <Form.Item name="city_id" rules={[]} initialValue={user.carrier?.city_id}>
           <Select
-            placeholder="Город"
+            placeholder="Выберите город"
             onChange={(id) => getDistricts(id)}
             disabled={!isEditing}
           >
@@ -194,7 +198,7 @@ export const CarrierMainInfoForm = ({
           </Select>
         </Form.Item>
         <Form.Item name="district_id" rules={[]} initialValue={user.carrier?.district_id}>
-          <Select placeholder="Район" disabled={!isEditing}>
+          <Select placeholder="Выберите район" disabled={!isEditing}>
             {districts.map((district, index) => {
               return (
                 <Select.Option key={`${index}_${district.name}`} value={district.id}>
@@ -209,10 +213,10 @@ export const CarrierMainInfoForm = ({
           rules={[{ required: true }]}
           initialValue={user.carrier?.address}
         >
-          <Input placeholder="Адрес" disabled={!isEditing} />
+          <Input placeholder="Введите адрес" disabled={!isEditing} />
         </Form.Item>
         <Form.Item name="schedule" rules={[]} initialValue={user.carrier?.schedule}>
-          <Input placeholder="Время работы" disabled={!isEditing} />
+          <Input placeholder="Введите время работы" disabled={!isEditing} />
         </Form.Item>
         <Form.Item
           name="service_type_ids"
@@ -225,7 +229,7 @@ export const CarrierMainInfoForm = ({
           ]}
           initialValue={user.carrier?.service_types.map((type) => type.id)}
         >
-          <Select mode="multiple" placeholder="Виды услуг" disabled={!isEditing}>
+          <Select mode="multiple" placeholder="Выберите виды услуг" disabled={!isEditing}>
             {serviceTypes.map(({ id, name }, index) => (
               <Select.Option key={`${index}_${name}`} value={id}>
                 {name}

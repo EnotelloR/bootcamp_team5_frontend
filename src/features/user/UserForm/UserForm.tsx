@@ -1,7 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Avatar, Button, Col, Form, Input, Row, Select, Typography } from 'antd';
-import { AntDesignOutlined } from '@ant-design/icons';
-import cap from '../../../image/cap.png';
+import { Button, Col, Form, Input, Select, Typography } from 'antd';
 import { IDataUser, user } from '../../../services/types/authTypes';
 import './UserForm.css';
 import Api from '../../../utils/Api';
