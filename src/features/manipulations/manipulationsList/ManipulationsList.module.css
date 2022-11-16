@@ -18,9 +18,10 @@
   gap: 20rem;
 }
 
-.manipulationText {
-  word-wrap: anywhere;
-  width: 30rem;
+.manipulation__text{
+  max-width: 35rem;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 1050px) {

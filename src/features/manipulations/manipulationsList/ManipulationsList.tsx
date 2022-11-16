@@ -13,8 +13,9 @@ export const ManipulationsList: FC<ManipulationsListProps> = ({ manipulations })
       {manipulations.map((manipulation) => (
         <div key={manipulation.request_id} className={styles.manipulationCard}>
           <div>
-            <Typography.Paragraph>
-              Описание манипуляции: {manipulation.description}
+            <Typography.Title level={5}>Описание манипуляции:</Typography.Title>
+            <Typography.Paragraph className={styles.manipulation__text}>
+              {manipulation.description}
             </Typography.Paragraph>
           </div>
           <div>
@@ -22,7 +23,7 @@ export const ManipulationsList: FC<ManipulationsListProps> = ({ manipulations })
               Дата проведения: {manipulation.date}
             </Typography.Paragraph>
             <Typography.Paragraph>
-              Дата следующей: {manipulation.next_date}
+              Дата следующей: {manipulation.next_date || 'Не указана'}
             </Typography.Paragraph>
           </div>
         </div>

@@ -26,6 +26,7 @@ export const AppointmentManipulationsForm: FC<{
   }
 
   const manipulationAddConfirm = async (fieldsValue: IFormData) => {
+    setIsOpen(false);
     await createManipulation({
       ...fieldsValue,
       request_id: appointment.id,

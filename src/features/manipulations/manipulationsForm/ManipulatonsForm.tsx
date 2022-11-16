@@ -5,12 +5,13 @@ import {
   CreateManipulationTypes,
   useCreateManipulationByPetIdMutation,
 } from '../manipulations.service';
+import styles from './ManipulatonsForm.module.css';
 import openNotificationWithIcon from '../../../UI/notifications/notifications';
 
 export interface Manipulations {
   date: string;
   description: string;
-  next_date: string;
+  next_date?: string;
 }
 
 const initialValues: Manipulations = {
@@ -32,14 +33,20 @@ const ManipulatonsForm: FC<ManipulatonsFormProps> = ({
   const [createManipulation] = useCreateManipulationByPetIdMutation();
   const manipulationHandler = async (values: CreateManipulationTypes) => {
     const { date, next_date, ...args } = values;
-    try {
-      await createManipulation({
-        ...args,
-        date: date.format('DD/MM/YYYY'),
+    let manipulationObject = {
+      ...args,
+      date: date.format('DD/MM/YYYY'),
+      next_date: undefined,
+      pet_id,
+      manipulation_type_id,
+    };
+    if (next_date)
+      manipulationObject = {
+        ...manipulationObject,
         next_date: next_date.format('DD/MM/YYYY'),
-        pet_id,
-        manipulation_type_id,
-      }).unwrap();
+      };
+    try {
+      await createManipulation(manipulationObject).unwrap();
       openNotificationWithIcon(
         'success',
         'Добавление процедуры',
@@ -60,8 +67,14 @@ const ManipulatonsForm: FC<ManipulatonsFormProps> = ({
     >
       <Row>
         <Col span={7}>
-          <Form.Item name="description">
-            <Input placeholder="Введите вид манипуляции" />
+          <Form.Item
+            name="description"
+            rules={[
+              { type: 'string', message: 'Введите описание манипуляции' },
+              { required: true, message: 'Введите описание манипуляции' },
+            ]}
+          >
+            <Input placeholder="Введите описание манипуляции *" />
           </Form.Item>
         </Col>
         <Col span={7}>
@@ -82,20 +95,36 @@ const ManipulatonsForm: FC<ManipulatonsFormProps> = ({
         <Col span={7}>
           <Form.Item
             name="next_date"
+            dependencies={['date']}
+            hasFeedback
             rules={[
               { type: 'date', message: 'Выберете дату манипуляции' },
-              { required: true, message: 'Выберете дату манипуляции' },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (
+                    !value ||
+                    getFieldValue('date').startOf('day') < value.startOf('day')
+                  ) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    new Error('Дата следующей манипуляции должна быть после текущей'),
+                  );
+                },
+              }),
             ]}
           >
             <DatePicker
-              placeholder="Дата следующей манипуляции *"
+              placeholder="Дата следующей манипуляции"
               format={'DD/MM/YYYY'}
               style={{ width: '100%' }}
             />
           </Form.Item>
         </Col>
         <Col span={3}>
-          <Button htmlType="submit">Сохранить</Button>
+          <Button className={styles.manipulationsForm__confirmButton} htmlType="submit">
+            Сохранить
+          </Button>
         </Col>
       </Row>
     </Form>
