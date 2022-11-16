@@ -12,7 +12,7 @@ const userApiSlice = petCabinetApi.injectEndpoints({
   endpoints: (builder) => ({
     aboutUser: builder.query<UserRequest, void>({
       query: () => routes.api.aboutUser(),
-      providesTags: ['User'],
+      providesTags: ['User', 'Pet'],
     }),
   }),
 });

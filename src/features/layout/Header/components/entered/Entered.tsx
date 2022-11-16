@@ -1,5 +1,5 @@
 import { Button, Col, Divider, Dropdown, Menu, Row } from 'antd';
-import React from 'react';
+import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { routes } from '../../../../../routes/routes';
@@ -8,8 +8,13 @@ import { BulbOutlined, MenuOutlined } from '@ant-design/icons';
 import Api from '../../../../../utils/Api';
 import { useGetNotificationsCountQuery } from '../../../../notifications';
 import { petCabinetApi } from '../../../../../store/petStore/petCabinetApi';
+import { user } from '../../../../../services/types/authTypes';
 
-const Entered = () => {
+interface EnteredProps {
+  user: user;
+}
+
+const Entered: FC<EnteredProps> = ({ user }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   function logoutUser() {
@@ -28,44 +33,71 @@ const Entered = () => {
 
   const menu = (
     <Menu style={{ padding: '20px 40px' }}>
-      <Menu.Item>
-        <Link to={routes.carriers} style={{ color: '#389E0D' }}>
-          Клиники
-        </Link>
-      </Menu.Item>
-      <Divider style={{ margin: '5px', color: '#389E0D' }} />
-      <Menu.Item>
-        <Link to={routes.applications} style={{ color: '#389E0D' }}>
-          Приемы
-          {isSuccess && unseenNotifications.result.requests > 0 && (
-            <span className="header__nav-link-text_notification">
-              {' '}
-              <BulbOutlined />
-              {unseenNotifications.result.requests}
-            </span>
-          )}
-        </Link>
-      </Menu.Item>
-      <Divider style={{ margin: '5px', color: '#389E0D' }} />
-      <Menu.Item>
-        <Link to={routes.pages.notifications} style={{ color: '#389E0D' }}>
-          Напоминания
-          {isSuccess && unseenNotifications.result.reminders > 0 && (
-            <span className="header__nav-link-text_notification">
-              {' '}
-              <BulbOutlined />
-              {unseenNotifications.result.reminders}
-            </span>
-          )}
-        </Link>
-      </Menu.Item>
-      <Divider style={{ margin: '5px', color: '#389E0D' }} />
-      <Menu.Item>
-        <Link to={routes.profile} style={{ color: '#389E0D' }}>
-          Я и мои питомцы
-        </Link>
-      </Menu.Item>
-      <Divider style={{ margin: '10px', color: '#389E0D' }} />
+      {user.role_name === 'OWNER' ? (
+        <>
+          <Menu.Item>
+            <Link to={routes.carriers} style={{ color: '#389E0D' }}>
+              Клиники
+            </Link>
+          </Menu.Item>
+          <Divider style={{ margin: '5px', color: '#389E0D' }} />
+          <Menu.Item>
+            <Link to={routes.applications} style={{ color: '#389E0D' }}>
+              Приемы
+              {isSuccess && unseenNotifications.result.requests > 0 && (
+                <span className="header__nav-link-text_notification">
+                  {' '}
+                  <BulbOutlined />
+                  {unseenNotifications.result.requests}
+                </span>
+              )}
+            </Link>
+          </Menu.Item>
+          <Divider style={{ margin: '5px', color: '#389E0D' }} />
+          <Menu.Item>
+            <Link to={routes.pages.notifications} style={{ color: '#389E0D' }}>
+              Напоминания
+              {isSuccess && unseenNotifications.result.reminders > 0 && (
+                <span className="header__nav-link-text_notification">
+                  {' '}
+                  <BulbOutlined />
+                  {unseenNotifications.result.reminders}
+                </span>
+              )}
+            </Link>
+          </Menu.Item>
+          <Divider style={{ margin: '5px', color: '#389E0D' }} />
+          <Menu.Item>
+            <Link to={routes.profile} style={{ color: '#389E0D' }}>
+              Я и мои питомцы
+            </Link>
+          </Menu.Item>
+          <Divider style={{ margin: '10px', color: '#389E0D' }} />
+        </>
+      ) : (
+        <>
+          <Divider style={{ margin: '5px', color: '#389E0D' }} />
+          <Menu.Item>
+            <Link to={routes.applications} style={{ color: '#389E0D' }}>
+              Приемы
+              {isSuccess && unseenNotifications.result.requests > 0 && (
+                <span className="header__nav-link-text_notification">
+                  {' '}
+                  <BulbOutlined />
+                  {unseenNotifications.result.requests}
+                </span>
+              )}
+            </Link>
+          </Menu.Item>
+          <Divider style={{ margin: '5px', color: '#389E0D' }} />
+          <Menu.Item>
+            <Link to={routes.profile} style={{ color: '#389E0D' }}>
+              Клиника
+            </Link>
+          </Menu.Item>
+          <Divider style={{ margin: '5px', color: '#389E0D' }} />
+        </>
+      )}
       <Menu.Item onClick={logoutUser}>
         <Link to={'#'} style={{ color: '#389E0D' }}>
           Выйти
@@ -85,40 +117,57 @@ const Entered = () => {
           }}
         >
           <Row style={{ alignItems: 'center' }}>
-            <Col lg={2}>
-              <Link to={routes.carriers} style={{ color: '#389E0D' }}>
-                Клиники
-              </Link>
-            </Col>
-            <Col lg={4} offset={2}>
-              <Link to={routes.applications} style={{ color: '#389E0D' }}>
-                Приемы
-                {isSuccess && unseenNotifications.result.requests > 0 && (
-                  <span className="header__nav-link-text_notification">
-                    {' '}
-                    <BulbOutlined />
-                    {unseenNotifications.result.requests}
-                  </span>
-                )}
-              </Link>
-            </Col>
-            <Col lg={5} offset={1}>
-              <Link to={routes.pages.notifications} style={{ color: '#389E0D' }}>
-                Напоминания
-                {isSuccess && unseenNotifications.result.reminders > 0 && (
-                  <span className="header__nav-link-text_notification">
-                    {' '}
-                    <BulbOutlined />
-                    {unseenNotifications.result.reminders}
-                  </span>
-                )}
-              </Link>
-            </Col>
-            <Col lg={5} offset={2}>
-              <Link to={routes.profile} style={{ color: '#389E0D' }}>
-                Я и мои питомцы
-              </Link>
-            </Col>
+            {user.role_name === 'OWNER' ? (
+              <>
+                <Col lg={2}>
+                  <Link to={routes.carriers} style={{ color: '#389E0D' }}>
+                    Клиники
+                  </Link>
+                </Col>
+                <Col lg={4} offset={2}>
+                  <Link to={routes.applications} style={{ color: '#389E0D' }}>
+                    Приемы
+                    {isSuccess && unseenNotifications.result.requests > 0 && (
+                      <span className="header__nav-link-text_notification">
+                        {' '}
+                        <BulbOutlined />
+                        {unseenNotifications.result.requests}
+                      </span>
+                    )}
+                  </Link>
+                </Col>
+                <Col lg={5} offset={1}>
+                  <Link to={routes.pages.notifications} style={{ color: '#389E0D' }}>
+                    Напоминания
+                    {isSuccess && unseenNotifications.result.reminders > 0 && (
+                      <span className="header__nav-link-text_notification">
+                        {' '}
+                        <BulbOutlined />
+                        {unseenNotifications.result.reminders}
+                      </span>
+                    )}
+                  </Link>
+                </Col>
+                <Col lg={5} offset={2}>
+                  <Link to={routes.profile} style={{ color: '#389E0D' }}>
+                    Я и мои питомцы
+                  </Link>
+                </Col>
+              </>
+            ) : (
+              <>
+                <Col lg={3} offset={10}>
+                  <Link to={routes.applications} style={{ color: '#389E0D' }}>
+                    Приемы
+                  </Link>
+                </Col>
+                <Col lg={3} offset={2}>
+                  <Link to={routes.profile} style={{ color: '#389E0D' }}>
+                    Клиника
+                  </Link>
+                </Col>
+              </>
+            )}
             <Col lg={2} offset={1}>
               <Button
                 style={{

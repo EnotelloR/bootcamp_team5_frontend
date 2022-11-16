@@ -40,7 +40,7 @@ const animalsApiSlice = petCabinetApi.injectEndpoints({
     }),
     getPet: builder.query<TServerAnswer<TAnimalsDetails>, number>({
       query: (id: number) => routes.api.petById(id),
-      providesTags: ['Pet'],
+      providesTags: [{ type: 'Pet', id: 'LIST' }, 'User'],
     }),
     getAnimalsType: builder.query<getAnimalsTypeResponce, void>({
       query: () => routes.api.getAnimalsType(),
@@ -71,7 +71,7 @@ const animalsApiSlice = petCabinetApi.injectEndpoints({
         method: 'PUT',
         body: animal,
       }),
-      invalidatesTags: ['Pets'],
+      invalidatesTags: ['Pet', 'User'],
     }),
     deletePet: builder.mutation<TAnimalSend, number>({
       query: (id) => ({
