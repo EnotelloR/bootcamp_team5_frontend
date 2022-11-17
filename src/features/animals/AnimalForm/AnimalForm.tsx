@@ -1,4 +1,14 @@
-import { Button, Checkbox, Col, DatePicker, Form, Input, Row, Select } from 'antd';
+import {
+  Button,
+  Checkbox,
+  Col,
+  DatePicker,
+  Form,
+  Input,
+  InputNumber,
+  Row,
+  Select,
+} from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import moment from 'moment';
 import { FC, useState } from 'react';
@@ -211,14 +221,17 @@ export const AnimalForm: FC<AnimalFormProps> = ({ isNew, animal }) => {
             <Form.Item
               name="chip_number"
               rules={[
-                { type: 'number', message: 'Введите номер чипа в указанном формате' },
+                {
+                  type: 'number',
+                  min: 100000000000000,
+                  max: 999999999999999,
+                  message: 'Введите номер чипа в указанном формате',
+                },
               ]}
             >
-              <Input
-                type="number"
+              <InputNumber
+                className="animal__inputWidth"
                 placeholder="Номер чипа (15 цифр)"
-                min={100000000000000}
-                max={999999999999999}
               />
             </Form.Item>
             <Form.Item
@@ -264,7 +277,12 @@ export const AnimalForm: FC<AnimalFormProps> = ({ isNew, animal }) => {
               <TextArea placeholder="Приметы" maxLength={4000} />
             </Form.Item>
             <Form.Item>
-              <Button type="primary" htmlType="submit" disabled={disable}>
+              <Button
+                className="animal-profile__btn"
+                type="primary"
+                htmlType="submit"
+                disabled={disable}
+              >
                 {isNew ? 'Добавить' : 'Изменить'}
               </Button>
             </Form.Item>
