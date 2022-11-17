@@ -91,7 +91,7 @@ export const CarrierListItem = ({ carrier }: Iprops) => {
             <Image src={picture_url} width={145} height={145} />
           </Col>
         </Row>
-        {user.is_active && (
+        {user.role_name === 'OWNER' && (
           <Row>
             <Col lg={24} style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <Button
