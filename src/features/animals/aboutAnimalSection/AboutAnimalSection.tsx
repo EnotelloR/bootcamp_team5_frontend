@@ -102,14 +102,12 @@ const AboutAnimalSection: FC<AboutAnimalSectionProps> = ({ animal }) => {
             <pre>{animal.stigma}</pre>
           </Typography>
         ) : null}
-        {animal.castration ? (
-          <Typography className="animal-profile__block">
-            <Typography.Title level={5} style={{ margin: 0 }}>
-              Стерилизован/Кастрирован
-            </Typography.Title>
-            <pre>{animal.stigma ? 'Да' : 'Нет'}</pre>
-          </Typography>
-        ) : null}
+        <Typography className="animal-profile__block">
+          <Typography.Title level={5} style={{ margin: 0 }}>
+            Стерилизован/Кастрирован
+          </Typography.Title>
+          <pre>{animal.castration ? 'Да' : 'Нет'}</pre>
+        </Typography>
       </div>
       <div className="animal-profileWrapper">
         {animal.health_features ? (
