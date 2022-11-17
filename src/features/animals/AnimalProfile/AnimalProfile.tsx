@@ -51,7 +51,7 @@ export const AnimalProfile: FC<{ animal: TAnimalsDetails }> = ({ animal }) => {
                 htmlType="button"
                 className="animal-profile__btn animal-profile__btn_delete"
               >
-                Удалить животное
+                Удалить питомца
               </Button>
             </Popconfirm>
           )}
