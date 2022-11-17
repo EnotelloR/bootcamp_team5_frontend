@@ -1,12 +1,14 @@
-import './CarrierListItem.css';
-import carrierCardImage from '../../../image/carrier-list-item.png';
-import scheduleIcon from '../../../image/carrier-card__info-icon.png';
-import addressIcon from '../../../image/carrier-card__adress-icon.png';
-import { Button } from 'antd';
+import { Button, Col, Image, Row } from 'antd';
 import React, { SyntheticEvent, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../routes/routes';
 import { Carrier } from '../../../store/petStore/interfaces';
+import { Typography } from 'antd';
+import time from '../../../image/time.svg';
+import location from '../../../image/location.svg';
+import price from '../../../image/price.svg';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../../store/slices/auth/authSelectors';
 
 interface Iprops {
   carrier: Carrier;
@@ -15,8 +17,9 @@ interface Iprops {
 export const CarrierListItem = ({ carrier }: Iprops) => {
   const navigate = useNavigate();
   const { name, picture_url, schedule, address, id } = carrier;
+  const user = useSelector(userSelector);
 
-  const cardClickHandler = useCallback((event: SyntheticEvent) => {
+  const cardClickHandler = useCallback(() => {
     navigate(routes.navCarrierPage(Number(id)));
   }, []);
 
@@ -26,33 +29,90 @@ export const CarrierListItem = ({ carrier }: Iprops) => {
   }, []);
 
   return (
-    <article
-      className="carrier-card"
-      onClick={cardClickHandler}
-      onKeyDown={cardClickHandler}
-    >
-      <h4 className="carrier-card__title">{name}</h4>
-      <img
-        className="carrier-card__picture"
-        src={picture_url || carrierCardImage}
-        onError={() => carrierCardImage}
-        alt="Клини доктора Шмидт"
-      />
-      <div className="carrier-card__info-item">
-        <img src={scheduleIcon} className="carrier-card__info-icon" alt="#" />
-        <p className="carrier-card__info-text">{schedule}</p>
-      </div>
-      <div className="carrier-card__info-item">
-        <img src={addressIcon} className="carrier-card__info-icon" alt="#" />
-        <p className="carrier-card__info-text">{address}</p>
-      </div>
-      <Button
-        htmlType="button"
-        className="ant-form-item carrier-card__request-btn"
-        onClick={buttonClickHandler}
+    <>
+      <Row
+        style={{
+          gap: '40px',
+          boxShadow: '0px 4px 8px 4px rgba(216, 218, 220, 0.25)',
+          borderRadius: '4px',
+          flexDirection: 'column',
+          padding: '30px 20px',
+          cursor: 'pointer',
+        }}
+        onClick={cardClickHandler}
       >
-        Записаться на прием
-      </Button>
-    </article>
+        <Row style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Col lg={18} style={{ alignItems: 'start' }}>
+            <Typography.Title level={4}>{name}</Typography.Title>
+            <Row>
+              <Col
+                style={{
+                  display: 'flex',
+                  gap: '10px',
+                  alignItems: 'center',
+                  alignContent: 'center',
+                  textAlign: 'center',
+                }}
+                lg={12}
+              >
+                <img src={time} alt="Время работы" />
+                <p>{schedule}</p>
+              </Col>
+              <Col
+                style={{
+                  display: 'flex',
+                  gap: '10px',
+                  alignItems: 'center',
+                  alignContent: 'center',
+                  textAlign: 'center',
+                }}
+                lg={12}
+              >
+                <img src={location} alt="Наш адресс" />
+
+                <p>{address}</p>
+              </Col>
+              <Col
+                style={{
+                  display: 'flex',
+                  gap: '10px',
+                  alignItems: 'center',
+                  alignContent: 'center',
+                  textAlign: 'center',
+                }}
+              >
+                <img src={price} alt="Стоимость работ от" />
+
+                <p>От 600 руб. за прием</p>
+              </Col>
+            </Row>
+          </Col>
+          <Col lg={5} offset={1}>
+            <Image src={picture_url} width={145} height={145} />
+          </Col>
+        </Row>
+        {user.role_name === 'OWNER' && (
+          <Row>
+            <Col lg={24} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button
+                htmlType="button"
+                style={{
+                  background: '#389E0D',
+                  borderRadius: '4px',
+                  padding: '12px 16px',
+                  color: '#fff',
+                  fontSize: '18px',
+                  textTransform: 'uppercase',
+                  height: 'auto',
+                }}
+                onClick={buttonClickHandler}
+              >
+                Записаться на прием
+              </Button>
+            </Col>
+          </Row>
+        )}
+      </Row>
+    </>
   );
 };

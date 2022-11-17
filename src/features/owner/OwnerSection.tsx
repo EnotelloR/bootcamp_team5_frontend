@@ -4,17 +4,15 @@ import { CarrierProfile } from '../carriers';
 import { UserProfile } from '../user';
 
 interface OwnerSectionProps {
-  owner: user | undefined;
+  data: user;
 }
 
-const OwnetSection: FC<OwnerSectionProps> = ({ owner }) => {
-  return owner?.role_name === 'OWNER' ? (
+export const OwnerSection: FC<OwnerSectionProps> = ({ data }) => {
+  return data.role_name === 'OWNER' ? (
     <section className="profile">
-      <UserProfile user={owner as user} />
+      <UserProfile user={data as user} />
     </section>
   ) : (
     <CarrierProfile />
   );
 };
-
-export default OwnetSection;

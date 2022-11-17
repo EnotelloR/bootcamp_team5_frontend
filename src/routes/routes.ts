@@ -5,6 +5,7 @@ export const routes = {
     changePasswordPage: () => '/changePassword/:token',
     confirmEmail: '/confirm/:token',
     aboutAnimal: '/about-animal/:uuid',
+    notifications: '/notifications',
   },
   main: '/',
   notFound: '/*',
@@ -27,6 +28,7 @@ export const routes = {
   api: {
     getAnimalsType: () => '/animal_types',
     getAnimalBreeds: (id: number) => `/animal_types/${id}/breeds`,
+    getAnimalRecommendations: (id: number) => `pets/${id}/recommendations`,
     getAllBreeds: () => '/breeds',
     getCarrier: () => '/carriers',
     getCarrierById: (id: number) => `/carriers/${id}`,
@@ -44,6 +46,7 @@ export const routes = {
     manipulationsByPet: (id: number) => `/pets/${id}/manipulations`,
     request: () => '/requests',
     getRequestById: (id: number) => `/requests/${id}`,
+    getRequestManipulationsById: (id: number) => `/requests/${id}/manipulations`,
     updateStatusRequest: (id: number) => `/requests/${id}/status`,
     getCurrentUserNotifications: () => '/requests/notifications',
     getRequestStatuses: () => '/request_statuses',
@@ -63,6 +66,9 @@ export const routes = {
     verifyUser: () => '/users/verify',
     createPetUUID: (id: number) => `/pets/${id}/qr`,
     getPetByUUID: (uuid: string) => `/pets/qr/${uuid}`,
+    getNotifications: () => '/notifications/reminders',
+    getNotificationsCount: () => '/notifications',
+    checkNotification: (id: string) => `/notifications/reminders/${id}`,
     basePath: () => $HOST,
   },
 };

@@ -6,19 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { Store } from 'antd/lib/form/interface';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { useApiHooks } from '../../hooks/ApiHooks';
-import {
-  AuthInfoModal,
-  noInternetErrText,
-  AuthContainer,
-} from '../../features/authorization';
+import { noInternetErrText, AuthContainer } from '../../features/authorization';
 import { Ierror } from '../../services/types/authTypes';
 import ErrorHandler from '../../utils/ErrorHandler';
+import openNotificationWithIcon from '../../UI/notifications/notifications';
 
 export const SignIn = () => {
   const [rememberMe, setRememberMe] = useState(false);
-  const [infoModalIsOpen, setInfoModalIsOpen] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [errorText, setErrorText] = useState('');
   const { loggerUser } = useApiHooks();
   const navigate = useNavigate();
 
@@ -28,28 +22,21 @@ export const SignIn = () => {
 
   const onFinish = (values: Store) => {
     if (!navigator.onLine) {
-      showErrorModal(noInternetErrText);
+      openNotificationWithIcon('error', 'Ошибка входа', noInternetErrText);
       return;
     }
     loggerUser(values)
-      .then(() => navigate(routes.profile))
+      .then(() => navigate(routes.main))
       .catch((err) => {
         err.json().then((error: Ierror) => {
           console.log(error);
-          showErrorModal(ErrorHandler.handleError(error));
+          openNotificationWithIcon(
+            'error',
+            'Ошибка входа',
+            ErrorHandler.handleError(error),
+          );
         });
       });
-  };
-
-  const showErrorModal = (errorText: string) => {
-    setIsError(true);
-    setInfoModalIsOpen(true);
-    setErrorText(errorText);
-    setTimeout(() => {
-      setIsError(false);
-      setInfoModalIsOpen(false);
-      setErrorText('');
-    }, 3000);
   };
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
@@ -63,9 +50,6 @@ export const SignIn = () => {
       onFinishFailed={onFinishFailed}
       submitBtnText="Войти"
       outLink={{ text: 'Регистрация', link: routes.signUp }}
-      modals={
-        <AuthInfoModal isOpen={infoModalIsOpen} isError={isError} errorText={errorText} />
-      }
     >
       <Form.Item
         name="username"

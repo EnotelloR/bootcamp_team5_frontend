@@ -1,8 +1,14 @@
 .animal-profile {
-  width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 2rem;
+}
+.animal-profileWrapper{
   display: flex;
   flex-direction: column;
+  gap: 0.5rem
+}
+
+.animal-profile__block{
+  width: 30rem;
 }
 
 .animal-profile__box-btn {
@@ -38,7 +44,8 @@
 
 .animal-profile__info-box {
   display: flex;
-  gap: 1rem
+  gap: 1rem;
+  width: 90%;
 }
 
 .animal-profile__text {
@@ -67,4 +74,16 @@
 .animal-profile__modalHandler{
   display: flex;
   justify-content: center;
+}
+
+.animal-profile__block > pre{
+  margin: 0;
+}
+
+
+@media screen and (max-width: 1150px) {
+  .animal-profile__info-box {
+    flex-direction: column;
+    margin-left: 2rem;
+  }
 }

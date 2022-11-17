@@ -3,7 +3,7 @@
   grid-template-areas: 'text logo' 'list logo';
   grid-template-rows: 1fr 1fr;
   grid-template-columns: minmax(min-content, 588px) 1fr;
-  gap: 56px 100px;
+  gap: 28px 100px;
   margin: 0 auto 97px;
   max-width: 1200px;
   padding-left: 20px;
@@ -29,7 +29,8 @@
   font-size: 17px;
   line-height: 160%;
   max-width: 588px;
-  margin: 12px 0 0;
+  margin: 20px 0 0;
+  padding: 0 0 0 10px;
 }
 
 .title-section__ul {
@@ -42,8 +43,10 @@
   list-style-image: url('../../../image/bullet.png');
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 1rem;
   padding: 0 0 0 26px;
+  height: max-content;
 }
 
 .title-section__logo-box {

@@ -1,17 +1,10 @@
-import React, { ChangeEvent, FC, SetStateAction, useRef, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { ChangeEvent, FC, SetStateAction, useState } from 'react';
 import './SearchField.css';
 import { Col, Input, Row, Form } from 'antd';
-import {
-  useGetCityQuery,
-  useGetDistrictsByCityQuery,
-  useGetServicesQuery,
-} from '../../../../store/petStore/api/selectApiSlice';
 import { SearchParams } from '../../../../store/petStore/interfaces';
 import { CityId } from '../../../../screens/CarriersList';
-import Button from 'antd/es/button';
-import SearchSelection from '../searchSelect';
-import { useGetAnimalsTypeQuery } from '../../../animals/animals.service';
-import FormItem from 'antd/es/form/FormItem';
+import { SearchOutlined } from '@ant-design/icons';
 
 interface SearchFieldProps {
   setInitialState: React.Dispatch<React.SetStateAction<SearchParams>>;
@@ -20,20 +13,9 @@ interface SearchFieldProps {
   cityId: number | null;
 }
 
-const SearchField: FC<SearchFieldProps> = ({
-  setInitialState,
-  initialState,
-  setCityId,
-  cityId,
-}) => {
+const SearchField: FC<SearchFieldProps> = ({ setInitialState, initialState }) => {
   const [value, setValue] = useState<string>('');
   const [form] = Form.useForm();
-  const { data: cities } = useGetCityQuery();
-  const { data: services } = useGetServicesQuery();
-  const { data: animalsType } = useGetAnimalsTypeQuery();
-  const { data: districts } = useGetDistrictsByCityQuery(cityId as number, {
-    skip: !cityId,
-  });
 
   const searchHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.currentTarget.value);
@@ -45,44 +27,25 @@ const SearchField: FC<SearchFieldProps> = ({
       setInitialState({ ...params });
     }
   };
-  console.log('before', initialState);
-  const clearHandler = () => {
-    setValue('');
-    form.resetFields(['service', 'city', 'districts', 'animalType']);
-    setInitialState({});
-  };
 
   return (
-    <Form initialValues={initialState} form={form} className="search-container">
+    <Form initialValues={initialState} form={form}>
       <Row>
-        <Col>
-          <Form.Item>
+        <Col lg={18} offset={6} xs={18}>
+          <Form.Item style={{ position: 'relative' }}>
             <Input
               onChange={(event) => searchHandler(event)}
               name="search"
               id="search"
               bordered={true}
-              placeholder="Введите название клиники"
+              placeholder="Введите название клиники или услуги"
               value={value}
               minLength={3}
               maxLength={64}
             />
-          </Form.Item>
-        </Col>
-      </Row>
-      <Row className="select-container">
-        <SearchSelection
-          cities={cities?.result}
-          services={services?.result}
-          animals={animalsType?.result}
-          districts={districts?.result}
-          initialState={initialState}
-          setInitialState={setInitialState}
-          setCityId={setCityId}
-        />
-        <Col span={4}>
-          <Form.Item>
-            <Button onClick={clearHandler}>Очистить фильтр</Button>
+            <SearchOutlined
+              style={{ position: 'absolute', right: '10px', top: '8px', color: '#000' }}
+            />
           </Form.Item>
         </Col>
       </Row>

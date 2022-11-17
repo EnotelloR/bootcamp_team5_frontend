@@ -2,7 +2,7 @@ import { Button, Checkbox, Col, DatePicker, Form, Input, Row, Select } from 'ant
 import TextArea from 'antd/lib/input/TextArea';
 import moment from 'moment';
 import { FC, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../routes/routes';
 import { TAnimalsDetails, TAnimalSend } from '../../../services/types/animalsTypes';
 import openNotificationWithIcon from '../../../UI/notifications/notifications';
@@ -29,7 +29,7 @@ const initialValues: TAnimalSend = {
   health_features: '',
   pet_picture: '',
   stigma: '',
-  weight: 0,
+  weight: null,
   wool_cover: '',
   chip_end_date: '',
   chip_start_date: '',
@@ -41,7 +41,6 @@ interface AnimalFormProps {
 }
 
 export const AnimalForm: FC<AnimalFormProps> = ({ isNew, animal }) => {
-  const params = useParams();
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const [actualKinds, setActialKinds] = useState<null | number>(animal?.kind_id ?? null);
@@ -55,9 +54,11 @@ export const AnimalForm: FC<AnimalFormProps> = ({ isNew, animal }) => {
   const { data: genders } = useGetAnimalsGenderQuery();
   const getAnimalBreedsByType = (event: number) => setActialKinds(event);
   const handleFinish = (values: TAnimalSend) => {
-    const { birthday: wrongFormatDate, ...args } = values;
+    const { birthday: wrongFormatDate, weight: nullableWeight, ...args } = values;
     const birthday = wrongFormatDate.format('DD/MM/YYYY');
-    const currentAnimal = { birthday, ...args };
+    console.log(nullableWeight);
+    const weight = nullableWeight ? Number(Number(nullableWeight).toFixed(3)) : null;
+    const currentAnimal = { birthday, weight, ...args };
     if (isNew) {
       try {
         setDisable(true);
@@ -81,7 +82,10 @@ export const AnimalForm: FC<AnimalFormProps> = ({ isNew, animal }) => {
     } else {
       try {
         setDisable(true);
-        changeAnimal({ ...currentAnimal, pet_id: animal?.pet_id as number });
+        changeAnimal({
+          ...currentAnimal,
+          pet_id: animal?.pet_id as number,
+        });
         openNotificationWithIcon(
           'success',
           'Изменение питомца',
@@ -195,31 +199,26 @@ export const AnimalForm: FC<AnimalFormProps> = ({ isNew, animal }) => {
                 style={{ width: '100%' }}
               />
             </Form.Item>
-            <Form.Item
-              name="weight"
-              rules={[
-                { type: 'number', message: 'введите вес животного в указанном формате' },
-              ]}
-            >
+            <Form.Item name="weight">
               <Input
-                type="number"
+                type="string"
                 placeholder="Вес  животного в килограммах, в формате 000.000"
                 min={0}
-              />
+              ></Input>
             </Form.Item>
           </Col>
           <Col>
             <Form.Item
               name="chip_number"
               rules={[
-                { type: 'string', message: 'Введите номер чипа в указанном формате' },
+                { type: 'number', message: 'Введите номер чипа в указанном формате' },
               ]}
             >
               <Input
-                type="text"
+                type="number"
                 placeholder="Номер чипа (15 цифр)"
-                maxLength={15}
-                minLength={15}
+                min={100000000000000}
+                max={999999999999999}
               />
             </Form.Item>
             <Form.Item

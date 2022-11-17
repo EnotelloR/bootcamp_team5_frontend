@@ -1,3 +1,8 @@
+.profileWrapper{
+  width: 80vw;
+  gap: 5rem
+}
+
 .profile__cap {
   font-weight: 600;
   font-size: 24px;
@@ -10,4 +15,24 @@
 .profile__else {
   display: flex;
   flex-direction: column;
+}
+
+.user-btn {
+  min-height: 44px;
+  background: #389e0d;
+  color: white;
+  margin-top: 1vh;
+  padding: 12px 49px;
+  max-width: 240px;
+  align-self: end;
+}
+
+.user-btn:hover,
+.user-btn:focus {
+  background: #135200;
+  color: #fff;
+}
+.user-image {
+  width: 200px;
+  aspect-ratio: 3 / 4;
 }

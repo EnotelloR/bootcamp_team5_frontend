@@ -5,6 +5,8 @@ import {
 } from '../manipulations.service';
 import ManipulatonsForm from '../manipulationsForm';
 import ManipulationsList from '../manipulationsList';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../../store/slices/auth/authSelectors';
 
 interface ManipulationProps {
   pet_id: number;
@@ -13,13 +15,19 @@ interface ManipulationProps {
 
 const Manipulations: FC<ManipulationProps> = ({ pet_id, manipulation_type_id }) => {
   console.log(manipulation_type_id);
+
+  const user = useSelector(userSelector);
+
+  const isOwner = user && user.role_name === 'OWNER';
   const { data, isLoading } = useGetManipulationsByPetIdQuery({
     pet_id,
     manipulation_type_id,
   });
   return (
     <div>
-      <ManipulatonsForm manipulation_type_id={manipulation_type_id} pet_id={pet_id} />
+      {isOwner && (
+        <ManipulatonsForm manipulation_type_id={manipulation_type_id} pet_id={pet_id} />
+      )}
       {!isLoading ? (
         <ManipulationsList
           manipulations={data?.result as unknown as ManipulationTypesByPet[]}

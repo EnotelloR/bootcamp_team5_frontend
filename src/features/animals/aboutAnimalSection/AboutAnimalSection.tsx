@@ -1,9 +1,8 @@
 import React, { FC, useState } from 'react';
 import { TAnimalsDetails } from '../../../services/types/animalsTypes';
-import { Button, Checkbox, Modal } from 'antd';
+import { Button, Checkbox, Modal, Typography } from 'antd';
 import { useCreateUUIDMutation } from '../animals.service';
 import QRCode from 'qrcode.react';
-
 interface AboutAnimalSectionProps {
   animal: TAnimalsDetails;
 }
@@ -36,83 +35,104 @@ const AboutAnimalSection: FC<AboutAnimalSectionProps> = ({ animal }) => {
 
   return (
     <section className="animal-profile__info-box">
-      <div>
-        <p className="animal-profile__text">
-          <span className="animal-profile__span">Меня зовут: </span>
-          {animal.nickname}
-        </p>
+      <div className="animal-profileWrapper">
+        <Typography className="animal-profile__block">
+          <Typography.Title level={5} style={{ margin: 0 }}>
+            Имя
+          </Typography.Title>
+          <pre>{animal.nickname}</pre>
+        </Typography>
         {animal.kind_name ? (
-          <p className="animal-profile__text">
-            <span className="animal-profile__span">Я представитель вида: </span>
-            {animal.kind_name}
-          </p>
+          <Typography className="animal-profile__block">
+            <Typography.Title level={5} style={{ margin: 0 }}>
+              Представитель вида
+            </Typography.Title>
+            <pre>{animal.kind_name}</pre>
+          </Typography>
         ) : null}
         {animal.breed_name ? (
-          <p className="animal-profile__text">
-            <span className="animal-profile__span">Породы: </span>
-            {animal.breed_name}
-          </p>
+          <Typography className="animal-profile__block">
+            <Typography.Title level={5} style={{ margin: 0 }}>
+              Порода
+            </Typography.Title>
+            <pre>{animal.breed_name}</pre>
+          </Typography>
         ) : null}
-        <p className="animal-profile__text">
-          <span className="animal-profile__span">Пол: </span>
-          {animal.gender_name}
-        </p>
-        <p className="animal-profile__text">
-          <span className="animal-profile__span">Появился на свет: </span>
-          {animal.birthday}
-        </p>
+        <Typography className="animal-profile__block">
+          <Typography.Title level={5} style={{ margin: 0 }}>
+            Пол
+          </Typography.Title>
+          <pre>{animal.gender_name}</pre>
+        </Typography>
+        <Typography className="animal-profile__block">
+          <Typography.Title level={5} style={{ margin: 0 }}>
+            День рождения
+          </Typography.Title>
+          <pre>{animal.birthday}</pre>
+        </Typography>
         {animal.wool_cover ? (
-          <p className="animal-profile__text">
-            <span className="animal-profile__span">Моя шерсть: </span>
-            {animal.wool_cover}
-          </p>
+          <Typography className="animal-profile__block">
+            <Typography.Title level={5} style={{ margin: 0 }}>
+              Цвет шерсти
+            </Typography.Title>
+            <pre>{animal.wool_cover}</pre>
+          </Typography>
         ) : null}
         {animal.weight ? (
-          <p className="animal-profile__text">
-            <span className="animal-profile__span">Ты меня откормил до: </span>
-            {animal.weight} килограмм
-          </p>
+          <Typography className="animal-profile__block">
+            <Typography.Title level={5} style={{ margin: 0 }}>
+              Мой вес
+            </Typography.Title>
+            <pre>{animal.weight} килограмм</pre>
+          </Typography>
         ) : null}
         {animal.chip_number ? (
-          <p className="animal-profile__text">
-            <span className="animal-profile__span">В меня вставили чип с номером: </span>
-            {animal.chip_number}
-          </p>
+          <Typography className="animal-profile__block">
+            <Typography.Title level={5} style={{ margin: 0 }}>
+              Чип с номером
+            </Typography.Title>
+            <pre>{animal.chip_number}</pre>
+          </Typography>
         ) : null}
         {animal.stigma ? (
-          <p className="animal-profile__text">
-            <span className="animal-profile__span">А так же сделали клеймо: </span>
-            {animal.stigma}
-          </p>
+          <Typography className="animal-profile__block">
+            <Typography.Title level={5} style={{ margin: 0 }}>
+              Клеймо под номером
+            </Typography.Title>
+            <pre>{animal.stigma}</pre>
+          </Typography>
         ) : null}
         {animal.castration ? (
-          <p className="animal-profile__text">и сделали бесплодным...</p>
+          <Typography className="animal-profile__block">
+            <Typography.Title level={5} style={{ margin: 0 }}>
+              Стерилизован/Кастрирован
+            </Typography.Title>
+            <pre>{animal.stigma ? 'Да' : 'Нет'}</pre>
+          </Typography>
         ) : null}
       </div>
-      <div>
+      <div className="animal-profileWrapper">
         {animal.health_features ? (
-          <p className="animal-profile__text animal-profile__text_big">
-            <span className="animal-profile__span">
-              За время жизни со мной ты узнал, что у меня есть особенности:{' '}
-            </span>
-            <br />
-            {animal.health_features}
-          </p>
+          <Typography className="animal-profile__block">
+            <Typography.Title level={5} style={{ margin: 0 }}>
+              Особенности здоровья
+            </Typography.Title>
+            <pre>{animal.health_features}</pre>
+          </Typography>
         ) : null}
         {animal.characteristic ? (
-          <p className="animal-profile__text animal-profile__text_big">
-            <span className="animal-profile__span">
-              {' '}
-              А еще то, что ты всегда узнаешь меня в толпе, так как я:{' '}
-            </span>
-            <br />
-            {animal.characteristic}
-          </p>
+          <Typography className="animal-profile__block">
+            <Typography.Title level={5} style={{ margin: 0 }}>
+              Отличительные особенности
+            </Typography.Title>
+            <pre>{animal.characteristic}</pre>
+          </Typography>
         ) : null}
         {animal.uuid ? (
           <p className="animal-profile__text animal-profile__text_unlimited">
-            <span className="animal-profile__span">Мой QR-код: </span>
-            <br />
+            <Typography.Title level={5} style={{ margin: 0 }}>
+              Мой QR-код
+            </Typography.Title>
             <QRCode
               value={`https://elk-kotopes.web.app/about-animal/${animal.uuid}`}
               size={150}

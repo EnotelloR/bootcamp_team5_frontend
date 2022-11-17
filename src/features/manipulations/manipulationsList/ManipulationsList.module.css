@@ -1,0 +1,33 @@
+.manipulationsWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 90%;
+}
+
+.manipulationCard {
+  padding: 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  box-shadow: 4px 4px 4px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  width: 100%;
+  gap: 20rem;
+}
+
+.manipulation__text{
+  max-width: 35rem;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1050px) {
+  .manipulationCard {
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+  }
+}

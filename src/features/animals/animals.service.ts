@@ -1,5 +1,5 @@
 import { TAnimalsDetails, TAnimalSend } from '../../services/types/animalsTypes';
-import { Breed, Gender, PetUUIDInfo } from './animals.type';
+import { AnimalRecommendation, Breed, Gender, PetUUIDInfo } from './animals.type';
 import { AnimalsType } from '../../store/petStore/interfaces';
 import { petCabinetApi } from '../../store/petStore/petCabinetApi';
 import { routes } from '../../routes/routes';
@@ -40,7 +40,7 @@ const animalsApiSlice = petCabinetApi.injectEndpoints({
     }),
     getPet: builder.query<TServerAnswer<TAnimalsDetails>, number>({
       query: (id: number) => routes.api.petById(id),
-      providesTags: ['Pet'],
+      providesTags: [{ type: 'Pet', id: 'LIST' }, 'User'],
     }),
     getAnimalsType: builder.query<getAnimalsTypeResponce, void>({
       query: () => routes.api.getAnimalsType(),
@@ -51,12 +51,19 @@ const animalsApiSlice = petCabinetApi.injectEndpoints({
     getAnimalsGender: builder.query<AnimalsGenderResponce, void>({
       query: () => routes.api.getAllGenders(),
     }),
+    getAnimalRecommendations: builder.query<
+      TServerAnswer<AnimalRecommendation[]>,
+      number
+    >({
+      query: (id) => routes.api.getAnimalRecommendations(id),
+    }),
     addNewAnimal: builder.mutation<TAnimalSend, TAnimalSend>({
       query: (animalBody) => ({
         url: routes.api.pets(),
         method: 'POST',
         body: animalBody,
       }),
+      invalidatesTags: [{ type: 'Pets', id: 'LIST' }],
     }),
     changePet: builder.mutation<TAnimalSend, TAnimalSend>({
       query: (animal) => ({
@@ -64,6 +71,14 @@ const animalsApiSlice = petCabinetApi.injectEndpoints({
         method: 'PUT',
         body: animal,
       }),
+      invalidatesTags: ['Pet', 'User'],
+    }),
+    deletePet: builder.mutation<TAnimalSend, number>({
+      query: (id) => ({
+        url: routes.api.petById(id),
+        method: 'DELETE',
+      }),
+      invalidatesTags: [{ type: 'Pets', id: 'LIST' }, 'Pet'],
     }),
     createUUID: builder.mutation<TServerAnswer<TAnimalSend>, number>({
       query: (id: number) => ({
@@ -82,10 +97,12 @@ export const {
   useGetAnimalsTypeQuery,
   useGetBeersByAnimalsTypeIdQuery,
   useGetAnimalsGenderQuery,
+  useGetAnimalRecommendationsQuery,
   useAddNewAnimalMutation,
   useCreateUUIDMutation,
   useChangePetMutation,
   useGetAnimalByUUIDQuery,
   useGetPetsQuery,
   useGetPetQuery,
+  useDeletePetMutation,
 } = animalsApiSlice;

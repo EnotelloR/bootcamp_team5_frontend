@@ -10,7 +10,9 @@ import { Alert } from 'antd';
 export const Applications: FC = () => {
   const user = useSelector(userSelector);
 
-  const { data, isSuccess, isLoading, isError } = useGetApplicationsQuery();
+  const { data, isSuccess, isLoading, isError } = useGetApplicationsQuery(undefined, {
+    pollingInterval: 600000,
+  });
 
   const isOwner = user && user.role_name === 'OWNER';
 

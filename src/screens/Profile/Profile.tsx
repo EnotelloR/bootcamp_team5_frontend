@@ -1,15 +1,10 @@
 import React, { FC } from 'react';
 import './Profile.css';
-import { Spin } from 'antd';
-import OwnerSection from '../../features/owner/OwnerSection';
-import { useAboutUserQuery } from '../../features/user/user.service';
+import { OwnerSection } from '../../features/owner/OwnerSection';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../store/slices/auth/authSelectors';
 
 export const Profile: FC = () => {
-  const { data, isLoading } = useAboutUserQuery();
-
-  return (
-    <section>
-      {isLoading ? <Spin size="large" /> : <OwnerSection owner={data?.result} />}
-    </section>
-  );
+  const user = useSelector(userSelector);
+  return <section>{user.role_name && <OwnerSection data={user} />}</section>;
 };

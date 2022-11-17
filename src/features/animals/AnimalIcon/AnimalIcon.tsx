@@ -1,6 +1,7 @@
 import React from 'react';
 import './AnimalIcon.css';
 import { TAnimalSend } from '../../../services/types/animalsTypes';
+import cap from '../../../image/cap.png';
 
 interface Iprops {
   pet: TAnimalSend;
@@ -10,6 +11,7 @@ interface Iprops {
 
 export const AnimalIcon = ({ pet, selectedPet, setSelectedPet }: Iprops) => {
   const isSelected = pet.pet_id === selectedPet?.pet_id ? `animal-icon_active` : '';
+  const image = pet.pet_picture && pet.pet_picture.length !== 0 ? pet.pet_picture : cap;
   return (
     <button
       type="button"
@@ -21,7 +23,7 @@ export const AnimalIcon = ({ pet, selectedPet, setSelectedPet }: Iprops) => {
       </div>
       <img
         className="animal-icon__picture"
-        src={pet.pet_picture || '#'}
+        src={image || '#'}
         alt={`Питомец${pet.nickname}`}
       />
       <p className="animal-icon__nickname">{pet.nickname}</p>

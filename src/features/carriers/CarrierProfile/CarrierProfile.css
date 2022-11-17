@@ -1,4 +1,4 @@
-.carrier-profile {
+.carrierProfile {
   max-width: 1280px;
   width: 100%;
   margin: 0 auto;
@@ -7,7 +7,7 @@
   padding-bottom: 20px;
 }
 
-.carrier-profile__avatar-container {
+.carrierProfile__avatar-container {
   display: flex;
   margin-bottom: 20px;
 }
@@ -16,13 +16,13 @@
   width: calc(100vw - 56px);
 }
 
-.carrier-profile__formats {
+.carrierProfile__formats {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.carrier-profile__format {
+.carrierProfile__format {
   font-size: 16px;
   font-family: 'Inter', Arial, sans-serif;
   color: #757575;
@@ -30,17 +30,17 @@
   margin: 0 0 4px;
 }
 
-.carrier-profile__format:last-child {
+.carrierProfile__format:last-child {
   margin: 0;
 }
 
-.carrier-profile__form {
+.carrierProfile__form {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
 }
 
-.carrier-profile__form_type_main-info {
+.carrierProfile__form_type_main-info {
   grid-template-areas:
     'a a a a a'
     'i i i i i'
@@ -48,7 +48,7 @@
     'f f . s s';
 }
 
-.carrier-profile__form_type_vet-clinic {
+.carrierProfile__form_type_vet-clinic {
   grid-template-rows: 32px 32px 205px 44px;
   grid-template-areas:
     'at at . . .'
@@ -58,44 +58,52 @@
   gap: 20px;
 }
 
-.carrier-profile__avatar-container {
+.carrierProfile__avatar-container {
   grid-area: a;
 }
 
-.carrier-profile__avatar-input {
+.carrierProfile__avatar-input {
   grid-area: i;
+  max-width: 92%;
 }
 
-.carrier-profile__form-item_type_animal-types {
+.carrierProfile__form-item_type_animal-types {
   grid-area: at;
+  width: 100%;
 }
 
-.carrier-profile__form-item_type_clinic_services {
+.carrierProfile__form-item_type_clinic_services {
   grid-area: st;
+  width: 100%;
 }
 
-.carrier-profile__form-item_type_vet-clinic-submit-btn {
+.carrierProfile__form-item_type_vet-clinic-submit-btn {
   grid-area: sb;
 }
 
-.carrier-profile__form-container {
+.carrierProfile__form-container {
   display: flex;
   flex-direction: column;
+  width: 80%;
 }
 
-.carrier-profile__form-container_type_first {
+.carrierProfile__form-container_type_first {
   grid-area: f;
 }
 
-.carrier-profile__form-container_type_second {
+.carrierProfile__form-container_type_first > pre {
+  margin: 0;
+}
+
+.carrierProfile__form-container_type_second {
   grid-area: s;
 }
 
-.carrier-profile__text-accent {
+.carrierProfile__text-accent {
   color: rgba(33, 33, 33, 0.95);
 }
 
-.carrier-profile__avatar-icon {
+.carrierProfile__avatar-icon {
   width: 128px;
   height: 128px;
   object-fit: cover;
@@ -114,12 +122,12 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
-.carrier-profile__submit-item {
+.carrierProfile__submit-item {
   margin-top: auto;
 }
 
-.carrier-profile__submit-btn,
-.carrier-profile__btn-submit {
+.carrierProfile__submit-btn,
+.carrierProfile__btn-submit {
   margin-top: auto;
   background: #389e0d;
   width: 50%;
@@ -128,14 +136,14 @@ input[type='number'] {
   height: 44px;
 }
 
-.carrier-profile__btn-submit_type_services {
+.carrierProfile__btn-submit_type_services {
   width: 74%;
 }
 
-.carrier-profile__submit-btn:hover,
-.carrier-profile__submit-btn:focus,
-.carrier-profile__btn-submit:hover,
-.carrier-profile__btn-submit:focus {
+.carrierProfile__submit-btn:hover,
+.carrierProfile__submit-btn:focus,
+.carrierProfile__btn-submit:hover,
+.carrierProfile__btn-submit:focus {
   color: #389e0d;
   background-color: transparent;
   border-color: #389e0d;
@@ -145,26 +153,26 @@ input[type='number'] {
   color: #389e0d;
 }
 
-.carrier-profile__tabs > .ant-tabs-nav,
+.carrierProfile__tabs > .ant-tabs-nav,
 .ant-tabs > div > .ant-tabs-nav {
   transition: all 0.5s ease;
 }
 
-.carrier-profile__tabs_visible > .ant-tabs-nav,
+.carrierProfile__tabs_visible > .ant-tabs-nav,
 .ant-tabs > div > .ant-tabs-nav {
   visibility: visible;
   opacity: 1;
 }
 
-.carrier-profile__tabs_hidden > .ant-tabs-nav,
+.carrierProfile__tabs_hidden > .ant-tabs-nav,
 .ant-tabs > div > .ant-tabs-nav {
   visibility: hidden;
   opacity: 0;
 }
 
-.carrier-profile__form .ant-input[disabled],
-.carrier-profile__form .ant-select-selection-item,
-.carrier-profile__form .ant-select-multiple .ant-select-selection-item-content {
+.carrierProfile__form .ant-input[disabled],
+.carrierProfile__form .ant-select-selection-item,
+.carrierProfile__form .ant-select-multiple .ant-select-selection-item-content {
   color: rgba(33, 33, 33, 0.65);
 }
 
@@ -178,33 +186,33 @@ input[type='number'] {
 }
 
 @media screen and (max-width: 1100px) {
-  .carrier-profile__form_type_main-info {
+  .carrierProfile__form_type_main-info {
     grid-template-columns: 1fr 1fr 0.5fr 1fr 1fr;
   }
 }
 
 @media screen and (max-width: 900px) {
-  .carrier-profile__form_type_main-info {
+  .carrierProfile__form_type_main-info {
     grid-template-columns: 1fr 1fr 50px 1fr 1fr;
   }
 }
 
 @media screen and (max-width: 750px) {
-  .carrier-profile__form_type_main-info {
+  .carrierProfile__form_type_main-info {
     grid-template-columns: 1fr 1fr 20px 1fr 1fr;
   }
 }
 
 @media screen and (max-width: 640px) {
-  .carrier-profile__avatar-icon {
+  .carrierProfile__avatar-icon {
     width: 100px;
     height: 100px;
     margin-right: 10px;
   }
-  .carrier-profile__format {
+  .carrierProfile__format {
     font-size: 14px;
   }
-  .carrier-profile__form_type_main-info {
+  .carrierProfile__form_type_main-info {
     grid-template-columns: 1fr;
     grid-template-areas:
       'a'
@@ -212,7 +220,7 @@ input[type='number'] {
       'f'
       's';
   }
-  .carrier-profile__form_type_vet-clinic {
+  .carrierProfile__form_type_vet-clinic {
     grid-template-columns: 1fr;
     grid-template-areas:
       'at'
@@ -223,24 +231,24 @@ input[type='number'] {
 }
 
 @media screen and (max-width: 510px) {
-  .carrier-profile__avatar-icon {
+  .carrierProfile__avatar-icon {
     width: 80px;
     height: 80px;
     margin-right: 10px;
   }
-  .carrier-profile__format {
+  .carrierProfile__format {
     font-size: 12px;
     line-height: 16px;
   }
 }
 
 @media screen and (max-width: 420px) {
-  .carrier-profile__avatar-icon {
+  .carrierProfile__avatar-icon {
     width: 60px;
     height: 60px;
     margin-right: 10px;
   }
-  .carrier-profile__format {
+  .carrierProfile__format {
     font-size: 10px;
     line-height: 14px;
   }
